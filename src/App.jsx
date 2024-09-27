@@ -24,19 +24,16 @@ function App() {
               display: flex;
               justify-content: center;
               align-items: center;
-              background-color: #f8f8f8;
               height: 100vh;
               width: 100%;
             }
   
             .red-field {
-              background-color: red;
               width: 375px;
               height: 100vh; 
               font-size: 24px;
               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
             }
-  
             @media (max-width: 600px) {
               .red-field {
                 width: 100vw;
@@ -48,7 +45,7 @@ function App() {
         </style>
   
         <div className="container">
-          <div >
+          <div className="red-field">
             <Router />
           </div>
         </div>
