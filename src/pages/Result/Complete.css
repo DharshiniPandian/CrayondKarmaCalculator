@@ -1,0 +1,29 @@
+.complete-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: rgb(255, 255, 255); 
+    background-image:url(../../assets/donebg.png) ;
+}
+
+.complete-video {
+    width: 40%; 
+    height: auto;
+}
+
+.success-message {
+    text-align: center;
+}
+
+.success-image {
+    /* width: 200px; */
+    height: auto; 
+    margin-bottom: 20px; 
+}
+
+.success-message h1 {
+    font-size: 24px; 
+    color: #333; 
+}

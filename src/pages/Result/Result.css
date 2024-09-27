@@ -1,0 +1,184 @@
+.res-contain {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    background-image:url(../../assets/background.svg);
+    background-repeat: no-repeat;
+    flex-direction: column;
+}
+
+/* .res-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+} */
+
+.res-contain h4{
+    margin-bottom: 10%;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.white-box {
+    width: 90%;
+    /* max-width: 400px; */
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-box {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 2px solid rgb(204 202 202);
+    background-color: #fafcff;
+    border-radius: 5%;
+    /* background-color: #fafcff; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 36vh;
+    width: 100%;
+    background-image: url(../../assets//chartbg.png);
+}
+
+.chart-box h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.chart-box p {
+    margin: 5px 0;
+}
+
+.graph-box {
+    display: flex;
+    flex-direction: row;
+    height: 20%;
+    width: 85%;
+    color: #FF5757;
+    background-color: #FFF1F1;
+    border-radius: 6px 6px 6px 6px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 4%;
+    margin-bottom: 5%;
+}
+
+.graph-box p{
+    font-size: 60%;
+    font-weight: 550;
+}
+
+.sapling-box {
+    text-align: center;
+    border: 2px solid rgb(204 202 202);
+    background-color: #fafcff;
+    border-radius: 5%;
+    background-image: url(../../assets/plantbg.png);
+}
+
+.sapling-box p{
+    color: black;
+    font-size: 70%;
+    font-weight: 700;
+}
+
+.sapling-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #42A87F;
+}
+
+.sapling-box button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-bottom: 15%;
+    margin-top: 6%;
+}
+
+.sapling-box button:hover {
+    background-color: #1B9863;
+}
+
+.sapling-box p{
+    margin-bottom: 4%;
+}
+
+.tree-img{
+    margin-top: 12%;
+    margin-bottom: 5%;
+}
+
+.remind{
+    color: #0E70EB;
+    font-size: 60%;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.legend-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 4%;
+}
+
+.legend-color {
+    width: 18px;
+    height: 14px;
+    margin-left: 6px;
+    border-radius: 3%;
+}
+
+.commute-color {
+    background-color: #ff9000; /* Orange for Commute */
+}
+
+.food-color {
+    background-color: #ff4d4f; /* Red for Food */
+}
+
+.appliances-color {
+    background-color: #36cfc9; /* Green for Appliances */
+}
+
+.legend-label {
+    font-size: 14px;
+    color: #333;
+    margin-right: 7%;
+}
+
+.semicircle{
+    height: 70%;
+    width: 80%;
+}

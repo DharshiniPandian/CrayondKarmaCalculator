@@ -1,27 +1,60 @@
 import React from "react";
-import { Box, Typography } from "@mui/material";
-import Grid from '@mui/material/Grid2';  // For Grid2 usage
-import { Container, Stack } from "@mui/material"
 import Router from "./router/router";
 
 function App() {
  
 
-  return (
-    <Stack direction='row'>
-    <Box flex={4}>
-       hello
-    </Box>
-    <Box flex={4} sx={{backgroundColor:'red', height:'100vh'}}>
-       <Router />
-    </Box>
-    <Box flex={4}>
-       hello
-    </Box>
-
-   </Stack>
-      
-  )
-}
+   return (
+      <>
+        <style>
+          {`
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+  w
+            body, html {
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+  
+            .container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #f8f8f8;
+              height: 100vh;
+              width: 100%;
+            }
+  
+            .red-field {
+              background-color: red;
+              width: 375px;
+              height: 100vh; 
+              font-size: 24px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            }
+  
+            @media (max-width: 600px) {
+              .red-field {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0; 
+              }
+            }
+          `}
+        </style>
+  
+        <div className="container">
+          <div className="red-field">
+            <Router />
+          </div>
+        </div>
+      </>
+    );
+  }
 
 export default App
