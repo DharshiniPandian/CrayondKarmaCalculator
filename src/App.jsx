@@ -12,9 +12,7 @@ function App() {
               margin: 0;
               padding: 0;
               box-sizing: border-box;
-            //   background-color: grey;
             }
-  w
             body, html {
               height: 100%;
               display: flex;
@@ -26,19 +24,17 @@ function App() {
               display: flex;
               justify-content: center;
               align-items: center;
-              background-color: #FCF5FF;
-              height: 100vh;
-              width: 100vw;
-            }
+              }
   
             .red-field {
               background-color: white;
               width: 375px;
               height: 100vh; 
               font-size: 24px;
-            //   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+              background-color: #f8f8f8;
+              height: 100vh;
+              width: 100%;
             }
-  
             @media (max-width: 600px) {
               .red-field {
                 width: 100vw;
