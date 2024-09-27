@@ -14,7 +14,7 @@ const FrontPage = () => {
                 <div className='FrontTitle'><Typography align='center' sx={{ color: "#0E70EB", fontFamily: "sans-serif", fontWeight: "bold" }} variant='h6'>Know and offset your carbon <span>Footprints!</span></Typography></div>
             </div>
             <div className='optionsDiv'>
-                <div className='options'>
+                <div className='options123'>
                     <div className='optionPart'>
                         <div><img src={pg1} alt="" width={50} /></div>
                         <div><p className='optionTitle'>Answer Our Questions</p><p style={{ fontSize: "12px", fontFamily: "sans-serif", color: "#60666F" }} className='p2'>Lorem Ipsum has been the industry's standard the industry's </p></div>

@@ -22,7 +22,7 @@ function Router() {
       <Route element={<Form />} path="/tree-form" />
       <Route element={<Complete />} path="/complete" />
       <Route element={<Semi />} path="/chart" />
-      <Route element={<FrontPage/>} path="/frontpage"/>
+      <Route element={<FrontPage/>} path="/"/>
       <Route element={<Food />} path="/Food" />
       <Route element={<Appliance />} path="/Appliance" />
       <Route element={<Electricity />} path="/Electricity" />
