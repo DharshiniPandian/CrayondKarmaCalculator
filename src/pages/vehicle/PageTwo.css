@@ -16,6 +16,7 @@
     margin-bottom:0.5rem;
   }
   
+  
   .vehicle-count {
     margin-top: 10px;
     background-color: #ffefcc;
@@ -40,3 +41,12 @@
   .vehicle-slider-container h3{
     font-size: 0.8rem;
   }
+
+
+  /* input[type="range"]::-webkit-slider-runnable-track {
+    height: 4px; 
+  } */
+
+  
+
+

@@ -24,17 +24,17 @@ function App() {
               display: flex;
               justify-content: center;
               align-items: center;
-              }
-  
-            .red-field {
-              background-color: white;
-              width: 375px;
-              height: 100vh; 
-              font-size: 24px;
-              background-color: #f8f8f8;
               height: 100vh;
               width: 100%;
             }
+  
+            .red-field {
+              width: 375px;
+              height: 100vh; 
+              font-size: 24px;
+              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+            }
+
             @media (max-width: 600px) {
               .red-field {
                 width: 100vw;

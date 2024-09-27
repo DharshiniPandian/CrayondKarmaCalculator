@@ -12,9 +12,13 @@ const PageTwo = ({ updateCarbonValue }) => {
     const handleChange = (event) => {
         setVehicles(event.target.value);
     };
+    
 
     return (
+
+        
         <div className="vehicle-slider-container">
+    
             <h3>How many vehicles do you own?</h3>
             <div className="bord">
                 <li>
