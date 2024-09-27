@@ -1,0 +1,35 @@
+.button-main{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3%;
+    align-items: center;
+    /* background-color: antiquewhite; */
+    height: 9.5vh;
+}
+.back-button{
+    border: none;
+    background-color: #E6EEFA;
+    color: #1D78EC;
+    border-radius: 8px;
+    padding: 3%;
+    width: 10vw;
+}
+.next-button{
+    border: none;
+    background-color: #1D78EC;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 3%;
+    width: 10vw;
+}
+
+@media (max-width: 600px) {
+    .back-button{
+        width: 40vw;
+    }
+    .next-button{
+        width: 40vw;
+    }
+}
