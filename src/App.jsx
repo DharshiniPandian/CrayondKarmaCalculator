@@ -34,7 +34,6 @@ function App() {
               font-size: 24px;
               box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
             }
-
             @media (max-width: 600px) {
               .red-field {
                 width: 100vw;
