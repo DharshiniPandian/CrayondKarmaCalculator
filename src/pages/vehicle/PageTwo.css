@@ -1,0 +1,42 @@
+.vehicle-slider-container {
+    text-align: center;
+    margin-top:3rem;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .slider {
+    width:310px;
+    /* height: 5px; */
+    background: #ddd;
+    outline: none;
+    cursor: pointer;
+    margin-bottom:0.5rem;
+  }
+  
+  .vehicle-count {
+    margin-top: 10px;
+    background-color: #ffefcc;
+    color: #ff9800;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size:0.9rem;
+  }
+
+  .vehicle-slider-container .bord{
+    /* border: 1px solid blue; */
+    border-right: 3px solid #1D78EC;
+    border-left: 3px solid #1D78EC;
+    display: flex;
+    width:fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+  }
+
+  .vehicle-slider-container h3{
+    font-size: 0.8rem;
+  }
