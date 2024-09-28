@@ -69,7 +69,7 @@ export default function Food() {
     console.log("Carbon value =", CarbonValue);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     console.log("Selected item:", selectedItem);
   }, [selectedItem]);
 
@@ -88,13 +88,14 @@ export default function Food() {
                 value={value}
                 circleRatio={1}
                 styles={buildStyles({
-                  circleRatio: 1/2,
+                  circleRatio: 1 / 2,
                   pathTransitionDuration: 0.5,
                   strokeWidth: 20,
                   rotation: 0,
                   trailColor: "#FFF4E4",
                   pathColor: "#FEA062",
-                })}>
+                })}
+              >
                 <div className="rotation-value">2/4</div>
               </CircularProgressbarWithChildren>
             </div>
@@ -114,11 +115,18 @@ export default function Food() {
               style={{
                 backgroundColor: item.backgroundColor,
                 borderColor:
-                  selectedItem === item.id ? item.borderColor : "transparent",
+                  selectedItem === item.id
+                    ? item.borderColor
+                    : "transparent",
                 borderWidth: "2px",
                 borderStyle: "solid",
-              }}>
-              <img src={item.img} style={{ width: "2.5vw" }} alt={item.name} />
+              }}
+            >
+              <img
+                src={item.img}
+                style={{ width: "40px" }}
+                alt={item.name}
+              />
               <div style={{ fontWeight: "420", fontSize: "14px" }}>
                 {item.name}
               </div>
@@ -127,15 +135,15 @@ export default function Food() {
         </div>
       </div>
       <Button
-        onBack={() => navigate(-1)}
-        onNext={() => {
-          if (selectedItem) {
-            navigate("/Appliance", { state: { selectedItem } });
-          } else {
-            alert("Please select an Item.");
-          }
-        }}
-      />
+  onBack={() => navigate("/Vehicle", { state: { activepage: "pagefour" } })} // Changed to 'activepage'
+  onNext={() => {
+    if (selectedItem) {
+      navigate("/Appliance", { state: { selectedItem } });
+    } else {
+      alert("Please select an Item.");
+    }
+  }}
+/>
     </div>
   );
 }
