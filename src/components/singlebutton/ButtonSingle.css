@@ -11,8 +11,8 @@
     width: 90%;
     background-color: #1D78EC;
     color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
+    font: normal normal normal 13px/13px Excon;
+    letter-spacing: 0px;
     padding: 0.9rem 1rem;
     border: none;
     border-radius: 0.5rem;

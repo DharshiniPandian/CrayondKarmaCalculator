@@ -19,17 +19,17 @@ const PageThree = ({ updateCarbonValue, condition }) => {
 
     return (
         <div className="content">
-            <div className="text">
-                <p>What type of fuel do you use?</p>
+            <div className="text" style={{marginBottom:"1.2rem"}}>
+                What type of fuel do you use?
             </div>
             <div className="options">
                 <div className={active == "gas" ? "element-gas" : "element-gas-"} onClick={() =>{ setactive("gas"), setnextcondition(true)}}>
-                    <li><img src={petrol} alt="" /></li>
-                    <li>petrol/deisel</li>
+                    <li><img src={petrol} style={{height:"40px",width:"40px"}} alt="" /></li>
+                    <li className='VehicleName'>petrol/deisel</li>
                 </div>
                 <div className={active == "electric" ? "element-electric" : "element-electric-"} onClick={() => {setactive("electric"), setnextcondition(true)}}>
-                    <li><img src={electric} alt="" /></li>
-                    <li>Electric</li>
+                    <li><img src={electric} style={{height:"40px",width:"36.38px"}} alt="" /></li>
+                    <li className='VehicleName'>Electric vehicle</li>
                 </div>
             </div>
         </div>
