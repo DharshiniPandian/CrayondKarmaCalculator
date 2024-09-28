@@ -11,7 +11,7 @@ import Appliance from "../pages/Appliance/Appliance";
 import Electricity from "../pages/Electricity/Electricity";
 import App from "../App";
 import FrontPage from "../pages/frontpage/FrontPage";
-import Vehicle from "../pages/Vehicle/Vehicle";
+import Vehicle from "../pages/vehicle/Vehicle";
 
 function Router() {
   return (
