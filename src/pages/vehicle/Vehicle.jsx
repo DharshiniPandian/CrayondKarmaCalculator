@@ -9,6 +9,9 @@ import DoubleButton from '../../components/doublebutton/DoubleButton';
 import PageTwo from './PageTwo';
 import PageThree from './PageThree';
 import PageFour from './PageFour';
+import { useDispatch } from 'react-redux';
+import { addMesterVehiclesData } from '../../slice/MasterApiSlices';
+import axios from 'axios';
 import background1 from '../../assets/background1.png'
 import background2 from '../../assets/background2.png'
 import background3 from '../../assets/background3.png'
@@ -23,7 +26,23 @@ const Vehicle = ({ pagecond }) => {
     let setnextcondition = (value) =>{
         setnextpage(value)
     }
-    // console.log(nextpage)
+    console.log(nextpage)
+    const dispatch = useDispatch()
+
+    const fetchmasterVehicles = async () => {
+        try{
+          const response = await axios.get('http://localhost:8081/master/vehicles');
+          if(response.status===200)
+          dispatch(addMesterVehiclesData(response.data))
+        }
+        catch(error){
+          console.log("error while fetching data",error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchmasterVehicles()
+    },[])
 
 
     const handleNext = () => {
@@ -71,8 +90,8 @@ const Vehicle = ({ pagecond }) => {
     };
 
     const updateCarbonValue = (value) => {
-        setCarbonValue((prev) => prev + value); // Accumulate carbon value
-    };
+        setCarbonValue((prev) => prev + value); // Accumulate carbon value 
+    }; /// need to remove
 
     useEffect(() => {
         if (location.state && location.state.activepage) { // Ensure consistent key name
