@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import './PageTwo.css';
+import '../../styles/PageTwo.css';
+import DiscreteSliderMarks from '../../components/slider/Slider';
 
 const PageTwo = ({ updateCarbonValue }) => {
     const [vehicles, setVehicles] = useState(4);
+    let minimum = 2
+    let maximum = 10
+
 
     useEffect(() => {
         // Update carbon value based on vehicle count, for example, each vehicle adds 2 tons of CO2.
         updateCarbonValue(vehicles * 2);
     }, [vehicles]);
 
-    const handleChange = (event) => {
-        setVehicles(event.target.value);
+    const handleChange = (event, newvalue) => {
+        setVehicles(newvalue)
     };
     
 
@@ -21,7 +25,7 @@ const PageTwo = ({ updateCarbonValue }) => {
     
             <h3>How many vehicles do you own?</h3>
             <div className="bord">
-                <li>
+                {/* <li>
                     <input
                         type="range"
                         min="2"
@@ -30,7 +34,8 @@ const PageTwo = ({ updateCarbonValue }) => {
                         onChange={handleChange}
                         className="slider"
                     />
-                </li>
+                </li> */}
+                <DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/>
             </div>
             <div className="vehicle-count">
                 {vehicles} {vehicles === 1 ? "vehicle" : "vehicles"}
