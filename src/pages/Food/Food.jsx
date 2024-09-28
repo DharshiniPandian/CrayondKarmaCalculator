@@ -74,14 +74,14 @@ export default function Food() {
   }, [selectedItem]);
 
   return (
-    <div>
+    <div style={{border: "1px solid #E8F2FF"}}>
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {CarbonValue}ton CO2
         </div>
-        <div className="white-screen">
-          <div className="loader">
+        {/* <div className="white-screen"> */}
+          {/* <div className="loader">
             <div style={{ width: "80px" }}>
               <CircularProgressbarWithChildren
                 className="custom-progressbar"
@@ -99,11 +99,30 @@ export default function Food() {
                 <div className="rotation-value">2/4</div>
               </CircularProgressbarWithChildren>
             </div>
-          </div>
-        </div>
+          </div> */}
+        {/* </div> */}
       </div>
       <div className="food-bottom">
-        <div className="food-ques">What do you normally eat?</div>
+        <div className="loader">
+            <div style={{ width: 54, height: 54 }}>
+              <CircularProgressbarWithChildren
+                className="custom-progressbar"
+                value={value}
+                text={`2/4`}
+                circleRatio={1}
+                styles={buildStyles({
+                  textSize: '30px',
+          pathColor: '#FEA062',
+          textColor: '#FEA062',
+          trailColor: '#FFF4E4',
+          backgroundColor: '#F39C12',
+                })}
+                strokeWidth={12}
+              >
+              </CircularProgressbarWithChildren>
+            </div>
+          </div>
+        <div className="food-ques">What you normally eat?</div>
         <div className="food-products">
           {FoodProducts.map((item) => (
             <div
@@ -127,7 +146,7 @@ export default function Food() {
                 style={{ width: "40px" }}
                 alt={item.name}
               />
-              <div style={{ fontWeight: "420", fontSize: "14px" }}>
+              <div style={{ fontWeight: "420", fontSize: "14px",fontFamily: "Excon, sans-serif"  }}>
                 {item.name}
               </div>
             </div>
