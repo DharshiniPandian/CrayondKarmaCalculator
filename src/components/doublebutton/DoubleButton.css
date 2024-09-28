@@ -1,32 +1,31 @@
 .buttondouble {
-    width: 100%;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    bottom: 3vh;
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 3vh;
 }
 
-.buttondouble .btns{
-    display: flex;
-    width: 90%;
-    gap: 1rem;
-
+.buttondouble .btns {
+  display: flex;
+  width: 90%;
+  gap: 1rem;
 }
 
 .buttondouble button {
-    width: 90%;
-    background-color: #1D78EC;
-    color: white;
-    font-weight: 600;
-    font-size: 0.8rem;
-    padding: 0.9rem 1rem;
-    border: none;
-    border-radius: 0.5rem;
+  width: 90%;
+  background-color: #1d78ec;
+  color: white;
+  font: normal normal 500 13px/16px Excon;
+  letter-spacing: 0px;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
 }
 
-.buttondouble .back{
-    color: #1D78EC;
-    background-color: #DEE9F9 ;
+.buttondouble .back {
+  color: #1d78ec;
+  background-color: #dee9f9;
 }

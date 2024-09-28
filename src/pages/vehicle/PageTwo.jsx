@@ -22,7 +22,6 @@ const PageTwo = ({ updateCarbonValue }) => {
 
         
         <div className="vehicle-slider-container">
-    
             <h3>How many vehicles do you own?</h3>
             <div className="bord">
                 {/* <li>
@@ -35,7 +34,9 @@ const PageTwo = ({ updateCarbonValue }) => {
                         className="slider"
                     />
                 </li> */}
-                <DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/>
+                <li className='emptyBorder'></li>
+                <li><DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/></li>
+                <li className='emptyBorder'></li>
             </div>
             <div className="vehicle-count">
                 {vehicles} {vehicles === 1 ? "vehicle" : "vehicles"}
