@@ -25,7 +25,7 @@ const PageThree = ({ updateCarbonValue, condition }) => {
             <div className="options">
                 <div className={active == "gas" ? "element-gas" : "element-gas-"} onClick={() =>{ setactive("gas"), setnextcondition(true)}}>
                     <li><img src={petrol} alt="" /></li>
-                    <li>Gasoline</li>
+                    <li>petrol/deisel</li>
                 </div>
                 <div className={active == "electric" ? "element-electric" : "element-electric-"} onClick={() => {setactive("electric"), setnextcondition(true)}}>
                     <li><img src={electric} alt="" /></li>

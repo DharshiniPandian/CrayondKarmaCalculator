@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './PageTwo.css';
-import DiscreteSliderMarks from './sample';
+import '../../styles/PageTwo.css';
+import DiscreteSliderMarks from '../../components/slider/Slider';
 
 const PageFour = ({ updateCarbonValue }) => {
     const [vehicles, setVehicles] = useState(80);
