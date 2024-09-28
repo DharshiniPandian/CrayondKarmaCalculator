@@ -13,7 +13,7 @@ import { fontFamily, fontWeight } from "@mui/system";
 
 export default function Electricity() {
   const [CarbonValue, setCarbonValue] = useState(0);
-  const [ElectricityUnit, setElectricityUnit] = useState(100);
+  const [ElectricityUnit, setElectricityUnit] = useState(200);
   const [value, setValue] = useState(75);
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ export default function Electricity() {
             <CircularProgressbarWithChildren
               className="custom-progressbar"
               value={value}
-              text={`3/4`}
+              text={`4/4`}
               circleRatio={1}
               styles={buildStyles({
                 textSize: "30px",
@@ -88,7 +88,6 @@ export default function Electricity() {
               onSliderChange={handleChange}
               max={maximum}
               min={minimum}
-              
             />
             {/* <div className="electricity-units-static">
               <p>100 units</p>

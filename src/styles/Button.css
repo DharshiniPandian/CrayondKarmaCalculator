@@ -1,4 +1,4 @@
-.button-main{
+.button-main {
     display: flex;
     width: 100%;
     justify-content: center;
@@ -8,32 +8,40 @@
     /* background-color: antiquewhite; */
     height: 9.5vh;
 }
-.back-button{
-    font-size: 14px;
-    font-family: "Sarabun";
+
+.back-button {
+    /* font-size: 14px; */
+    /* font-family: "Sarabun"; */
     border: none;
     background-color: #E6EEFA;
     color: #1D78EC;
     border-radius: 8px;
-    padding: 3%;
-    width: 165px;
+    padding: 15px 64.5px;
+    width: 160px;
+    font: normal normal 500 13px/16px Excon;
+    letter-spacing: 0px;
 }
-.next-button{
-    font-size: 14px;
-    font-family: "Sarabun";
+
+.next-button {
+    /* font-size: 14px;
+    font-family: "Sarabun"; */
     border: none;
     background-color: #1D78EC;
     color: #FFFFFF;
     border-radius: 8px;
-    padding: 3%;
-    width: 165px;
+    padding: 15px 64.5px;
+    width: 160px;
+    font: normal normal 500 13px/16px Excon;
+    letter-spacing: 0px;
+
 }
 
 @media (max-width: 600px) {
-    .back-button{
+    .back-button {
         width: 40vw;
     }
-    .next-button{
+
+    .next-button {
         width: 40vw;
     }
 }
