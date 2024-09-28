@@ -49,7 +49,7 @@ const marks = [
     label: '10 km',
   },
   {
-    value: 250,
+    value: 240,
     label: '250 km'
   }
 ];
@@ -171,6 +171,7 @@ const Slider = styled(BaseSlider)(
     transform: translateX(-50%);
     margin-top: 8px;
     color:black;
+    width:40px;
   }
 `,
 );
