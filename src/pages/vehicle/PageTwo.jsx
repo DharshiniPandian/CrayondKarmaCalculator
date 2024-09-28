@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './PageTwo.css';
-import DiscreteSliderMarks from './sample';
+import '../../styles/PageTwo.css';
+import DiscreteSliderMarks from '../../components/slider/Slider';
 
 const PageTwo = ({ updateCarbonValue }) => {
     const [vehicles, setVehicles] = useState(4);
-    let minimum = 0
+    let minimum = 2
     let maximum = 10
 
 
@@ -22,7 +22,6 @@ const PageTwo = ({ updateCarbonValue }) => {
 
         
         <div className="vehicle-slider-container">
-    
             <h3>How many vehicles do you own?</h3>
             <div className="bord">
                 {/* <li>
@@ -35,7 +34,9 @@ const PageTwo = ({ updateCarbonValue }) => {
                         className="slider"
                     />
                 </li> */}
-                <DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/>
+                <li className='emptyBorder'></li>
+                <li><DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/></li>
+                <li className='emptyBorder'></li>
             </div>
             <div className="vehicle-count">
                 {vehicles} {vehicles === 1 ? "vehicle" : "vehicles"}

@@ -43,7 +43,7 @@ const PageOne = ({ updateCarbonValue, condition }) => {
   return (
     <div className="content">
       <div className="text">
-        <p>Choose the vehicles you use for commuting?</p>
+        Choose the vehicles you use for commuting?
       </div>
       <div className="options">
         {vehicleData.map((vehicle, key) => (
@@ -62,7 +62,7 @@ const PageOne = ({ updateCarbonValue, condition }) => {
             <li>
               <img src={vehicle.path} alt="" />
             </li>
-            <li>{vehicle.name}</li>
+            <li className="VehicleName">{vehicle.name}</li>
           </div>
         ))}
         {/* <div

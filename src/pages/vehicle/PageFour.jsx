@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './PageTwo.css';
-import DiscreteSliderMarks from './sample';
+import '../../styles/PageTwo.css';
+import DiscreteSliderMarks from '../../components/slider/Slider';
 
 const PageFour = ({ updateCarbonValue }) => {
     const [vehicles, setVehicles] = useState(80);
@@ -19,7 +19,7 @@ const PageFour = ({ updateCarbonValue }) => {
 
     return (
         <div className="vehicle-slider-container">
-            <h3>How many kilometers do you travel?</h3>
+            <h3>How many kilometers you drive per week?</h3>
             <div className="bord">
                 {/* <li>
                     <input
@@ -31,8 +31,9 @@ const PageFour = ({ updateCarbonValue }) => {
                         className="slider"
                     />
                 </li> */}
-                <DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/>
-
+                <li className='emptyBorder'></li>
+                <li><DiscreteSliderMarks value = {vehicles} onSliderChange={handleChange} max = {maximum} min = {minimum}/></li>
+                <li className='emptyBorder'></li>
             </div>
             <div className="vehicle-count">
                 {vehicles} km

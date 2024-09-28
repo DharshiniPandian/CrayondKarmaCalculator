@@ -20,37 +20,12 @@ export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
 
 const marks = [
   {
-    value: 0,
-    label: '0',
+    value: 100,
+    label: '100 units',
   },
   {
-    value: 2,
-    label: '2',
-  },
-  {
-    value: 4,
-    label: '4',
-  },
-  {
-    value: 6,
-    label: '6',
-  },
-  {
-    value: 8,
-    label: '8',
-  },
-  {
-    value : 9,
-    label: '10',
-
-  },
-  {
-    value: 11,
-    label: '10 km',
-  },
-  {
-    value: 250,
-    label: '250 km'
+    value: 1000,
+    label: '1000 units',
   }
 ];
 
@@ -107,7 +82,7 @@ const Slider = styled(BaseSlider)(
     position: absolute;
     width: 100%;
     height: 4px;
-    border-radius: 6px;
+    border-radius: 0px;
     background-color: currentColor;
     opacity: 0.3;
   }
@@ -116,7 +91,7 @@ const Slider = styled(BaseSlider)(
     display: block;
     position: absolute;
     height: 4px;
-    border-radius: 6px;
+    border-radius:0px;
     background-color: currentColor;
   }
 
