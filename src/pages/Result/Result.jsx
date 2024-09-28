@@ -47,9 +47,9 @@ const Result = () => {
 
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
-                    <p>Offset your excess carbon footprint by</p>
+                    <div className='text123'>Offset your excess carbon footprint by</div>
                     <h3>Planting 15 Saplings</h3>
-                    <button onClick={handlePlant}>Plant now to offset</button>
+                    <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
                 <div className='remind'>
                     <p>Remind me later</p>
