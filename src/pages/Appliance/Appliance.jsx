@@ -97,38 +97,39 @@ export default function Appliance() {
   }, [selectedItems]);
 
   return (
-    <div>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {CarbonValue}ton CO2
         </div>
-        <div className="white-screen">
-          <div className="loader">
-            <div style={{ width: "80px" }}>
+      </div>
+      <div className="appliance-bottom">
+      <div className="loader">
+      <div style={{ width: 54, height: 54 }}>
               <CircularProgressbarWithChildren
                 className="custom-progressbar"
                 value={value}
+                text={`2/4`}
                 circleRatio={1}
                 styles={buildStyles({
-                  pathTransitionDuration: 0.5,
-                  strokeWidth: 20,
-                  rotation: 0,
-                  trailColor: "#FFF4E4",
-                  pathColor: "#FEA062",
+                  textSize: '30px',
+          pathColor: '#FEA062',
+          textColor: '#FEA062',
+          trailColor: '#FFF4E4',
+          backgroundColor: '#F39C12',
                 })}
+                strokeWidth={12}
               >
-                <div className="rotation-value">3/4</div>
               </CircularProgressbarWithChildren>
             </div>
           </div>
-        </div>
-      </div>
-      <div className="appliance-bottom">
         <div className="appliance-ques">
           Select the appliances you use at your home
         </div>
+        <div style={{width: "91%",display: "flex",justifyContent: "center"}}>
         <div className="appliance-products">
+          
           {AppliancesProducts.map((item) => (
             <div
               key={item.id}
@@ -145,11 +146,12 @@ export default function Appliance() {
                 borderStyle: "solid",
               }}
             >
-              <div style={{ fontWeight: "420", fontSize: "14px" }}>
+              <div style={{ fontWeight: "420", fontSize: "14px",fontFamily: "Excon, sans-serif" }}>
                 {item.name}
               </div>
             </div>
           ))}
+          </div>
         </div>
       </div>
       <Button
