@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// Vehicle.jsx
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import PageOne from './PageOne';
 import CustomProgressBar from './progress/Progress';
 import ButtonSingle from './singlebutton/ButtonSingle';
@@ -10,9 +11,10 @@ import PageThree from './PageThree';
 import PageFour from './PageFour';
 
 const Vehicle = ({ pagecond }) => {
-    const [activepage, setActivePage] = useState("pageone"); // Start with page one
+    const [activepage, setActivePage] = useState("pageone"); 
     const [carbonvalue, setCarbonValue] = useState(2);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleNext = () => {
         switch (activepage) {
@@ -52,6 +54,18 @@ const Vehicle = ({ pagecond }) => {
     const updateCarbonValue = (value) => {
         setCarbonValue((prev) => prev + value); // Accumulate carbon value
     };
+
+    useEffect(() => {
+        if (location.state && location.state.activepage) { // Ensure consistent key name
+          setActivePage(location.state.activepage);
+          console.log("activePage set to:", location.state.activepage);
+        }
+      }, [location.state]);
+    
+    useEffect(() => {
+        console.log("Current activePage:", activepage);
+        // You can perform additional actions based on activePage here
+    }, [activepage]);
 
     return (
         <div className="vehiclemaincontainer">
