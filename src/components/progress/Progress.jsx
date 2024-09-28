@@ -14,9 +14,9 @@ const CustomProgressBar = () => {
         text={`${value}/${maxValue}`}
         styles={buildStyles({
           textSize: '30px',
-          pathColor: '#F39C12',
-          textColor: '#F39C12',
-          trailColor: '#FDEBD0',
+          pathColor: '#FEA062',
+          textColor: '#FEA062',
+          trailColor: '#FFF4E4',
           backgroundColor: '#F39C12',
         })}
         className='progress'

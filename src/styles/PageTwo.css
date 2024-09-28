@@ -25,6 +25,7 @@
     padding: 5px 10px;
     border-radius: 5px;
     font-size:0.9rem;
+    font-weight: 500;
   }
 
   .vehicle-slider-container .bord{
@@ -32,17 +33,15 @@
     border-right: 3px solid #1D78EC;
     border-left: 3px solid #1D78EC;
     display: flex;
-    width:fit-content;
     align-items: center;
     justify-content: center;
-    margin: 4rem;
+    margin: 2.7rem 0rem 2.5rem 0rem;
     padding-bottom:0.5rem ;
-    /* background-color: red; */
     height: 1rem;
   }
 
   .vehicle-slider-container h3{
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
 

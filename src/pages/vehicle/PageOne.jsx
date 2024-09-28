@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cycle from '../../assets/Bicycle.png';
 import bike from '../../assets/bike.png';
 import car from '../../assets/car.png';
-import { RiUserStarFill } from 'react-icons/ri';
+// import { RiUserStarFill } from 'react-icons/ri';
 
 const PageOne = ({ updateCarbonValue , condition }) => {
     // const [activecycle, setactivecycle] = useState(false);

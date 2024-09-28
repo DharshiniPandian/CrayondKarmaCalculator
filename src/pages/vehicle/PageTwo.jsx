@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './PageTwo.css';
-import DiscreteSliderMarks from './sample';
+import '../../styles/PageTwo.css';
+import DiscreteSliderMarks from '../../components/slider/Slider';
 
 const PageTwo = ({ updateCarbonValue }) => {
     const [vehicles, setVehicles] = useState(4);
-    let minimum = 0
+    let minimum = 2
     let maximum = 10
 
 

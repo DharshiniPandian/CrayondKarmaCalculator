@@ -4,11 +4,14 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import PageOne from './PageOne';
 import CustomProgressBar from '../../components/progress/Progress';
 import ButtonSingle from '../../components/singlebutton/ButtonSingle';
-import './Vehicle.css';
+import '../../styles/Vehicle.css';
 import DoubleButton from '../../components/doublebutton/DoubleButton';
 import PageTwo from './PageTwo';
 import PageThree from './PageThree';
 import PageFour from './PageFour';
+import background1 from '../../assets/background1.png'
+import background2 from '../../assets/background2.png'
+import background3 from '../../assets/background3.png'
 
 const Vehicle = ({ pagecond }) => {
 
@@ -20,7 +23,7 @@ const Vehicle = ({ pagecond }) => {
     let setnextcondition = (value) =>{
         setnextpage(value)
     }
-    console.log(nextpage)
+    // console.log(nextpage)
 
 
     const handleNext = () => {
@@ -52,12 +55,15 @@ const Vehicle = ({ pagecond }) => {
         switch (activepage) {
             case "pagetwo":
                 setActivePage("pageone");
+                setnextpage(false)
                 break;
             case "pagethree":
                 setActivePage("pagetwo");
+                setnextpage(true)
                 break;
             case "pagefour":
                 setActivePage("pagethree");
+                setnextpage(false)
                 break;
             default:
                 break;
@@ -71,18 +77,19 @@ const Vehicle = ({ pagecond }) => {
     useEffect(() => {
         if (location.state && location.state.activepage) { // Ensure consistent key name
           setActivePage(location.state.activepage);
-          console.log("activePage set to:", location.state.activepage);
+          setnextpage(true)
+        //   console.log("activePage set to:", location.state.activepage);
         }
       }, [location.state]);
     
-    useEffect(() => {
-        console.log("Current activePage:", activepage);
-        // You can perform additional actions based on activePage here
-    }, [activepage]);
+    // useEffect(() => {
+    //     console.log("Current activePage:", activepage);
+    //     // You can perform additional actions based on activePage here
+    // }, [activepage]);
 
     return (
         <div className="vehiclemaincontainer">
-            <div className="topbar">
+            <div className="topbar" style={{backgroundImage:`url(${activepage === 'pageone'? background1 : activepage === "pagetwo"? background1: activepage === "pagethree" ? background2 : activepage === "pagefour" ? background3 : background1 })`,backgroundSize:'cover', backgroundRepeat:'no-repeat',backgroundPosition:'center'}}>
                 <div className='topbarcontent'>
                     <li>
                         <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 11 11">
