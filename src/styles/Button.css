@@ -14,7 +14,7 @@
     color: #1D78EC;
     border-radius: 8px;
     padding: 3%;
-    width: 10vw;
+    width: 150px;
 }
 .next-button{
     border: none;
@@ -22,7 +22,7 @@
     color: #FFFFFF;
     border-radius: 8px;
     padding: 3%;
-    width: 10vw;
+    width: 150px;
 }
 
 @media (max-width: 600px) {

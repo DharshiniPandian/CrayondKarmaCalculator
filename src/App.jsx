@@ -32,7 +32,7 @@ function App() {
               width: 375px;
               height: 100vh; 
               font-size: 24px;
-              box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+              // box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
             }
             @media (max-width: 600px) {
               .red-field {

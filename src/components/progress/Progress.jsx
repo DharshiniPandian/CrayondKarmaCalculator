@@ -8,7 +8,7 @@ const CustomProgressBar = () => {
   const percentage = (value / maxValue) * 100;
 
   return (
-    <div style={{ width: 60, height: 60 }}>
+    <div style={{ width: 54, height: 54 }}>
       <CircularProgressbar
         value={percentage}
         text={`${value}/${maxValue}`}
@@ -20,6 +20,7 @@ const CustomProgressBar = () => {
           backgroundColor: '#F39C12',
         })}
         className='progress'
+        strokeWidth={12}
       />
     </div>
   );
