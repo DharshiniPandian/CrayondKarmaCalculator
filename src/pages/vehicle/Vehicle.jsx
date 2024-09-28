@@ -16,6 +16,7 @@ const Vehicle = ({ pagecond }) => {
     const [carbonvalue, setCarbonValue] = useState(0);
     const navigate = useNavigate();
     const [nextpage , setnextpage] = useState(false)
+    const location = useLocation()
     let setnextcondition = (value) =>{
         setnextpage(value)
     }
