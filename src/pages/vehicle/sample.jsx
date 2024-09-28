@@ -1,84 +1,176 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import PageOne from './PageOne';
-import PageTwo from './PageTwo';
-import PageThree from './PageThree';
-import PageFour from './PageFour';
-import CustomProgressBar from './progress/Progress';
-import ButtonSingle from './singlebutton/ButtonSingle';
-import DoubleButton from './doublebutton/DoubleButton';
-import './Vehicle.css';
+import * as React from 'react';
+import { styled, alpha, Box } from '@mui/system';
+import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
-const Vehicle = () => {
-    const [activePage, setActivePage] = useState("pageone");
-    const [carbonValue, setCarbonValue] = useState(0);
-    const navigate = useNavigate();
+export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
+  return (
+    <Box sx={{ width: 300 }}>
+      <Slider
+        aria-label="Range"
+        value={value}
+        onChange={onSliderChange}
+        marks={marks}
+        min={min}
+        max={max}
+        step={2}
+      />
+    </Box>
+  );
+}
 
-    const handleNext = () => {
-        switch (activePage) {
-            case "pageone":
-                setActivePage("pagetwo");
-                break;
-            case "pagetwo":
-                setActivePage("pagethree");
-                break;
-            case "pagethree":
-                setActivePage("pagefour");
-                break;
-            case "pagefour":
-                navigate('/food');
-                break;
-            default:
-                break;
-        }
-    };
+const marks = [
+  {
+    value: 0,
+    label: '0',
+  },
+  {
+    value: 2,
+    label: '2',
+  },
+  {
+    value: 4,
+    label: '4',
+  },
+  {
+    value: 6,
+    label: '6',
+  },
+  {
+    value: 8,
+    label: '8',
+  },
+  {
+    value : 9,
+    label: '10',
 
-    const handleBack = () => {
-        switch (activePage) {
-            case "pagetwo":
-                setActivePage("pageone");
-                break;
-            case "pagethree":
-                setActivePage("pagetwo");
-                break;
-            case "pagefour":
-                setActivePage("pagethree");
-                break;
-            default:
-                break;
-        }
-    };
+  },
+  {
+    value: 11,
+    label: '10 km',
+  },
+  {
+    value: 250,
+    label: '250 km'
+  }
+];
 
-    const updateCarbonValue = (value) => {
-        setCarbonValue((prev) => prev + value); // Accumulate carbon value
-    };
+function value(value) {
+  return `${value}`;
+}
 
-    return (
-        <div className="vehiclemaincontainer">
-            <div className="topbar">
-                <div className="topbarcontent">
-                    <li>
-                        <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 11 11">
-                            <path id="rect3338" d="M5.5174,1.2315
-                                C5.3163,1.2253,5.1276,1.328,5.024,1.5l-4,6.6598C0.8013,8.5293,1.0679,8.9999,1.5,9h8c0.4321-0.0001,0.6987-0.4707,0.4759-0.8402
-                                l-4-6.6598C5.8743,1.328,5.6856,1.2253,5.4845,1.2315z"/>
-                        </svg>
-                    </li>
-                    <li> Commuting </li>
-                </div>
-            </div>
-            <CustomProgressBar carbonValue={carbonValue} />
-            <div className="vehiclecontentcontainer">
-                {activePage === "pageone" && <PageOne updateCarbonValue={updateCarbonValue} />}
-                {activePage === "pagetwo" && <PageTwo updateCarbonValue={updateCarbonValue} />}
-                {activePage === "pagethree" && <PageThree updateCarbonValue={updateCarbonValue} />}
-                {activePage === "pagefour" && <PageFour updateCarbonValue={updateCarbonValue} />}
-            </div>
-            <div className="vehiclefooter">
-                <DoubleButton handleNext={handleNext} handleBack={handleBack} />
-            </div>
-        </div>
-    );
+const blue = {
+  100: '#DAECFF',
+  200: '#99CCF3',
+  400: '#3399FF',
+  300: '#66B2FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B3',
+  900: '#003A75',
 };
 
-export default Vehicle;
+const grey = {
+  50: '#F3F6F9',
+  100: '#E5EAF2',
+  200: '#DAE2ED',
+  300: '#C7D0DD',
+  400: '#B0B8C4',
+  500: '#9DA8B7',
+  600: '#6B7A90',
+  700: '#434D5B',
+  800: '#303740',
+  900: '#1C2025',
+};
+
+const Slider = styled(BaseSlider)(
+  ({ theme }) => `
+  color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+  height: 6px;
+  width: 100%;
+  padding: 16px 0;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+
+  &.${sliderClasses.disabled} {
+    pointer-events: none;
+    cursor: default;
+    color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
+    opacity: 0.4;
+  }
+
+  & .${sliderClasses.rail} {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 6px;
+    background-color: currentColor;
+    opacity: 0.3;
+  }
+
+  & .${sliderClasses.track} {
+    display: block;
+    position: absolute;
+    height: 4px;
+    border-radius: 6px;
+    background-color: currentColor;
+  }
+
+  & .${sliderClasses.thumb} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    margin-left: -6px;
+    width: 12px;
+    height: 12px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    outline: 0;
+    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+    transition-property: box-shadow, transform;
+    transition-timing-function: ease;
+    transition-duration: 120ms;
+    transform-origin: center;
+
+    &:hover {
+      box-shadow: 0 0 0 6px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[300],
+        0.3,
+      )};
+    }
+
+    &.${sliderClasses.focusVisible} {
+      box-shadow: 0 0 0 8px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
+      outline: none;
+    }
+
+    &.${sliderClasses.active} {
+      box-shadow: 0 0 0 6px ${alpha(
+        theme.palette.mode === 'light' ? blue[200] : blue[400],
+        0.5,
+      )};
+      outline: none;
+      transform: scale(1.2);
+    }
+  }
+
+  & .${sliderClasses.markLabel} {
+    font-family: IBM Plex Sans;
+    font-weight: 600;
+    font-size: 12px;
+    position: absolute;
+    top: 24px;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    color:black;
+  }
+`,
+);

@@ -27,6 +27,7 @@ function Router() {
       <Route element={<Appliance />} path="/Appliance" />
       <Route element={<Electricity />} path="/Electricity" />
       <Route element={<Vehicle/>} path="/vehicle"/>
+      <Route element={<FrontPage />} path="/" />
     </Routes>
   );
 }
