@@ -153,7 +153,7 @@ export default function Appliance() {
         </div>
       </div>
       <Button
-        onBack={() => navigate("/")}
+        onBack={() => navigate("/Food")}
         onNext={() => {
           if (selectedItems.length > 0) {
             navigate("/Electricity", { state: { selectedItems } });
