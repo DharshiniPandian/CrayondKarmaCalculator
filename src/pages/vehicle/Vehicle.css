@@ -1,4 +1,4 @@
-.vehiclemaincontainer{
+.vehiclemaincontainer {
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -8,82 +8,91 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
 }
 
-.vehiclemaincontainer .topbar{
-    width: 100%;
+.vehiclemaincontainer .topbar {
+    /* width: 100%; */
+    top: 0;
+    right: 0;
     background: url('../../assets/background1.png');
     /* height: 369px; */
-    height: 45vh;
-    background-size: cover; 
+    height: 44.3vh;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
+    /* width: 375px; */
+    /* height: 325px; */
 }
 
-.vehiclemaincontainer .topbar .topbarcontent h1{
+.vehiclemaincontainer .topbar .topbarcontent h1 {
     font-size: 1rem;
     font-weight: 900;
 }
-.vehiclemaincontainer .topbar .topbarcontent{
+
+.vehiclemaincontainer .topbar .topbarcontent {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 2.5rem;
     font-size: 1rem;
     font-weight: 900;
     gap: 0.4rem;
-}  
+}
 
-.vehiclemaincontainer .topbar svg{
+.vehiclemaincontainer .topbar svg {
     width: 1.2rem;
     fill: #DF2929;
 }
 
-.vehiclemaincontainer .bottombar{
-    background-color: #ffffff ;
-    border-radius:40px 40px 0rem 0rem;
+.vehiclemaincontainer .bottombar {
+    background-color: #ffffff;
+    border-radius: 28px 28px 0rem 0rem;
     position: absolute;
     bottom: 0vh;
-    height:60vh;
-    width: 100%;
+    width:100%;
+    /* height: 390px; */
+    height:58.5vh;
+   /* width: 100%; */
     /* display: none; */
 }
 
-.vehiclemaincontainer .bottombar .numberrolling .progress{
+.vehiclemaincontainer .bottombar .numberrolling .progress {
     font-weight: 900;
 
 }
+
 .vehiclemaincontainer .bottombar .numberrolling {
     position: absolute;
     top: -40px;
-    right:43%;
+    right: 43%;
     background-color: #ffffff;
     border-radius: 50%;
-    padding: 0.5rem;
+    padding:12px;
 }
 
-.vehiclemaincontainer .bottombar .content{
+.vehiclemaincontainer .bottombar .content {
     display: flex;
     flex-direction: column;
-    margin-top:4vh;
+    margin-top: 4vh;
     width: 100%;
 }
 
-.vehiclemaincontainer .bottombar .content{
+.vehiclemaincontainer .bottombar .content {
     text-align: center;
     font-size: 0.9rem;
     font-weight: 600;
     padding: 1rem 0rem;
 }
 
-.vehiclemaincontainer .bottombar .options .element-bike-{
+.vehiclemaincontainer .bottombar .options .element-bike- {
     /* border: 1px solid  #FFC478; */
     background-color: #FFF4E6;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -91,13 +100,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-bike{
-    border: 1px solid  #FFC478;
+
+.vehiclemaincontainer .bottombar .options .element-bike {
+    border: 2px solid #FFC478;
     background-color: #FFF4E6;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -105,13 +115,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-cycle-{
+
+.vehiclemaincontainer .bottombar .options .element-cycle- {
     /* border: 1px solid #EEF6FF; */
-    background-color: #EEF6FF  ;
-    height:110px;
+    background-color: #EEF6FF;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -119,13 +130,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-cycle{
-    border: 1px solid #aed3fc;
-    background-color: #EEF6FF  ;
-    height:110px;
+
+.vehiclemaincontainer .bottombar .options .element-cycle {
+    border: 2px solid #aed3fc;
+    background-color: #EEF6FF;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -133,13 +145,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-car-{
+
+.vehiclemaincontainer .bottombar .options .element-car- {
     /* border: 1px solid #EE928A; */
     background-color: #FFF4F3;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -147,13 +160,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-car{
-    border: 1px solid #EE928A;
+
+.vehiclemaincontainer .bottombar .options .element-car {
+    border: 2px solid #EE928A;
     background-color: #FFF4F3;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -161,13 +175,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-gas-{
+
+.vehiclemaincontainer .bottombar .options .element-gas- {
     /* border: 1px solid #EE928A; */
     background-color: #FFF4F3;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -175,13 +190,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-gas{
-    border: 1px solid #EE928A;
+
+.vehiclemaincontainer .bottombar .options .element-gas {
+    border: 2px solid #EE928A;
     background-color: #FFF4F3;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -189,13 +205,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-electric-{
+
+.vehiclemaincontainer .bottombar .options .element-electric- {
     /* border: 1px solid #FFC478; */
     background-color: #FFF4E6;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -203,13 +220,14 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options .element-electric{
-    border: 1px solid #FFC478;
+
+.vehiclemaincontainer .bottombar .options .element-electric {
+    border: 2px solid #FFC478;
     background-color: #FFF4E6;
-    height:110px;
+    height: 110px;
     width: 110px;
     gap: 0.5rem;
-    margin: 0.7rem;
+    /* margin: 0.7rem; */
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -217,14 +235,16 @@
     align-items: center;
     font-size: 0.8rem;
 }
-.vehiclemaincontainer .bottombar .options img{
+
+.vehiclemaincontainer .bottombar .options img {
     width: 2.5rem;
 }
-.vehiclemaincontainer .bottombar .options{
-    display: flex;  
+
+.vehiclemaincontainer .bottombar .options {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
-    gap: 1rem;
+    margin-top: 1rem;
+    gap:24px;
 }
