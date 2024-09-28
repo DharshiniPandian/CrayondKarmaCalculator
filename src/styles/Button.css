@@ -9,20 +9,24 @@
     height: 9.5vh;
 }
 .back-button{
+    font-size: 14px;
+    font-family: "Sarabun";
     border: none;
     background-color: #E6EEFA;
     color: #1D78EC;
     border-radius: 8px;
     padding: 3%;
-    width: 150px;
+    width: 165px;
 }
 .next-button{
+    font-size: 14px;
+    font-family: "Sarabun";
     border: none;
     background-color: #1D78EC;
     color: #FFFFFF;
     border-radius: 8px;
     padding: 3%;
-    width: 150px;
+    width: 165px;
 }
 
 @media (max-width: 600px) {
