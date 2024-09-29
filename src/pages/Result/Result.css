@@ -1,0 +1,224 @@
+.res-contain {
+    width: 100%;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url(../../assets/background.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center bottom;
+    flex-direction: column;
+}
+
+/* .res-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+} */
+
+.res-contain h4 {
+    margin-bottom: 10%;
+    margin-top: 30px;
+    font: normal normal bold 16px/23px Excon;
+letter-spacing: -0.08px;
+color: #030911;
+opacity: 1;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.white-box {
+    width: 335px;
+    height: 590px;
+    /* max-width: 400px; */
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chart-box {
+    text-align: center;
+    margin-bottom: 14px;
+    border: 2px solid #e7effa;
+    border-radius: 5%;
+    background-color: #fafcff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 293px;
+    height: 270px;
+    background-image: url(../../assets/Group125409@2x.png);
+
+}
+
+.chart-box h2 {
+    font-size: 0.9rem;
+    margin-bottom: 6%;
+    margin-top: 10%;
+    font: normal normal 14px/16px Excon;
+    letter-spacing: 0px;
+    color: #030911;
+}
+
+.chart-box p {
+    margin: 5px 0;
+}
+
+.graph-box {
+    display: flex;
+    flex-direction: row;
+    width: 233px;
+height: 32px;
+    color: #FF5757;
+    background-color: #FFF1F1;
+    border-radius: 6px 6px 6px 6px;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 4%;
+    margin-bottom: 5%;
+}
+
+.graph-box p {
+  font-size: 11px;
+  letter-spacing: 0.5px;
+    font-weight: 410;
+    text-align: left;
+font: normal normal 12px/28px Sarabun;
+letter-spacing: 0px;
+color: #FF5757;
+}
+
+.sapling-box {
+    width: 291px;
+    height: 239px;
+    text-align: center;
+    border: 2px solid #deefe5;
+    background-color: #f8fefc;
+    border-radius: 5%;
+    background-image: url(../../assets/plantbg.png);
+}
+
+.sapling-box .text123 {
+    top: 522px;
+    left: 60px;
+    width: 256px;
+    height: 19px;
+    text-align: center;
+    font-size: 0.8rem;
+    font: normal normal 500 14px/12px Excon;
+    letter-spacing: 0px;
+    color: #030911;
+    opacity: 1;
+    margin: 0px 17px;
+    margin-bottom: 8px;
+}
+
+.sapling-box h3 {
+    /* font-size: 1.1rem; */
+    margin-bottom: 7px;
+    color: #42A87F;
+    font: normal normal bold 14px/16px Excon;
+}
+
+.sapling-box button {
+    background: #1B9863 0% 0% no-repeat padding-box;
+    color: white;
+    width: 128px;
+height: 32px;
+    padding: 6px 6px 6px 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 10%;
+    margin-top: 5%;
+    font: normal normal 12px/16px Sarabun;
+letter-spacing: 0px;
+color: #FFFFFF;
+}
+
+.sapling-box button:hover {
+    background-color: #1B9863;
+}
+
+.sapling-box p {
+    margin-bottom: 4%;
+}
+
+.tree-img {
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+.remind {
+    color: #1f7aec;
+    font-size: 60%;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8%;
+}
+
+.legend-container {
+    display: flex;
+    align-items: center;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    gap: 20px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+}
+
+.commute-color {
+    background-color: #f58e27;
+    border-radius: 2px;
+    /* Orange for Commute */
+}
+
+.food-color {
+    background-color: #f4646e;
+    border-radius: 2px;
+    /* Red for Food */
+}
+
+.appliances-color {
+    background-color: #4ac596;
+    border-radius: 2px;
+    /* Green for Appliances */
+}
+
+.legend-label {
+    font-size: 14px;
+    color: #333;
+    font: normal normal normal 12px/16px Sarabun;
+    letter-spacing: 0px;
+    color: #030911;
+}
+
+.semicircle {
+    width: 183px;
+height: 37%;
+}

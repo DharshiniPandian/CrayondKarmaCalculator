@@ -1,0 +1,122 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+    background-size: cover;
+    position: relative;
+    flex-direction: column;
+    background-image: url(../../assets//bg1.png);
+}
+
+/* Message Styles */
+.msg {
+    font-size: 22px;
+    font-weight: 600;
+    color: #000000;
+    padding: 1rem;
+    text-align: center;
+    position: absolute;
+    top: 30%; 
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.msg-enter {
+    opacity: 1;
+    transform: translateY(0);  
+    font-size: 22px;
+    font-weight: medium;
+    color: #000000;
+}
+
+.msg-leave {
+    opacity: 0;
+    transform: translateY(-100%); 
+    font-size: 22px;
+    font-weight: medium;
+    color: #000000;
+}
+
+/* Form Styles */
+.tree-form {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px); 
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: fadeIn 0.5s forwards;
+    z-index: 1;
+}
+
+.tree-form h2 {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.tree-form p {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.tree-form input {
+    width: 100%;
+    /* padding: 0.75rem; */
+    margin-bottom: 1rem;
+    /* border: 1px solid #ccc;
+    border-radius: 5px; */
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.tree-form button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10%;
+}
+
+.tree-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Fade in animation for form */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+@media only screen and (max-width: 600px) {
+    .tree-form {
+        padding: 1rem;
+    }
+
+    .tree-form input {
+        padding: 0.5rem;
+    }
+
+    .tree-form button {
+        padding: 0.5rem;
+    }
+}
+
+.asterisk {
+    color: red;
+}
+
