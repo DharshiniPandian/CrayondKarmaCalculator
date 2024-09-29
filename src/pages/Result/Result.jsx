@@ -51,8 +51,8 @@ const Result = () => {
                     <h3>Planting 15 Saplings</h3>
                     <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
-                <div className='remind'>
-                    <p>Remind me later</p>
+                <div className='remind' style={{font: "normal normal 600 14px/16px Sarabun"}}>
+                    Remind me later
                 </div>
             </div>
         </div>

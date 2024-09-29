@@ -10,7 +10,7 @@ import PageTwo from './PageTwo';
 import PageThree from './PageThree';
 import PageFour from './PageFour';
 import { useDispatch } from 'react-redux';
-import { addMesterVehiclesData } from '../../slice/MasterApiSlices';
+import { addMasterVehiclesData } from '../../slice/MasterApiSlices';
 import axios from 'axios';
 import background1 from '../../assets/background1.png'
 import background2 from '../../assets/background2.png'
@@ -33,7 +33,7 @@ const Vehicle = ({ pagecond }) => {
         try{
           const response = await axios.get('http://localhost:8081/master/vehicles');
           if(response.status===200)
-          dispatch(addMesterVehiclesData(response.data))
+          dispatch(addMasterVehiclesData(response.data))
         }
         catch(error){
           console.log("error while fetching data",error);
@@ -117,7 +117,7 @@ const Vehicle = ({ pagecond }) => {
                                     l-4-6.6598C5.8787,1.3386,5.706,1.2375,5.5174,1.2315z"></path>
                         </svg>
                     </li>
-                    <li><h1>{carbonvalue} ton CO2</h1></li>
+                    <li><h1>{carbonvalue.toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar">

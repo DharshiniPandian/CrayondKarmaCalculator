@@ -12,11 +12,15 @@ import {
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addMasterFoodsData } from "../../slice/MasterApiSlices";
 
 export default function Food() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [CarbonValue, setCarbonValue] = useState(0);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const [value, setValue] = useState(25);
 
@@ -70,8 +74,19 @@ export default function Food() {
   };
 
   useEffect(() => {
-    console.log("Selected item:", selectedItem);
-  }, [selectedItem]);
+    fetchmasterFoodItems()
+  }, []);
+
+  const fetchmasterFoodItems = async () => {
+    try{
+      const response = await axios.get('http://localhost:8081/master/foods');
+      if(response.status===200)
+      dispatch(addMasterFoodsData(response.data))
+    }
+    catch(error){
+      console.log("error while fetching data",error);
+    }
+  }
 
   return (
     <div>
