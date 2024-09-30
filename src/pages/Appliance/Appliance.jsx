@@ -97,7 +97,7 @@ export default function Appliance() {
   }, [selectedItems]);
 
   return (
-    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
@@ -105,52 +105,54 @@ export default function Appliance() {
         </div>
       </div>
       <div className="appliance-bottom">
-      <div className="loader">
-      <div style={{ width: 54, height: 54 }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                text={`2/4`}
-                circleRatio={1}
-                styles={buildStyles({
-                  textSize: '30px',
-          pathColor: '#FEA062',
-          textColor: '#FEA062',
-          trailColor: '#FFF4E4',
-          backgroundColor: '#F39C12',
-                })}
-                strokeWidth={12}
-              >
-              </CircularProgressbarWithChildren>
-            </div>
+        <div className="loader">
+          <div style={{ width: 54, height: 54 }}>
+            <CircularProgressbarWithChildren
+              className="custom-progressbar"
+              value={value}
+              text={`3/4`}
+              circleRatio={1}
+              styles={buildStyles({
+                textSize: "30px",
+                pathColor: "#FEA062",
+                textColor: "#FEA062",
+                trailColor: "#FFF4E4",
+                backgroundColor: "#F39C12",
+              })}
+              strokeWidth={12}></CircularProgressbarWithChildren>
           </div>
-        <div className="appliance-ques">
+        </div>
+        <div className="appliance-ques" style={{ fontWeight: "500" }}>
           Select the appliances you use at your home
         </div>
-        <div style={{width: "91%",display: "flex",justifyContent: "center"}}>
-        <div className="appliance-products">
-          
-          {AppliancesProducts.map((item) => (
-            <div
-              key={item.id}
-              className={`appliance-items ${
-                selectedItems.includes(item.id) ? "selected" : ""
-              }`}
-              onClick={() => handleItemClicked(item.id)}
-              style={{
-                backgroundColor: item.backgroundColor,
-                borderColor: selectedItems.includes(item.id)
-                  ? item.borderColor
-                  : "transparent",
-                borderWidth: "2px",
-                borderStyle: "solid",
-              }}
-            >
-              <div style={{ fontWeight: "420", fontSize: "14px",fontFamily: "Excon, sans-serif" }}>
-                {item.name}
+        <div
+          style={{ width: "91%", display: "flex", justifyContent: "center" }}>
+          <div className="appliance-products">
+            {AppliancesProducts.map((item) => (
+              <div
+                key={item.id}
+                className={`appliance-items ${
+                  selectedItems.includes(item.id) ? "selected" : ""
+                }`}
+                onClick={() => handleItemClicked(item.id)}
+                style={{
+                  backgroundColor: item.backgroundColor,
+                  borderColor: selectedItems.includes(item.id)
+                    ? item.borderColor
+                    : "transparent",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                }}>
+                <div
+                  style={{
+                    fontWeight: "420",
+                    fontSize: "14px",
+                    fontFamily: "Excon, sans-serif",
+                  }}>
+                  {item.name}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
       </div>

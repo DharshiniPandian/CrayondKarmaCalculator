@@ -54,7 +54,7 @@ export default function Electricity() {
             <CircularProgressbarWithChildren
               className="custom-progressbar"
               value={value}
-              text={`3/4`}
+              text={`4/4`}
               circleRatio={1}
               styles={buildStyles({
                 textSize: "30px",

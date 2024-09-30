@@ -22,7 +22,7 @@
 .appliance-ques {
   font-family: "Excon", sans-serif;
   margin-top: 2%;
-  font-weight: 520;
+  /* font-weight: 500; */
   display: flex;
   justify-content: center;
   /* height: 6vh; */
