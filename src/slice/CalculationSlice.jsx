@@ -78,6 +78,7 @@ const CalculateCarbonEmission = createSlice({
       state.total_emission.total_emission = data
     },
 
+    // Reverting the deistance 
     revertTravelDistance(state,action){
       const travel = state.vehicle.travel_distance
       const vehicle_emission = state.vehicle.total_vehicle_emission
@@ -86,6 +87,33 @@ const CalculateCarbonEmission = createSlice({
       state.vehicle.total_vehicle_emission = new_total_emission
       state.total_emission.total_emission = new_total_emission
     },
+
+    // Reverting the fuel use
+    revertFuelUse(state,action){
+      const fuel = state.vehicle.fuel_value
+      const total_emmision = state.total_emission.total_emission 
+      const new_total_emission = (total_emmision) / fuel
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+    },
+    
+    // Reverting the  vehicle count
+    revertVehicleCount(state,action){
+      const vehicle_count = state.vehicle.vehicle_count
+      const  total_emmision = state.total_emission.total_emission 
+      const new_total_emission = total_emmision /  vehicle_count
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+    },
+
+    // Revert the selected Vehicle
+    // revertSelectedVehicle(state,action){
+    //   const selected_vehicle = state.vehicle.vehicle_value
+    //   const total_emmision = state.total_emission.total_emission
+    //   const new_total_emission = total_emmision / selected_vehicle
+    //   state.vehicle.vehicle_value = new_total_emission
+    //   state.total_emission.total_emission = new_total_emission
+    // },
 
     // Reset vehicle details if needed
     resetVehicleDetails(state) {
@@ -103,6 +131,10 @@ export const {
   addTravelDistance, // Handles travel distance
   resetVehicleDetails, // Resets the state
   revertTravelDistance, //reverse travel distance
+  revertFuelUse, //reverse fuel use
+  revertVehicleCount, // reverse the  vehicle count
+  // revertSelectedVehicle, //reverse the selected vehicle
+
 } = CalculateCarbonEmission.actions;
 
 // Reducer
