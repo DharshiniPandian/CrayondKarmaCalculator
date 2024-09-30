@@ -86,9 +86,9 @@ button {
   border-radius: 8px;
   text-align: center;
 }
-.food-items:nth-child(2) {
-  /* background-color: #fff4e6; */
-}
+/* .food-items:nth-child(2) {
+  background-color: #fff4e6;
+} */
 .food-items {
   cursor: pointer;
   transition: border 0.3s;

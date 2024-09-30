@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const vehicles = [];
 const foodItems = [];
+const vehicleFuelType = [];
 
 const MasterVehicles = createSlice({
     name:"MasterVehicles",
@@ -25,8 +26,21 @@ const MasterFoodItems = createSlice({
     }
 })
 
+const MasterVehicleFuelTypes = createSlice({
+    name:"MasterVehicleFuelTypes",
+    initialState:vehicleFuelType,
+    reducers:{
+        addMasterVehicleFuelTypeDatas(state,action){
+            const data = action.payload;
+            return state = data
+        }
+    }
+})
+
 export const {addMasterVehiclesData} = MasterVehicles.actions
 export const {addMasterFoodsData} = MasterFoodItems.actions
+export const {addMasterVehicleFuelTypeDatas} = MasterVehicleFuelTypes.actions
 
 export const MasterVehicleReducer = MasterVehicles.reducer
 export const MasterFoodItemsReducer = MasterFoodItems.reducer
+export const MasterVehicleFuelTypeReducer = MasterVehicleFuelTypes.reducer

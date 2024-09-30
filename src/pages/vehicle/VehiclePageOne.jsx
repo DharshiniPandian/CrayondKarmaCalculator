@@ -5,18 +5,20 @@ import '../../styles/Vehicle.css'
 import background from '../../assets/background1.png'
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { addMesterVehiclesData } from '../../slice/MasterApiSlices';
+import { addMasterVehiclesData } from '../../slice/MasterApiSlices';
 import '../../components/singlebutton/ButtonSingle.css'
 import { useNavigate } from 'react-router-dom';
 import buttonbackground from '../../assets/buttonbackground.png'
+import { selectVehicle } from '../../slice/CalculationSlice';
 
 const VehiclePageOne = () => {
-  const [carbonvalue, setcarbonvalue] = useState(0)
+  const [vehicleValue, setVehicleValue] = useState(0)
   const [active, setActive] = useState("");
-  const [vehicleid, setvehicleid] = useState(0)
+  const [vehicleId, setVehicleId] = useState(0)
   const [nextpagecondition, setnextpagecondition] = useState(false)
   const vehicleData = useSelector((s) => s.masterVehicles);
   const navigate = useNavigate();
+  const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
 
   const styles = [
     {
@@ -42,7 +44,7 @@ const VehiclePageOne = () => {
     try {
       const response = await axios.get('http://localhost:8081/master/vehicles');
       if (response.status === 200)
-        dispatch(addMesterVehiclesData(response.data))
+        dispatch(addMasterVehiclesData(response.data))
     }
     catch (error) {
       console.log("error while fetching data", error);
@@ -55,14 +57,15 @@ const VehiclePageOne = () => {
 
   const handleVehicleSelection = (vehicle) => {
     setActive(vehicle.name)
-    setcarbonvalue(vehicle.value)
-    setvehicleid(vehicle.id)
+    setVehicleValue(Number(vehicle.value))
+    setVehicleId(vehicle.id)
     setnextpagecondition(true)
   }
 
   const NextFunction = () => {
     if (nextpagecondition) {
       navigate('/vehicle2')
+      dispatch(selectVehicle({vehicleId,vehicleValue}))
     }
     else {
       alert("Please select a vehicle")
@@ -80,7 +83,7 @@ const VehiclePageOne = () => {
               </path>
             </svg>
           </li>
-          <li><h1>{carbonvalue} ton CO2</h1></li>
+          <li><h1>{vehicleValue?vehicleValue:globalCarbonValue} ton CO2</h1></li>
         </div>
       </div>
       <div className="bottombar" >

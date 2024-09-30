@@ -8,21 +8,25 @@ import '../../styles/PageTwo.css';
 import '../../styles/Vehicle.css';
 import '../../components/doublebutton/DoubleButton.css'
 import buttonbackground from '../../assets/buttonbackground.png'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { addTravelDistance } from '../../slice/CalculationSlice'
 
 
 const VehiclePageFour = () => {
-    const [distance, setdistance] = useState(40);
-    const [carbonvalue, setcarbonvalue] = useState(distance * 2)
+    const [travelDistance, setTravelDistance] = useState(40);
+    const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
     const navigate = useNavigate();
     let minimum = 10
     let maximum = 250
+    const dispatch = useDispatch()
 
     const handleChange = (event, newvalue) => {
-        setdistance(newvalue)
-        setcarbonvalue(newvalue * 2)
+        setTravelDistance(Number(newvalue))
     };
 
     const handleNext = () => {
+        dispatch(addTravelDistance({travelDistance}))
         navigate('/food')
         
     }
@@ -40,7 +44,7 @@ const VehiclePageFour = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{carbonvalue} ton CO2</h1></li>
+                    <li><h1>{(globalCarbonValue * (travelDistance / 10)).toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar">
@@ -53,11 +57,11 @@ const VehiclePageFour = () => {
                         <div className="bord">
 
                             <li className='emptyBorder'></li>
-                            <li><DiscreteSliderMarks value={distance} onSliderChange={handleChange} max={maximum} min={minimum} /></li>
+                            <li><DiscreteSliderMarks value={travelDistance} onSliderChange={handleChange} max={maximum} min={minimum} /></li>
                             <li className='emptyBorder'></li>
                         </div>
                         <div className="vehicle-count">
-                            {distance} km
+                            {travelDistance} km
                         </div>
                     </div>
                 </div>

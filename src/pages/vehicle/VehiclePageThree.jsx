@@ -1,56 +1,74 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import CustomProgressBar from '../../components/progress/Progress'
 import { useNavigate } from 'react-router-dom'
 import background from '../../assets/background2.png'
 import '../../styles/Vehicle.css'
 import '../../components/singlebutton/ButtonSingle.css'
 import buttonbackground from '../../assets/buttonbackground.png'
+import axios from 'axios'
+import { addMasterVehicleFuelTypeDatas } from '../../slice/MasterApiSlices'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { selectFuelType } from '../../slice/CalculationSlice'
 
 const VehiclePageThree = () => {
-    const [carbonvalue, setcarbonvalue] = useState(0)
+    const [fuelValue, setFuelValue] = useState(0)
     const [active, setActive] = useState("");
-    const [vehicleid, setvehicleid] = useState(0)
+    const [fuelId, setFuelId] = useState(0)
     const [nextpagecondition, setnextpagecondition] = useState(false)
-    // const vehicleData = useSelector((s) => s.masterVehicles);     // get data from the store
+    const vehicleData = useSelector((s) => s.masterVehicleFuelType)
     const navigate = useNavigate();
+    const dispatch = useDispatch()
+    const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
+
 
     // Comment or  remove these sample values after the  API call is made
 
-    const vehicleData = [
-        { id: 1, name: "petrol/deisel", path: './images/petrol.png', value: 10 },
-        { id: 2, name: "electric", path: './images/electric.svg', value: 20 },
-    ]
+    // const vehicleData = [
+    //     { id: 1, name: "petrol/deisel", path: './images/petrol.png', value: 10 },
+    //     { id: 2, name: "electric", path: './images/electric.svg', value: 20 },
+    // ]
 
+    const fetchmasterVehicleFuelTypes = async () => {
+        try {
+          const response = await axios.get('http://localhost:8081/master/fuels');
+          if (response.status === 200)
+            dispatch(addMasterVehicleFuelTypeDatas(response.data))
+        }
+        catch (error) {
+          console.log("error while fetching data", error);
+        }
+      }
+    
+      useEffect(() => {
+        fetchmasterVehicleFuelTypes()
+    }, [])
 
 
     const styles = [
         {
             id: 1,
-            backgroundColor: "#EEF6FF",
-            borderColor: "#aed3fc",
-        },
-        {
-            id: 1,
-            backgroundColor: "#FFF4E6",
-            borderColor: "#FFC478",
-        },
-        {
-            id: 1,
             backgroundColor: "#FFF4F3",
-            borderColor: "#EE928A",
+            borderColor: "#EB7E74",
+        },
+        {
+            id: 2,
+            backgroundColor: "#FFF4E6",
+            borderColor: "#FFBA63",
         },
     ];
 
 
-    const handleVehicleSelection = (vehicle) => {
-        setActive(vehicle.name)
-        setcarbonvalue(vehicle.value)
-        setvehicleid(vehicle.id)
+    const handleFuelSelection = (fuel) => {
+        setActive(fuel.name)
+        setFuelValue(Number(fuel.value))
+        setFuelId(fuel.id)
         setnextpagecondition(true)
     }
 
     const handleNext = () => {
         if (nextpagecondition) {
+            dispatch(selectFuelType({fuelId,fuelValue}))
             navigate('/vehicle4')
         }
         else {
@@ -73,7 +91,7 @@ const VehiclePageThree = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{carbonvalue} ton CO2</h1></li>
+                    <li><h1>{fuelValue?(globalCarbonValue*fuelValue):globalCarbonValue} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar">
@@ -82,26 +100,26 @@ const VehiclePageThree = () => {
                 </div>
                 <div>
                     <div className="content">
-                        <div className="text">
+                        <div className="text" style={{marginBottom:"20px"}}>
                             What type of fuel do you use?
                         </div>
                         <div className="options">
-                            {vehicleData.map((vehicle, key) => (
+                            {vehicleData.map((fuel, key) => (
                                 <div
                                     style={{
                                         backgroundColor: styles[key].backgroundColor,
-                                        border: active === vehicle.name ? `2px solid ${styles[key].borderColor}` : "0px",
+                                        border: active === fuel.name ? `2px solid ${styles[key].borderColor}` : "0px",
                                         borderColor: styles[key].borderColor,
                                         cursor: "pointer"
                                     }}
                                     className="element-bike-"
                                     key={key}
-                                    onClick={() => handleVehicleSelection(vehicle)}
+                                    onClick={() => handleFuelSelection(fuel)}
                                 >
                                     <li>
-                                        <img src={vehicle.path} alt="" />
+                                        <img src={fuel.path} height={"40px"} width={"40px"} alt="" />
                                     </li>
-                                    <li className="VehicleName">{vehicle.name}</li>
+                                    <li className="VehicleName">{fuel.name}</li>
                                 </div>
                             ))}
                         </div>

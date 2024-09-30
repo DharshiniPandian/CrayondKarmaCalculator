@@ -8,20 +8,26 @@ import '../../styles/PageTwo.css';
 import '../../styles/Vehicle.css';
 import buttonbackground from '../../assets/buttonbackground.png'
 import '../../components/doublebutton/DoubleButton.css'
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { addVehicleCount } from '../../slice/CalculationSlice';
 
 const VehiclePageTwo = () => {
-    const [vehicles, setVehicles] = useState(4);
-    const [carbonvalue, setcarbonvalue] = useState(vehicles * 2)
+    const [vehicleCount, setVehicleCount] = useState(4)
+    const globalvehicleValue = useSelector((s)=>s.carbonValue.vehicle.vehicle_value)
+    
     const navigate = useNavigate();
     let minimum = 2
     let maximum = 10
+    const dispatch = useDispatch()
 
     const handleChange = (event, newvalue) => {
-        setVehicles(newvalue)
-        setcarbonvalue(newvalue * 2)
+        setVehicleCount(Number(newvalue))
     };
 
     const handleNext = () => {
+        dispatch(addVehicleCount({vehicleCount}))
+        console.log(vehicleCount);
         navigate('/vehicle3')
     }
     const handleBack = () => {
@@ -38,7 +44,7 @@ const VehiclePageTwo = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{carbonvalue} ton CO2</h1></li>
+                    <li><h1>{globalvehicleValue*vehicleCount} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar" >
@@ -51,11 +57,11 @@ const VehiclePageTwo = () => {
                         <div className="bord">
 
                             <li className='emptyBorder'></li>
-                            <li><DiscreteSliderMarks value={vehicles} onSliderChange={handleChange} max={maximum} min={minimum} /></li>
+                            <li><DiscreteSliderMarks value={vehicleCount} onSliderChange={handleChange} max={maximum} min={minimum} /></li> 
                             <li className='emptyBorder'></li>
                         </div>
                         <div className="vehicle-count">
-                            {vehicles} {vehicles === 1 ? "vehicle" : "vehicles"}
+                            {vehicleCount} {vehicleCount === 1 ? "vehicle" : "vehicles"}
                         </div>
                     </div>
                 </div>
