@@ -10,7 +10,7 @@ import buttonbackground from '../../assets/buttonbackground.png'
 import '../../components/doublebutton/DoubleButton.css'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { addVehicleCount } from '../../slice/CalculationSlice';
+import { addVehicleCount, resetVehicleDetails } from '../../slice/CalculationSlice';
 
 const VehiclePageTwo = () => {
     const [vehicleCount, setVehicleCount] = useState(4)
@@ -31,6 +31,7 @@ const VehiclePageTwo = () => {
         navigate('/vehicle3')
     }
     const handleBack = () => {
+        dispatch(resetVehicleDetails())
         navigate('/vehicle1')
     }
 

@@ -9,10 +9,10 @@ import axios from "axios";
 import { addMasterVehicleFuelTypeDatas } from "../../slice/MasterApiSlices";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { selectFuelType } from "../../slice/CalculationSlice";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/toast.css";
+import { revertVehicleCount, selectFuelType } from '../../slice/CalculationSlice'
 
 const VehiclePageThree = () => {
   const [fuelValue, setFuelValue] = useState(0);
@@ -81,51 +81,21 @@ const VehiclePageThree = () => {
     }
   };
   const handleBack = () => {
-    navigate("/vehicle2");
-  };
-
-  // console.log(carbonvalue, vehicleid , active)
-  return (
-    <div className="vehiclemaincontainer">
-      <div
-        className="topbar"
-        style={{
-          background: `url(${background})`,
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
-      >
-        <div className="topbarcontent">
-          <li>
-            <svg
-              version="1.1"
-              id="triangle-11"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 11 11"
-            >
-              <path
-                id="rect3338"
-                d="M5.5174,1.2315      C5.3163,1.2253,5.1276,1.328,5.024,1.5l-4,6.6598C0.8013,8.5293,1.0679,8.9999,1.5,9h8c0.4321-0.0001,0.6987-0.4707,0.476-0.8402            l-4-6.6598C5.8787,1.3386,5.706,1.2375,5.5174,1.2315z"
-              ></path>
-            </svg>
-          </li>
-          <li>
-            <h1>
-              {fuelValue ? globalCarbonValue * fuelValue : globalCarbonValue}{" "}
-              ton CO2
-            </h1>
-          </li>
-        </div>
-      </div>
-      <div className="bottombar">
-        <div className="numberrolling">
-          <CustomProgressBar />
-        </div>
-        <div>
-          <div className="content">
-            <div className="text" style={{ marginBottom: "20px" }}>
-              What type of fuel do you use?
+        dispatch(revertVehicleCount())
+        navigate('/vehicle2')
+    }
+    return (
+        <div className="vehiclemaincontainer">
+            <div className="topbar" style={{ background: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+                <div className="topbarcontent">
+                    <li>
+                        <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">
+                            <path id="rect3338" d="M5.5174,1.2315      C5.3163,1.2253,5.1276,1.328,5.024,1.5l-4,6.6598C0.8013,8.5293,1.0679,8.9999,1.5,9h8c0.4321-0.0001,0.6987-0.4707,0.476-0.8402            l-4-6.6598C5.8787,1.3386,5.706,1.2375,5.5174,1.2315z">
+                            </path>
+                        </svg>
+                    </li>
+                    <li><h1>{fuelValue?(globalCarbonValue*fuelValue):globalCarbonValue} ton CO2</h1></li>
+                </div>
             </div>
             <div className="options">
               {vehicleData.map((fuel, key) => (

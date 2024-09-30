@@ -51,6 +51,10 @@
 
 .vehiclemaincontainer .bottombar {
   background-color: #ffffff;
+  background-image: url('../assets/buttonbackground.png');
+  background-position:-3.8vh 31vh;
+  background-repeat: no-repeat;
+  background-size: 25rem ;
   border-radius: 28px 28px 0rem 0rem;
   position: absolute;
   bottom: 0vh;
