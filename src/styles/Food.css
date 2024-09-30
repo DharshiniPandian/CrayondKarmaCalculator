@@ -3,6 +3,12 @@
 }
 button {
   cursor: pointer;
+  /* position: absolute; */
+}
+.foodStaticBtn{
+  position: absolute;
+  bottom: 11vh;
+  right: 50%;
 }
 .food-top {
   font-family: "Excon", sans-serif;
@@ -55,7 +61,7 @@ button {
   /* height: 6vh; */
   align-items: end;
   /* background-color: #FEA062; */
-  font-size: 14px;
+  font-size: 13px;
 }
 .food-products {
     margin-top: 5%;
@@ -73,16 +79,16 @@ button {
   flex-direction: column;
   background-color: #e4ffee;
   /* width: 1vw; */
-  height: 16vh;
+  height: 110px;
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
   border-radius: 8px;
   text-align: center;
 }
-.food-items:nth-child(2) {
-  /* background-color: #fff4e6; */
-}
+/* .food-items:nth-child(2) {
+  background-color: #fff4e6;
+} */
 .food-items {
   cursor: pointer;
   transition: border 0.3s;

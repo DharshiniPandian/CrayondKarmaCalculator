@@ -21,11 +21,11 @@ export default function DiscreteSliderMarksElectricity({value,onSliderChange,min
 
 const marks = [
   {
-    value: 100,
+    value: 240,
     label: '100 units',
   },
   {
-    value: 1000,
+    value: 970,
     label: '1000 units',
   }
 ];
@@ -148,7 +148,7 @@ const Slider = styled(BaseSlider)(
     margin-top: 8px;
     color:black;
     // gap: 1rem;
-    // width: 20%;
+    width:100px;
     font-family: "Excon", sans-serif;
   }
 `,

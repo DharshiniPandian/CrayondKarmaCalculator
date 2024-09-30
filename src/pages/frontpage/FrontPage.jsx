@@ -87,7 +87,7 @@ const FrontPage = () => {
               height: "48px",
               borderRadius:"8px"
             }}
-            onClick={() => navigate("/vehicle")}
+            onClick={() => navigate("/vehicle1")}
           >
             Calculate offset
           </Button>

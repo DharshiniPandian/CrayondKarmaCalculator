@@ -8,15 +8,22 @@ import "../../styles/Food.css";
 import Button from "../Button/Button";
 import ChangingProgressProvider from "../Loader/ChangingProgressProvider";
 import {
-  CircularProgressbarWithChildren,
+  CircularProgressbarWithChildren,  
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addMasterFoodsData } from "../../slice/MasterApiSlices";
 
 export default function Food() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [CarbonValue, setCarbonValue] = useState(0);
+  const [FoodId, setFoodId] = useState(0)
+  const [FoodValue, setFoodValue] = useState(0)
+  const [FoodName, setFoodName] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState(25);
 
@@ -55,114 +62,122 @@ export default function Food() {
     },
   ];
 
-  const handleItemClicked = (itemId) => {
-    const selectedItem = FoodProducts.find((item) => item.id === itemId);
+  const handleItemClicked = (item) => {
+    setFoodName(item.name)
+    setFoodId(item.id)
+    setFoodValue(Number(item.carbon))
+    
+    // const selectedItem = FoodProducts.find((item) => item.id === item.id);
 
-    setSelectedItem((prevSelected) =>
-      prevSelected === itemId ? null : itemId
-    );
+    // setSelectedItem((prevSelected) =>
+    //   prevSelected === item.id ? null : item.id
+    // );
 
-    setCarbonValue((prevSelected) =>
-      prevSelected === itemId ? "" : selectedItem?.carbon
-    );
+    // setCarbonValue((prevSelected) =>
+    //   prevSelected === item.id ? "" : selectedItem?.carbon
+    // );
 
-    console.log("Carbon value =", CarbonValue);
+    console.log("Food Name =", FoodName,);
+    console.log("Food ID =", FoodId,);
+    console.log("Food Value =", FoodValue,);
   };
 
+  const NextFunction = () => {
+    dispatch(selectFoodType({FoodId, FoodValue}))
+  }
+
   useEffect(() => {
-    console.log("Selected item:", selectedItem);
-  }, [selectedItem]);
+    fetchmasterFoodItems()
+  }, []);
+
+  const fetchmasterFoodItems = async () => {
+    try{
+      const response = await axios.get('http://localhost:8081/master/foods');
+      if(response.status===200)
+      dispatch(addMasterFoodsData(response.data))
+    }
+    catch(error){
+      console.log("error while fetching data",error);
+    }
+  }
 
   return (
-    <div style={{border: "1px solid #E8F2FF"}}>
+    <div>
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {CarbonValue}ton CO2
         </div>
-        {/* <div className="white-screen"> */}
-          {/* <div className="loader">
-            <div style={{ width: "80px" }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                circleRatio={1}
-                styles={buildStyles({
-                  circleRatio: 1 / 2,
-                  pathTransitionDuration: 0.5,
-                  strokeWidth: 20,
-                  rotation: 0,
-                  trailColor: "#FFF4E4",
-                  pathColor: "#FEA062",
-                })}
-              >
-                <div className="rotation-value">2/4</div>
-              </CircularProgressbarWithChildren>
-            </div>
-          </div> */}
-        {/* </div> */}
       </div>
       <div className="food-bottom">
         <div className="loader">
-            <div style={{ width: 54, height: 54 }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                text={`2/4`}
-                circleRatio={1}
-                styles={buildStyles({
-                  textSize: '30px',
-          pathColor: '#FEA062',
-          textColor: '#FEA062',
-          trailColor: '#FFF4E4',
-          backgroundColor: '#F39C12',
-                })}
-                strokeWidth={12}
-              >
-              </CircularProgressbarWithChildren>
-            </div>
+          <div style={{ width: 54, height: 54 }}>
+            <CircularProgressbarWithChildren
+              className="custom-progressbar"
+              value={value}
+              text={`2/4`}
+              circleRatio={1}
+              styles={buildStyles({
+                textSize: "30px",
+                pathColor: "#FEA062",
+                textColor: "#FEA062",
+                trailColor: "#FFF4E4",
+                backgroundColor: "#F39C12",
+              })}
+              strokeWidth={12}
+            ></CircularProgressbarWithChildren>
           </div>
+        </div>
         <div className="food-ques">What you normally eat?</div>
         <div className="food-products">
-          {FoodProducts.map((item) => (
+          {FoodProducts.map((item, key) => (
             <div
-              key={item.id}
+              key={key}
               className={`food-items ${
-                selectedItem === item.id ? "selected" : ""
+                FoodNam === item.id ? "selected" : ""
               }`}
-              onClick={() => handleItemClicked(item.id)}
+              onClick={() => handleItemClicked(item)}
               style={{
                 backgroundColor: item.backgroundColor,
                 borderColor:
-                  selectedItem === item.id
-                    ? item.borderColor
-                    : "transparent",
+                  FoodId === item.name ? item.borderColor : "transparent",
                 borderWidth: "2px",
                 borderStyle: "solid",
               }}
             >
               <img
                 src={item.img}
-                style={{ width: "40px" }}
+                style={{ width: "35px", height: "35px" }}
                 alt={item.name}
               />
-              <div style={{ fontWeight: "420", fontSize: "14px",fontFamily: "Excon, sans-serif"  }}>
+              <div
+                style={{
+                  fontWeight: "420",
+                  fontSize: "13px",
+                  fontFamily: "Excon, sans-serif",
+                }}
+              >
                 {item.name}
               </div>
             </div>
           ))}
         </div>
       </div>
+      <div className="foodStaticBtn">
       <Button
-  onBack={() => navigate("/Vehicle", { state: { activepage: "pagefour" } })} // Changed to 'activepage'
-  onNext={() => {
-    if (selectedItem) {
-      navigate("/Appliance", { state: { selectedItem } });
-    } else {
-      alert("Please select an Item.");
-    }
-  }}
-/>
+        onBack={() =>
+          navigate("/Vehicle4", { state: { activepage: "pagefour" } })
+        } // Changed to activepagefour
+        onNext={() => {
+          if (selectedItem) {
+            navigate("/Appliance", { state: { selectedItem } });
+            onclick={NextFunction}
+          } else {
+            alert("Please select an Item.");
+          }
+        }}
+      />
+      </div>
     </div>
   );
 }

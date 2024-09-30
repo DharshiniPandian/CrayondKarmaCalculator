@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Group1 from "../../assets/successvid.mp4";
-import Group2 from "../../assets/successimg.png";
+import Group2 from "../../assets/successimgbg.png";
 import './Complete.css'; 
 
 const Complete = () => {
