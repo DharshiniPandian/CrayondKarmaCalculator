@@ -29,6 +29,7 @@ const initialState = {
     fuel_id: null, // ID of the selected fuel type
     fuel_value: null, // Emission factor based on fuel type
     travel_distance: null, // Distance traveled in km per week
+    total_vehicle_emission:null,
   },
   total_emission: {
     total_emission: 0,
@@ -72,9 +73,20 @@ const CalculateCarbonEmission = createSlice({
       state.vehicle.travel_distance = action.payload.travelDistance;
 
       // Recalculate total emission based on new travel distance
-      state.total_emission.total_emission = calculateTotalEmission(state.vehicle);
+      const data = calculateTotalEmission(state.vehicle);
+      state.vehicle.total_vehicle_emission = data
+      state.total_emission.total_emission = data
     },
-    
+
+    revertTravelDistance(state,action){
+      const travel = state.vehicle.travel_distance
+      const vehicle_emission = state.vehicle.total_vehicle_emission
+      const total_emission = state.total_emission.total_emission
+      const new_total_emission = (total_emission) / (travel / 10).toFixed(2)
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+    },
+
     // Reset vehicle details if needed
     resetVehicleDetails(state) {
       state.vehicle = initialState.vehicle;
@@ -90,6 +102,7 @@ export const {
   selectFuelType, // Handles fuel type and value selection
   addTravelDistance, // Handles travel distance
   resetVehicleDetails, // Resets the state
+  revertTravelDistance, //reverse travel distance
 } = CalculateCarbonEmission.actions;
 
 // Reducer

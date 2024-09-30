@@ -15,6 +15,7 @@ import "react-circular-progressbar/dist/styles.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addMasterFoodsData } from "../../slice/MasterApiSlices";
+import { revertTravelDistance } from "../../slice/CalculationSlice";
 
 export default function Food() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -174,7 +175,7 @@ export default function Food() {
       <div className="foodStaticBtn">
       <Button
         onBack={() =>
-          navigate("/Vehicle4", { state: { activepage: "pagefour" } })
+        {dispatch(revertTravelDistance()),navigate("/Vehicle4", { state: { activepage: "pagefour" } })}
         } // Changed to 'activepage'
         onNext={() => {
           if (selectedItem) {
