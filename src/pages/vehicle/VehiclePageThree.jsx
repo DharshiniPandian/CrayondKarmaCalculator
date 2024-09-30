@@ -9,7 +9,7 @@ import axios from 'axios'
 import { addMasterVehicleFuelTypeDatas } from '../../slice/MasterApiSlices'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { selectFuelType } from '../../slice/CalculationSlice'
+import { revertVehicleCount, selectFuelType } from '../../slice/CalculationSlice'
 
 const VehiclePageThree = () => {
     const [fuelValue, setFuelValue] = useState(0)
@@ -77,6 +77,7 @@ const VehiclePageThree = () => {
 
     }
     const handleBack = () => {
+        dispatch(revertVehicleCount())
         navigate('/vehicle2')
     }
 
