@@ -8,6 +8,9 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import Button from "../Button/Button";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 
 export default function Appliance() {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -97,7 +100,7 @@ export default function Appliance() {
   }, [selectedItems]);
 
   return (
-    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
@@ -105,67 +108,85 @@ export default function Appliance() {
         </div>
       </div>
       <div className="appliance-bottom">
-      <div className="loader">
-      <div style={{ width: 54, height: 54 }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                text={`3/4`}
-                circleRatio={1}
-                styles={buildStyles({
-                  textSize: '30px',
-          pathColor: '#FEA062',
-          textColor: '#FEA062',
-          trailColor: '#FFF4E4',
-          backgroundColor: '#F39C12',
-                })}
-                strokeWidth={12}
-              >
-              </CircularProgressbarWithChildren>
-            </div>
+        <div className="loader">
+          <div style={{ width: 54, height: 54 }}>
+            <CircularProgressbarWithChildren
+              className="custom-progressbar"
+              value={value}
+              text={`3/4`}
+              circleRatio={1}
+              styles={buildStyles({
+                textSize: "30px",
+                pathColor: "#FEA062",
+                textColor: "#FEA062",
+                trailColor: "#FFF4E4",
+                backgroundColor: "#F39C12",
+              })}
+              strokeWidth={12}
+            ></CircularProgressbarWithChildren>
           </div>
+        </div>
         <div className="appliance-ques">
           Select the appliances you use at your home
         </div>
-        <div style={{width: "91%",display: "flex",justifyContent: "center"}}>
-        <div className="appliance-products">
-          
-          {AppliancesProducts.map((item) => (
-            <div
-              key={item.id}
-              className={`appliance-items ${
-                selectedItems.includes(item.id) ? "selected" : ""
-              }`}
-              onClick={() => handleItemClicked(item.id)}
-              style={{
-                backgroundColor: item.backgroundColor,
-                borderColor: selectedItems.includes(item.id)
-                  ? item.borderColor
-                  : "transparent",
-                borderWidth: "2px",
-                borderStyle: "solid",
-              }}
-            >
-              <div style={{ font:' normal normal normal 13px/16px Excon' }}>
-                {item.name}
+        <div
+          style={{ width: "91%", display: "flex", justifyContent: "center" }}
+        >
+          <div className="appliance-products">
+            {AppliancesProducts.map((item) => (
+              <div
+                key={item.id}
+                className={`appliance-items ${
+                  selectedItems.includes(item.id) ? "selected" : ""
+                }`}
+                onClick={() => handleItemClicked(item.id)}
+                style={{
+                  backgroundColor: item.backgroundColor,
+                  borderColor: selectedItems.includes(item.id)
+                    ? item.borderColor
+                    : "transparent",
+                  borderWidth: "2px",
+                  borderStyle: "solid",
+                }}
+              >
+                <div style={{ font: " normal normal normal 13px/16px Excon" }}>
+                  {item.name}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
           </div>
         </div>
       </div>
-      <div style={{marginTop:"11px"}}>
-      <Button
-        onBack={() => navigate("/Food")}
-        onNext={() => {
-          if (selectedItems.length > 0) {
-            navigate("/Electricity", { state: { selectedItems } });
-          } else {
-            alert("Please select an Item.");
-          }
-        }}
-      />
+      <div style={{ marginTop: "11px" }}>
+        <Button
+          onBack={() => navigate("/Food")}
+          onNext={() => {
+            if (selectedItems.length > 0) {
+              navigate("/Electricity", { state: { selectedItems } });
+            } else {
+              // Display a toast notification if no vehicle is selected
+              toast.warn("Please select an appliance before proceeding!", {
+                className: "custom-toast", // Custom class for warning toast
+                bodyClassName: "custom-toast-body", // Custom class for the body
+                progressClassName: "custom-toast-progress", // Custom class for the progress bar
+              });
+            }
+          }}
+        />
       </div>
+      {/* Toast Container for displaying notifications */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }

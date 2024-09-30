@@ -1,87 +1,89 @@
-import React, { useEffect, useState } from 'react'
-import CustomProgressBar from '../../components/progress/Progress'
-import { useNavigate } from 'react-router-dom'
-import background from '../../assets/background2.png'
-import '../../styles/Vehicle.css'
-import '../../components/singlebutton/ButtonSingle.css'
-import buttonbackground from '../../assets/buttonbackground.png'
-import axios from 'axios'
-import { addMasterVehicleFuelTypeDatas } from '../../slice/MasterApiSlices'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import CustomProgressBar from "../../components/progress/Progress";
+import { useNavigate } from "react-router-dom";
+import background from "../../assets/background2.png";
+import "../../styles/Vehicle.css";
+import "../../components/singlebutton/ButtonSingle.css";
+import buttonbackground from "../../assets/buttonbackground.png";
+import axios from "axios";
+import { addMasterVehicleFuelTypeDatas } from "../../slice/MasterApiSlices";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 import { revertVehicleCount, selectFuelType } from '../../slice/CalculationSlice'
 
 const VehiclePageThree = () => {
-    const [fuelValue, setFuelValue] = useState(0)
-    const [active, setActive] = useState("");
-    const [fuelId, setFuelId] = useState(0)
-    const [nextpagecondition, setnextpagecondition] = useState(false)
-    const vehicleData = useSelector((s) => s.masterVehicleFuelType)
-    const navigate = useNavigate();
-    const dispatch = useDispatch()
-    const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
+  const [fuelValue, setFuelValue] = useState(0);
+  const [active, setActive] = useState("");
+  const [fuelId, setFuelId] = useState(0);
+  const [nextpagecondition, setnextpagecondition] = useState(false);
+  const vehicleData = useSelector((s) => s.masterVehicleFuelType);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const globalCarbonValue = useSelector(
+    (s) => s.carbonValue.total_emission.total_emission
+  );
 
+  // Comment or  remove these sample values after the  API call is made
 
-    // Comment or  remove these sample values after the  API call is made
+  // const vehicleData = [
+  //     { id: 1, name: "petrol/deisel", path: './images/petrol.png', value: 10 },
+  //     { id: 2, name: "electric", path: './images/electric.svg', value: 20 },
+  // ]
 
-    // const vehicleData = [
-    //     { id: 1, name: "petrol/deisel", path: './images/petrol.png', value: 10 },
-    //     { id: 2, name: "electric", path: './images/electric.svg', value: 20 },
-    // ]
-
-    const fetchmasterVehicleFuelTypes = async () => {
-        try {
-          const response = await axios.get('http://localhost:8081/master/fuels');
-          if (response.status === 200)
-            dispatch(addMasterVehicleFuelTypeDatas(response.data))
-        }
-        catch (error) {
-          console.log("error while fetching data", error);
-        }
-      }
-    
-      useEffect(() => {
-        fetchmasterVehicleFuelTypes()
-    }, [])
-
-
-    const styles = [
-        {
-            id: 1,
-            backgroundColor: "#FFF4F3",
-            borderColor: "#EB7E74",
-        },
-        {
-            id: 2,
-            backgroundColor: "#FFF4E6",
-            borderColor: "#FFBA63",
-        },
-    ];
-
-
-    const handleFuelSelection = (fuel) => {
-        setActive(fuel.name)
-        setFuelValue(Number(fuel.value))
-        setFuelId(fuel.id)
-        setnextpagecondition(true)
+  const fetchmasterVehicleFuelTypes = async () => {
+    try {
+      const response = await axios.get("http://localhost:8081/master/fuels");
+      if (response.status === 200)
+        dispatch(addMasterVehicleFuelTypeDatas(response.data));
+    } catch (error) {
+      console.log("error while fetching data", error);
     }
+  };
 
-    const handleNext = () => {
-        if (nextpagecondition) {
-            dispatch(selectFuelType({fuelId,fuelValue}))
-            navigate('/vehicle4')
-        }
-        else {
-            alert("please SelectOne !")
-        }
+  useEffect(() => {
+    fetchmasterVehicleFuelTypes();
+  }, []);
 
+  const styles = [
+    {
+      id: 1,
+      backgroundColor: "#FFF4F3",
+      borderColor: "#EB7E74",
+    },
+    {
+      id: 2,
+      backgroundColor: "#FFF4E6",
+      borderColor: "#FFBA63",
+    },
+  ];
+
+  const handleFuelSelection = (fuel) => {
+    setActive(fuel.name);
+    setFuelValue(Number(fuel.value));
+    setFuelId(fuel.id);
+    setnextpagecondition(true);
+  };
+
+  const handleNext = () => {
+    if (nextpagecondition) {
+      dispatch(selectFuelType({ fuelId, fuelValue }));
+      navigate("/vehicle4");
+    } else {
+      // Display a toast notification if no vehicle is selected
+      toast.warn("Please select a fuel type before proceeding!", {
+        className: "custom-toast", // Custom class for warning toast
+        bodyClassName: "custom-toast-body", // Custom class for the body
+        progressClassName: "custom-toast-progress", // Custom class for the progress bar
+      });
     }
-    const handleBack = () => {
+  };
+  const handleBack = () => {
         dispatch(revertVehicleCount())
         navigate('/vehicle2')
     }
-
-    // console.log(carbonvalue, vehicleid , active)
     return (
         <div className="vehiclemaincontainer">
             <div className="topbar" style={{ background: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
@@ -95,48 +97,62 @@ const VehiclePageThree = () => {
                     <li><h1>{fuelValue?(globalCarbonValue*fuelValue):globalCarbonValue} ton CO2</h1></li>
                 </div>
             </div>
-            <div className="bottombar">
-                <div className="numberrolling">
-                    <CustomProgressBar />
+            <div className="options">
+              {vehicleData.map((fuel, key) => (
+                <div
+                  style={{
+                    backgroundColor: styles[key].backgroundColor,
+                    border:
+                      active === fuel.name
+                        ? `2px solid ${styles[key].borderColor}`
+                        : "0px",
+                    borderColor: styles[key].borderColor,
+                    cursor: "pointer",
+                  }}
+                  className="element-bike-"
+                  key={key}
+                  onClick={() => handleFuelSelection(fuel)}
+                >
+                  <li>
+                    <img
+                      src={fuel.path}
+                      height={"40px"}
+                      width={"40px"}
+                      alt=""
+                    />
+                  </li>
+                  <li className="VehicleName">{fuel.name}</li>
                 </div>
-                <div>
-                    <div className="content">
-                        <div className="text" style={{marginBottom:"20px"}}>
-                            What type of fuel do you use?
-                        </div>
-                        <div className="options">
-                            {vehicleData.map((fuel, key) => (
-                                <div
-                                    style={{
-                                        backgroundColor: styles[key].backgroundColor,
-                                        border: active === fuel.name ? `2px solid ${styles[key].borderColor}` : "0px",
-                                        borderColor: styles[key].borderColor,
-                                        cursor: "pointer"
-                                    }}
-                                    className="element-bike-"
-                                    key={key}
-                                    onClick={() => handleFuelSelection(fuel)}
-                                >
-                                    <li>
-                                        <img src={fuel.path} height={"40px"} width={"40px"} alt="" />
-                                    </li>
-                                    <li className="VehicleName">{fuel.name}</li>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div className="buttondouble">
-                        <div className='btns'>
-                            <button className='back' onClick={handleBack}>Back</button>
-                            <button onClick={handleNext}>Next</button>
-                        </div>
-                    </div>
-                </div>
+              ))}
             </div>
+          </div>
         </div>
-    );
-}
+        <div>
+          <div className="buttondouble">
+            <div className="btns">
+              <button className="back" onClick={handleBack}>
+                Back
+              </button>
+              <button onClick={handleNext}>Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+       {/* Toast Container for displaying notifications */}
+       <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </div>
+  );
+};
 
 export default VehiclePageThree;

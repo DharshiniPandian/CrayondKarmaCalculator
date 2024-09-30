@@ -1,0 +1,14 @@
+/* Custom CSS for toast */
+.custom-toast {
+    font-size: 14px; /* Reduce font size */
+    background-color: white !important; /* Warning color */
+    color: rgb(29, 29, 29) !important;
+  }
+  .custom-toast-body {
+    font-weight: bold;
+    font-family: "Excon" !important;
+  }
+  .custom-toast-progress {
+    background-color: #ff7043 !important; /* Progress bar color */
+  }
+  

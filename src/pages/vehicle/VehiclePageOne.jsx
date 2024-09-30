@@ -10,6 +10,9 @@ import '../../components/singlebutton/ButtonSingle.css'
 import { useNavigate } from 'react-router-dom';
 import buttonbackground from '../../assets/buttonbackground.png'
 import { selectVehicle } from '../../slice/CalculationSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../../styles/toast.css'
 
 const VehiclePageOne = () => {
   const [vehicleValue, setVehicleValue] = useState(0)
@@ -68,7 +71,12 @@ const VehiclePageOne = () => {
       dispatch(selectVehicle({vehicleId,vehicleValue}))
     }
     else {
-      alert("Please select a vehicle")
+      // Display a toast notification if no vehicle is selected
+      toast.warn("Please select a vehicle before proceeding!", {
+        className: "custom-toast", // Custom class for warning toast
+        bodyClassName: "custom-toast-body", // Custom class for the body
+        progressClassName: "custom-toast-progress", // Custom class for the progress bar
+      });
     }
   }
 
@@ -123,6 +131,19 @@ const VehiclePageOne = () => {
           </div>
         </div>
       </div>
+       {/* Toast Container for displaying notifications */}
+       <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
