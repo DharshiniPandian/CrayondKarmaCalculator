@@ -20,15 +20,13 @@
   margin-top: -25px;
 }
 .appliance-ques {
-  font-family: "Excon", sans-serif;
+  font: normal normal 600 13px/16px Excon;
   margin-top: 2%;
-  font-weight: 520;
   display: flex;
   justify-content: center;
   /* height: 6vh; */
   align-items: end;
   /* background-color: #FEA062; */
-  font-size: 14px;
 }
 .appliance-products {
   

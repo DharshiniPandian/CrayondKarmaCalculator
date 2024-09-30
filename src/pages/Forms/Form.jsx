@@ -52,7 +52,7 @@ const Form = () => {
                                 height: '45px', 
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+                                font: "normal normal 500 14px/16px Sarabun", 
                             },
                         }}
                         slotProps={{
@@ -75,13 +75,13 @@ const Form = () => {
                                 height: '45px',
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
                             inputLabel: {
                                 classes: { asterisk: 'asterisk' },
-                                style: { color: '#60666F' } 
+                                style: { color: '#60666F' },
                             }
                         }}
                     />
@@ -98,7 +98,7 @@ const Form = () => {
                                 height: '45px',
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+                                font: "normal normal 500 14px/16px Sarabun", 
                             },
                         }}
                         slotProps={{
@@ -120,7 +120,7 @@ const Form = () => {
                                 height: '45px',
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -143,7 +143,7 @@ const Form = () => {
                                 height: '45px',
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -165,7 +165,7 @@ const Form = () => {
                                 height: '45px',
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -179,10 +179,16 @@ const Form = () => {
                     {/* MUI Button */}
                     <Button 
                         onClick={handleSuccess} 
-                        variant="contained" 
                         color="primary" 
-                        fullWidth
-                        sx={{ textTransform: 'none' }}
+                        variant='outlined'
+                        sx={{ 
+                            textTransform: 'none',
+                            backgroundColor:"#1D78EC",
+                            width: "304px",
+                            height: "48px",
+                            borderRadius:"8px",
+                            font: "normal normal 500 14px/16px Sarabun"
+                        }}
                     >
                         Submit
                     </Button>

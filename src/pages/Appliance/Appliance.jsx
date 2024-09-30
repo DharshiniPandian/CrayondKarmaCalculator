@@ -146,7 +146,7 @@ export default function Appliance() {
                 borderStyle: "solid",
               }}
             >
-              <div style={{ fontWeight: "420", fontSize: "14px",fontFamily: "Excon, sans-serif" }}>
+              <div style={{ font:' normal normal normal 13px/16px Excon' }}>
                 {item.name}
               </div>
             </div>
@@ -154,6 +154,7 @@ export default function Appliance() {
           </div>
         </div>
       </div>
+      <div style={{marginTop:"11px"}}>
       <Button
         onBack={() => navigate("/Food")}
         onNext={() => {
@@ -164,6 +165,7 @@ export default function Appliance() {
           }
         }}
       />
+      </div>
     </div>
   );
 }
