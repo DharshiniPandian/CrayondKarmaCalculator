@@ -12,7 +12,7 @@ export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
         marks={marks}
         min={min}
         max={max}
-        step={2}
+        step={1}
       />
     </Box>
   );

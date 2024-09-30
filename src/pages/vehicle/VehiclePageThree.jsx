@@ -38,7 +38,8 @@ const VehiclePageThree = () => {
 
   const fetchmasterVehicleFuelTypes = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/fuels");
+      const response = await axios.get("http://10.40.33.125:8081/master/fuels");
+    //   const response = await axios.get("http://localhost:8081/master/fuels");
       if (response.status === 200)
         dispatch(addMasterVehicleFuelTypeDatas(response.data));
     } catch (error) {
