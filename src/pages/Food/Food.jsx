@@ -16,12 +16,15 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { addMasterFoodsData } from "../../slice/MasterApiSlices";
 import { revertTravelDistance } from "../../slice/CalculationSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 
 export default function Food() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [CarbonValue, setCarbonValue] = useState(0);
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState(25);
 
@@ -75,19 +78,17 @@ export default function Food() {
   };
 
   useEffect(() => {
-    fetchmasterFoodItems()
+    fetchmasterFoodItems();
   }, []);
 
   const fetchmasterFoodItems = async () => {
-    try{
-      const response = await axios.get('http://localhost:8081/master/foods');
-      if(response.status===200)
-      dispatch(addMasterFoodsData(response.data))
+    try {
+      const response = await axios.get("http://localhost:8081/master/foods");
+      if (response.status === 200) dispatch(addMasterFoodsData(response.data));
+    } catch (error) {
+      console.log("error while fetching data", error);
     }
-    catch(error){
-      console.log("error while fetching data",error);
-    }
-  }
+  };
 
   return (
     <div>
@@ -173,19 +174,38 @@ export default function Food() {
         </div>
       </div>
       <div className="foodStaticBtn">
-      <Button
-        onBack={() =>
-        {dispatch(revertTravelDistance()),navigate("/Vehicle4", { state: { activepage: "pagefour" } })}
-        } // Changed to 'activepage'
-        onNext={() => {
-          if (selectedItem) {
-            navigate("/Appliance", { state: { selectedItem } });
-          } else {
-            alert("Please select an Item.");
-          }
-        }}
-      />
+        <Button
+          onBack={() => {
+            dispatch(revertTravelDistance()),
+              navigate("/Vehicle4", { state: { activepage: "pagefour" } });
+          }} // Changed to 'activepage'
+          onNext={() => {
+            if (selectedItem) {
+              navigate("/Appliance", { state: { selectedItem } });
+            } else {
+              // Display a toast notification if no vehicle is selected
+              toast.warn("Please select a Food Item before proceeding!", {
+                className: "custom-toast", // Custom class for warning toast
+                bodyClassName: "custom-toast-body", // Custom class for the body
+                progressClassName: "custom-toast-progress", // Custom class for the progress bar
+              });
+            }
+          }}
+        />
       </div>
+      {/* Toast Container for displaying notifications */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
