@@ -10,7 +10,7 @@ import '../../components/doublebutton/DoubleButton.css'
 import buttonbackground from '../../assets/buttonbackground.png'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { addTravelDistance } from '../../slice/CalculationSlice'
+import { addTravelDistance, revertFuelUse } from '../../slice/CalculationSlice'
 
 
 const VehiclePageFour = () => {
@@ -31,6 +31,7 @@ const VehiclePageFour = () => {
         
     }
     const handleBack = () => {
+        dispatch(revertFuelUse())
         navigate('/vehicle3')
     }
 

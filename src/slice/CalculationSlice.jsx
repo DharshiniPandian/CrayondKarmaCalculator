@@ -45,6 +45,7 @@ const initialState = {
     fuel_id: null, // ID of the selected fuel type
     fuel_value: null, // Emission factor based on fuel type
     travel_distance: null, // Distance traveled in km per week
+    total_vehicle_emission:null,
   },
   food: {
     food_id: null,
@@ -101,7 +102,28 @@ const CalculateCarbonEmission = createSlice({
       state.vehicle.travel_distance = action.payload.travelDistance;
       
       // Recalculate total emission based on new travel distance
-      state.total_emission.total_emission = calculateTotalEmission(state.vehicle);
+      const data = calculateTotalEmission(state.vehicle);
+      state.vehicle.total_vehicle_emission = data
+      state.total_emission.total_emission = data
+    },
+
+    // Reverting the deistance 
+    revertTravelDistance(state,action){
+      const travel = state.vehicle.travel_distance
+      const vehicle_emission = state.vehicle.total_vehicle_emission
+      const total_emission = state.total_emission.total_emission
+      const new_total_emission = (total_emission) / (travel / 10).toFixed(2)
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+    },
+
+    // Reverting the fuel use
+    revertFuelUse(state,action){
+      const fuel = state.vehicle.fuel_value
+      const total_emmision = state.total_emission.total_emission 
+      const new_total_emission = (total_emmision) / fuel
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
     },
 
     selectFoodType(state, action) {
@@ -122,6 +144,24 @@ const CalculateCarbonEmission = createSlice({
       state.total_emission.total_emission = calculateTotalEmission(state.electricity);
     },
     
+    // Reverting the  vehicle count
+    revertVehicleCount(state,action){
+      const vehicle_count = state.vehicle.vehicle_count
+      const  total_emmision = state.total_emission.total_emission 
+      const new_total_emission = total_emmision /  vehicle_count
+      state.vehicle.total_vehicle_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+    },
+
+    // Revert the selected Vehicle
+    // revertSelectedVehicle(state,action){
+    //   const selected_vehicle = state.vehicle.vehicle_value
+    //   const total_emmision = state.total_emission.total_emission
+    //   const new_total_emission = total_emmision / selected_vehicle
+    //   state.vehicle.vehicle_value = new_total_emission
+    //   state.total_emission.total_emission = new_total_emission
+    // },
+
     // Reset vehicle details if needed
     resetVehicleDetails(state) {
       state.vehicle = initialState.vehicle;
@@ -143,6 +183,11 @@ export const {
   selectApplianceType, // Handles appliance selection and value
   addElectricityValue, // Handles electricity value
   resetVehicleDetails, // Resets the state
+  revertTravelDistance, //reverse travel distance
+  revertFuelUse, //reverse fuel use
+  revertVehicleCount, // reverse the  vehicle count
+  // revertSelectedVehicle, //reverse the selected vehicle
+
 } = CalculateCarbonEmission.actions;
 
 // Reducer
