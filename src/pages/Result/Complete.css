@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh; 
-    background-color: #F0F4FA; 
+    background-color: #ffff; 
     background-image:url(../../assets/donebg.png) ;
 }
 
@@ -25,6 +25,6 @@
 }
 
 .success-message h1 {
-    font-size: 24px; 
+    font: normal normal 600 18px/25px Excon;
     color: #333; 
 }

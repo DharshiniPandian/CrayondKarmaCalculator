@@ -3,9 +3,17 @@
 }
 button {
   cursor: pointer;
+  /* position: absolute; */
+}
+.foodStaticBtn{
+  /* background-color: red; */
+  position: absolute;
+  bottom: 11vh;
+  right: 50%;
 }
 .food-top {
-  height: 43.5vh;
+  font-family: "Excon", sans-serif;
+  height: 44.3vh;
   background-image: url("/src/assets/Food_Bg.png");
   background-position: center;
   background-size: cover;
@@ -14,7 +22,8 @@ button {
   justify-content: space-between;
 }
 .electricity-top {
-  height: 45vh;
+  font-family: "Excon", sans-serif;
+  height: 44.3vh;
   background-image: url("/src/assets/electricity_Bg.png");
   background-position: center;
   background-size: cover;
@@ -22,32 +31,10 @@ button {
   flex-direction: column;
   justify-content: space-between;
 }
-.white-screen {
-  background-color: rgb(255, 255, 255);
-  width: 100%;
-  height: 4vh;
-  /* border-radius: 100px 100px 0px 0px; */
-  display: flex;
-  justify-content: center;
-}
-.loader {
-  border-radius: 50px;
-  width: 70px;
-  height: 70px;
-  background-color: white;
-  /* margin-top: -7%; */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.subloader {
-  background-color: #fff4e4;
-  border-radius: 50px;
-  padding: 22%;
-}
 .carbon-value {
+  font-family: "Excon", sans-serif;
   width: 100%;
-  height: 20%;
+  height: 35%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,48 +43,58 @@ button {
   font-size: 17px;
 }
 .food-bottom {
+  background-image: url("../assets/Objects.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 100% 350px;
+  display: flex;
+    bottom: 0vh;
+  border-radius: 28px 28px 0rem 0rem;
   width: 100%;
-  /* height: 50vh; */
+  height: 58.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  /* background-color: white; */
+  margin-top: -25px;
 }
 .food-ques {
-  font-weight: 550;
+  font-family: "Excon", sans-serif;
+  margin-top: 2%;
+  font-weight: 500;
   display: flex;
   justify-content: center;
-  height: 6vh;
+  /* height: 6vh; */
   align-items: end;
   /* background-color: #FEA062; */
-  font-size: 18px;
+  font-size: 13px;
 }
 .food-products {
-    margin-top: 3%;
-  height: 70%;
-  width: 55%;
+    margin-top: 5%;
+  /* height: 70%; */
+  /* width: 55%; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.4rem;
 }
 .food-items {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  background-color: #e4ffee;
-  
-  height: 16vh;
+  /* background-color: #e4ffee; */
+  /* width: 1vw; */
+  height: 110px;
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
   border-radius: 8px;
   text-align: center;
 }
-.food-items:nth-child(2) {
-  /* background-color: #fff4e6; */
-}
+/* .food-items:nth-child(2) {
+  background-color: #fff4e6;
+} */
 .food-items {
   cursor: pointer;
   transition: border 0.3s;
@@ -115,18 +112,22 @@ button {
 
 }
 
-/* styles.css */
 .loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Adjust as necessary */
-  background-color: white; /* Adjust as necessary */
-  padding: 2%;
+    border-radius: 50%;     
+    /* width: 70px; */
+    /* height: 70px; */
+    margin-top: -10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  /* height: 100vh; */
+  background-color: white; 
+  padding: 12px;
 }
 
 .custom-progressbar {
-  position: relative;
+  /* position: relative; */
+  font-weight: 900;
 }
 
 .rotation-value {
@@ -138,15 +139,22 @@ button {
   color: #FEA062; /* Match pathColor */
 }
 
+.item-bottom-bg{
+  /* background-image: url("../assets/World.svg"); */
+  /* background-position: center;
+  background-size: cover; */
+  /* background-color: #FEA062; */
+}
+
 @media (min-width: 600px) {
   .food-items{
-    width: 120px; 
+    width: 115px; 
   }
   .food-items:nth-child(3) {
     /* background-color: #fff4f3; */
     
     grid-column: span 1.8;
-    margin-left: 100%;
+    margin-left: 115%;
     justify-self: center;
   }
 }

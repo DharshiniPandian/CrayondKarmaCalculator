@@ -11,7 +11,10 @@ import Appliance from "../pages/Appliance/Appliance";
 import Electricity from "../pages/Electricity/Electricity";
 import App from "../App";
 import FrontPage from "../pages/frontpage/FrontPage";
-import Vehicle from "../pages/vehicle/Vehicle";
+import VehiclePageOne from "../pages/vehicle/VehiclePageOne";
+import VehiclePageTwo from "../pages/vehicle/VehiclePageTwo";
+import VehiclePageThree from "../pages/vehicle/VehiclePageThree";
+import VehiclePageFour from "../pages/vehicle/VehiclePageFour";
 
 function Router() {
   return (
@@ -26,8 +29,11 @@ function Router() {
       <Route element={<Food />} path="/Food" />
       <Route element={<Appliance />} path="/Appliance" />
       <Route element={<Electricity />} path="/Electricity" />
-      <Route element={<Vehicle/>} path="/vehicle"/>
       <Route element={<FrontPage />} path="/" />
+      <Route element={<VehiclePageOne />} path="/vehicle1"/>
+      <Route element={<VehiclePageTwo/>} path="/vehicle2"/>
+      <Route element={<VehiclePageThree/>} path="/vehicle3"/>
+      <Route element={<VehiclePageFour />} path="/vehicle4" />
     </Routes>
   );
 }

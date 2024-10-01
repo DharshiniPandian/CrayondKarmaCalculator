@@ -4,6 +4,7 @@ import Tree from '../../assets/Deciduous Tree.png';
 import graph from '../../assets/graph.png';
 import './Result.css';
 import Semi from "../Result/chart";
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Result = () => {
@@ -12,6 +13,9 @@ const Result = () => {
     const handlePlant = () => {
         navigate('/tree-form');
     }
+
+    const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
+    const saplings = (totalVehicleEmission/200).toFixed();
 
     return (
         <div className='res-contain'>
@@ -48,11 +52,11 @@ const Result = () => {
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
                     <div className='text123'>Offset your excess carbon footprint by</div>
-                    <h3>Planting 15 Saplings</h3>
+                    <h3>Planting {saplings} Saplings</h3>
                     <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
-                <div className='remind'>
-                    <p>Remind me later</p>
+                <div className='remind' style={{font: "normal normal 600 14px/16px Sarabun"}}>
+                    Remind me later
                 </div>
             </div>
         </div>
