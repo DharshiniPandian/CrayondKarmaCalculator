@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, alpha, Box } from '@mui/system';
 import { Slider as BaseSlider, sliderClasses } from '@mui/base/Slider';
 
-export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
+export default function DiscreteSliderMarksElectricity({value,onSliderChange,min,max}) {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
@@ -13,6 +13,7 @@ export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
         min={min}
         max={max}
         step={2}
+        
       />
     </Box>
   );
@@ -20,11 +21,11 @@ export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
 
 const marks = [
   {
-    value: 100,
+    value: 240,
     label: '100 units',
   },
   {
-    value: 1000,
+    value: 970,
     label: '1000 units',
   }
 ];
@@ -146,6 +147,9 @@ const Slider = styled(BaseSlider)(
     transform: translateX(-50%);
     margin-top: 8px;
     color:black;
+    // gap: 1rem;
+    width:100px;
+    font-family: "Excon", sans-serif;
   }
 `,
 );

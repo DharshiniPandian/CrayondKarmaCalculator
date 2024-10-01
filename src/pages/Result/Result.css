@@ -21,12 +21,13 @@
 } */
 
 .res-contain h4 {
+
     margin-bottom: 10%;
-    margin-top: 30px;
+    margin-top: 2rem;
     font: normal normal bold 16px/23px Excon;
-letter-spacing: -0.08px;
-color: #030911;
-opacity: 1;
+    letter-spacing: -0.08px;
+    color: #030911;
+    opacity: 1;
 }
 
 .bg-img {
@@ -41,7 +42,7 @@ opacity: 1;
     /* max-width: 400px; */
     background-color: white;
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -80,7 +81,7 @@ opacity: 1;
     display: flex;
     flex-direction: row;
     width: 233px;
-height: 32px;
+    height: 32px;
     color: #FF5757;
     background-color: #FFF1F1;
     border-radius: 6px 6px 6px 6px;
@@ -91,13 +92,13 @@ height: 32px;
 }
 
 .graph-box p {
-  font-size: 11px;
-  letter-spacing: 0.5px;
+    font-size: 11px;
+    letter-spacing: 0.5px;
     font-weight: 410;
     text-align: left;
-font: normal normal 12px/28px Sarabun;
-letter-spacing: 0px;
-color: #FF5757;
+    font: normal normal 12px/28px Sarabun;
+    letter-spacing: 0px;
+    color: #FF5757;
 }
 
 .sapling-box {
@@ -136,7 +137,7 @@ color: #FF5757;
     background: #1B9863 0% 0% no-repeat padding-box;
     color: white;
     width: 128px;
-height: 32px;
+    height: 32px;
     padding: 6px 6px 6px 6px;
     border: none;
     border-radius: 5px;
@@ -145,8 +146,8 @@ height: 32px;
     margin-bottom: 10%;
     margin-top: 5%;
     font: normal normal 12px/16px Sarabun;
-letter-spacing: 0px;
-color: #FFFFFF;
+    letter-spacing: 0px;
+    color: #FFFFFF;
 }
 
 .sapling-box button:hover {
@@ -164,12 +165,10 @@ color: #FFFFFF;
 
 .remind {
     color: #1f7aec;
-    font-size: 60%;
-    font-weight: 600;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 8%;
+    margin-top: 17.12px;
 }
 
 .legend-container {
@@ -220,5 +219,5 @@ color: #FFFFFF;
 
 .semicircle {
     width: 183px;
-height: 37%;
+    height: 37%;
 }

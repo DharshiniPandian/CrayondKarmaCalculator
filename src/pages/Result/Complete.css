@@ -4,13 +4,14 @@
     justify-content: center;
     align-items: center;
     height: 100vh; 
-    background-color: #ffffff; 
+    background-color: #ffff; 
     background-image:url(../../assets/donebg.png) ;
 }
 
 .complete-video {
     width: 40%; 
     height: auto;
+    background-color: transparent;
 }
 
 .success-message {
@@ -24,6 +25,6 @@
 }
 
 .success-message h1 {
-    font-size: 24px; 
+    font: normal normal 600 18px/25px Excon;
     color: #333; 
 }

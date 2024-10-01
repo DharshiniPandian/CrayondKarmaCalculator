@@ -1,5 +1,7 @@
 import React from "react";
 import Router from "./router/router";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 function App() {
  
@@ -46,10 +48,12 @@ function App() {
   
         <div className="container">
           <div className="red-field">
+            <Provider store={store}>
             <Router />
+            </Provider>
           </div>
         </div>
-      </>
+      </> 
     );
   }
 

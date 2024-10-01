@@ -12,7 +12,7 @@ export default function DiscreteSliderMarks({value,onSliderChange,min,max}) {
         marks={marks}
         min={min}
         max={max}
-        step={2}
+        step={1}
       />
     </Box>
   );
@@ -45,11 +45,11 @@ const marks = [
 
   },
   {
-    value: 11,
+    value: 20,
     label: '10 km',
   },
   {
-    value: 250,
+    value: 235,
     label: '250 km'
   }
 ];
@@ -108,8 +108,7 @@ const Slider = styled(BaseSlider)(
     width: 100%;
     height: 4px;
     border-radius: 0px;
-    background-color: currentColor;
-    opacity: 0.3;
+    background-color: #E6EEFA;
   }
 
   & .${sliderClasses.track} {
@@ -117,7 +116,7 @@ const Slider = styled(BaseSlider)(
     position: absolute;
     height: 4px;
     border-radius:0px;
-    background-color: currentColor;
+    background-color: #0E70EB;
   }
 
   & .${sliderClasses.thumb} {
@@ -131,7 +130,7 @@ const Slider = styled(BaseSlider)(
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    background-color: ${theme.palette.mode === 'light' ? blue[500] : blue[400]};
+    background-color: ${theme.palette.mode === 'light' ? '#0E70EB' : blue[400]};
     transition-property: box-shadow, transform;
     transition-timing-function: ease;
     transition-duration: 120ms;
@@ -163,14 +162,16 @@ const Slider = styled(BaseSlider)(
   }
 
   & .${sliderClasses.markLabel} {
-    font-family: IBM Plex Sans;
-    font-weight: 600;
-    font-size: 12px;
+    text-align: center;
+    font: normal normal 600 13px/16px Excon;
+    letter-spacing: 0px;
+    opacity: 1;
     position: absolute;
     top: 24px;
     transform: translateX(-50%);
     margin-top: 8px;
     color:black;
+    width:50px;
   }
 `,
 );

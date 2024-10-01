@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material'; // Import MUI components
 import './Form.css'; 
 import { useNavigate } from 'react-router-dom';
+import cloud from '../../assets/Clouds.svg';
+import trees from '../../assets/Trees.svg';
 
 
 const Form = () => {
@@ -30,6 +32,10 @@ const Form = () => {
 
     return (
         <div className="form-container">
+                <img src={cloud} alt="Cloud" className="cloud-image" />
+                <img src={trees} alt="Trees" className="tree-image" />
+
+            <div className="form-top">
             {/* Message shown for 2 seconds */}
             <div className={`msg ${showMessage ? 'msg-enter' : 'msg-leave'}`}>
                 Great job! You're making a positive contribution to preserving our green environment.
@@ -46,13 +52,16 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
+                            // height: '5%',
                             '& .MuiOutlinedInput-root': {
                                 height: '45px', 
+                                borderRadius: '8px', 
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+
+                                font: "normal normal 500 14px/16px Sarabun", 
                             },
                         }}
                         slotProps={{
@@ -69,19 +78,22 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
+                            border: '1px #DFDFDF',
                             '& .MuiOutlinedInput-root': {
-                                height: '45px',
+                                height: '48px',
+                                borderRadius: '8px', 
+                                
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
                             inputLabel: {
                                 classes: { asterisk: 'asterisk' },
-                                style: { color: '#60666F' } 
+                                style: { color: '#60666F' },
                             }
                         }}
                     />
@@ -92,13 +104,14 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
                             '& .MuiOutlinedInput-root': {
                                 height: '45px',
+                                borderRadius: '8px'
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px', 
+                                font: "normal normal 500 14px/16px Sarabun", 
                             },
                         }}
                         slotProps={{
@@ -114,13 +127,14 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
                             '& .MuiOutlinedInput-root': {
                                 height: '45px',
+                                borderRadius: '8px', 
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -137,13 +151,14 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
                             '& .MuiOutlinedInput-root': {
                                 height: '45px',
+                                borderRadius: '8px', 
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -159,13 +174,14 @@ const Form = () => {
                         fullWidth 
                         required 
                         sx={{ 
-                            marginBottom: '18px', 
+                            marginBottom: '10px', 
                             width: '100%', 
                             '& .MuiOutlinedInput-root': {
                                 height: '45px',
+                                borderRadius: '8px', 
                             },
                             '& .MuiInputLabel-root': {
-                                fontSize: '12px',
+                                font: "normal normal 500 14px/16px Sarabun",
                             },
                         }}
                         slotProps={{
@@ -179,15 +195,22 @@ const Form = () => {
                     {/* MUI Button */}
                     <Button 
                         onClick={handleSuccess} 
-                        variant="contained" 
                         color="primary" 
-                        fullWidth
-                        sx={{ textTransform: 'none' }}
+                        variant='outlined'
+                        sx={{ 
+                            textTransform: 'none',
+                            backgroundColor:"#1D78EC",
+                            width: "304px",
+                            height: "48px",
+                            borderRadius:"8px",
+                            font: "normal normal 500 14px/16px Sarabun"
+                        }}
                     >
                         Submit
                     </Button>
                 </form>
             )}
+            </div>
         </div>
     );
 };

@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsTriangleFill } from "react-icons/bs";
-import Greens from "../../assets/LeafyGreen.png";
-import Oden from "../../assets/Oden.png";
-import PoultryLeg from "../../assets/PoultryLeg.png";
 import "../../styles/Food.css";
 import Button from "../Button/Button";
-import ChangingProgressProvider from "../Loader/ChangingProgressProvider";
 import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { addMasterFoodsData } from "../../slice/MasterApiSlices";
+import { revertTravelDistance, selectFoodType } from "../../slice/CalculationSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 
 export default function Food() {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [CarbonValue, setCarbonValue] = useState(0);
+  // const [selectedItem, setSelectedItem] = useState(null);
+  // const [CarbonValue, setCarbonValue] = useState(0);
+  const [foodId, setFoodId] = useState(0);
+  const [foodValue, setFoodValue] = useState(0);
+  const [foodName, setFoodName] = useState(false);
+  const foodData = useSelector((s) => s.masterFoodItems);
+  const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [value, setValue] = useState(25);
+
+  const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
 
   useEffect(() => {
     let timer;
@@ -28,122 +39,144 @@ export default function Food() {
     return () => clearTimeout(timer);
   }, [value]);
 
-  const FoodProducts = [
+  const styles = [
     {
       id: 1,
-      name: "Veg",
-      img: Greens,
       borderColor: "#3ea957",
       backgroundColor: "#E4FFEE",
-      carbon: "17.5",
     },
     {
       id: 2,
-      name: "Both",
-      img: Oden,
       borderColor: "#FFBA63",
       backgroundColor: "#FFF4E6",
-      carbon: "18.5",
     },
     {
       id: 3,
-      name: "Non veg",
-      img: PoultryLeg,
       borderColor: "#EB7E74",
       backgroundColor: "#FFF4F3",
-      carbon: "19.5",
     },
   ];
 
-  const handleItemClicked = (itemId) => {
-    const selectedItem = FoodProducts.find((item) => item.id === itemId);
+  const handleItemClicked = (food) => {
+    setFoodName(food.name);
+    setFoodId(food.id);
+    setFoodValue(Number(food.value));
+    // console.log("Selected Food Name =", food.name);
+    // console.log("Selected Food ID =", food.id);
+    // console.log("Selected Food Value =", Number(food.value));
+  };
 
-    setSelectedItem((prevSelected) =>
-      prevSelected === itemId ? null : itemId
-    );
-
-    setCarbonValue((prevSelected) =>
-      prevSelected === itemId ? "" : selectedItem?.carbon
-    );
-
-    console.log("Carbon value =", CarbonValue);
+  const NextFunction = () => {
+    if (foodId) {
+      navigate("/Appliance", { state: { foodId } });
+      dispatch(selectFoodType({ foodId, foodValue }));
+    } else {
+      // Display a toast notification if no vehicle is selected
+              toast.warn("Please select a Food Item before proceeding!", {
+                className: "custom-toast", // Custom class for warning toast
+                bodyClassName: "custom-toast-body", // Custom class for the body
+                progressClassName: "custom-toast-progress", // Custom class for the progress bar
+              });
+    }
   };
 
   useEffect(() => {
-    console.log("Selected item:", selectedItem);
-  }, [selectedItem]);
+    fetchmasterFoodItems();
+  }, []);
+
+  const fetchmasterFoodItems = async () => {
+    try {
+      const response = await axios.get("http://localhost:8081/master/foods");
+      if (response.status === 200) dispatch(addMasterFoodsData(response.data));
+    } catch (error) {
+      console.log("error while fetching data", error);
+    }
+  };
 
   return (
-    <div>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {CarbonValue}ton CO2
-        </div>
-        <div className="white-screen">
-          <div className="loader">
-            <div style={{ width: "80px" }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                circleRatio={1}
-                styles={buildStyles({
-                  circleRatio: 1 / 2,
-                  pathTransitionDuration: 0.5,
-                  strokeWidth: 20,
-                  rotation: 0,
-                  trailColor: "#FFF4E4",
-                  pathColor: "#FEA062",
-                })}
-              >
-                <div className="rotation-value">2/4</div>
-              </CircularProgressbarWithChildren>
-            </div>
-          </div>
+          {totalVehicleEmission+foodValue} ton CO2
         </div>
       </div>
       <div className="food-bottom">
-        <div className="food-ques">What do you normally eat?</div>
+        <div className="loader">
+          <div style={{ width: 54, height: 54 }}>
+            <CircularProgressbarWithChildren
+              className="custom-progressbar"
+              value={value}
+              text={`2/4`}
+              circleRatio={1}
+              styles={buildStyles({
+                textSize: "30px",
+                pathColor: "#FEA062",
+                textColor: "#FEA062",
+                trailColor: "#FFF4E4",
+                backgroundColor: "#F39C12",
+              })}
+              strokeWidth={12}
+            ></CircularProgressbarWithChildren>
+          </div>
+        </div>
+        <div className="food-ques">What you normally eat?</div>
         <div className="food-products">
-          {FoodProducts.map((item) => (
+          {foodData.map((food, key) => (
             <div
-              key={item.id}
+              key={key}
               className={`food-items ${
-                selectedItem === item.id ? "selected" : ""
+                foodName === food.name ? "selected" : ""
               }`}
-              onClick={() => handleItemClicked(item.id)}
               style={{
-                backgroundColor: item.backgroundColor,
-                borderColor:
-                  selectedItem === item.id
-                    ? item.borderColor
-                    : "transparent",
-                borderWidth: "2px",
-                borderStyle: "solid",
+                backgroundColor: styles[key].backgroundColor,
+                border: foodName === food.name ? `2px solid ${styles[key].borderColor}` : "0px",
+                //  borderColor : styles[key].transparent,
+                // borderWidth: "2px",
+                // borderStyle: "solid",
               }}
+              onClick={() => handleItemClicked(food)}
             >
               <img
-                src={item.img}
-                style={{ width: "40px" }}
-                alt={item.name}
+                src={food.path}
+                style={{ width: "35px", height: "35px" }}
+                alt=""
               />
-              <div style={{ fontWeight: "420", fontSize: "14px" }}>
-                {item.name}
+              <div
+                style={{
+                  fontWeight: "420",
+                  fontSize: "13px",
+                  fontFamily: "Excon, sans-serif",
+                }}
+              >
+                {food.name}
               </div>
             </div>
           ))}
+        </div>   
+      <div className="foodStaticBtn" >
+        <Button
+          onBack={() => {
+            dispatch(revertTravelDistance());
+            navigate("/Vehicle4", { state: { activepage: "pagefour" } });
+          }}
+          onNext={NextFunction} 
+        />
         </div>
-      </div>
-      <Button
-  onBack={() => navigate("/Vehicle", { state: { activepage: "pagefour" } })} // Changed to 'activepage'
-  onNext={() => {
-    if (selectedItem) {
-      navigate("/Appliance", { state: { selectedItem } });
-    } else {
-      alert("Please select an Item.");
-    }
-  }}
-/>
+        </div>
+      {/* Toast Container for displaying notifications */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
