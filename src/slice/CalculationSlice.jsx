@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Helper function to calculate total emissions based on given vehicle data
-// Helper function to calculate total emissions based on given vehicle data
 const calculateVehicleEmission = ({ vehicle_value, vehicle_count, travel_distance, fuel_value , total_vehicle_emission }) => {
   if (!vehicle_value || !vehicle_count) return 0;
 
@@ -12,9 +10,10 @@ const calculateVehicleEmission = ({ vehicle_value, vehicle_count, travel_distanc
   }
 
   if (travel_distance) {
-    emission += travel_distance / 10; // Adjust factor as needed
+    emission = (emission) * (travel_distance / 10).toFixed(2);
   }
 
+  console.log("Vehicle = ",emission)
   total_vehicle_emission = emission;
   return emission;
 };
@@ -32,7 +31,7 @@ const calculateApplianceEmission = ({ appliance_value, total_appliances_emission
 const calculateElectricityEmission = ({ electricity_value, total_electricity_emission }) => {
   total_electricity_emission = electricity_value;
   if (!electricity_value) return 0;
-  return electricity_value / 10; // Adjust factor as needed
+  return electricity_value; 
 };
 
 // Function to calculate total emission by summing all categories
@@ -177,10 +176,16 @@ const CalculateCarbonEmission = createSlice({
     },
 
     revertFoodType(state) {
-      state.food.food_id = initialState.food.food_id;
-      state.food.food_value = initialState.food.food_value;
-      state.food.total_food_emission = calculateFoodEmission(state.food);
-      state.total_emission.total_emission = calculateTotalEmission(state);
+      const food = state.vehicle.fuel_value
+      const total_emmision = state.total_emission.total_emission 
+      const new_total_emission = (total_emmision) / food
+      state.food.total_food_emission = new_total_emission
+      state.total_emission.total_emission = new_total_emission
+
+      // state.food.food_id = initialState.food.food_id;
+      // state.food.food_value = initialState.food.food_value;
+      // state.food.total_food_emission = calculateFoodEmission(state.food);
+      // state.total_emission.total_emission = calculateTotalEmission(state);
     },
 
 

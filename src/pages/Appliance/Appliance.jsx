@@ -31,6 +31,9 @@ export default function Appliance() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
+  const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
+
   useEffect(() => {
     let timer;
     if (value < 75) {
@@ -140,7 +143,7 @@ export default function Appliance() {
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {applianceValue}ton CO2
+          {totalVehicleEmission+totalFoodEmission+applianceValue}ton CO2
         </div>
       </div>
       <div className="appliance-bottom">
