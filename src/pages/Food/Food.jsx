@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BsTriangleFill } from "react-icons/bs";
-import Greens from "../../assets/LeafyGreen.png";
-import Oden from "../../assets/Oden.png";
-import PoultryLeg from "../../assets/PoultryLeg.png";
 import "../../styles/Food.css";
 import Button from "../Button/Button";
-import ChangingProgressProvider from "../Loader/ChangingProgressProvider";
 import {
-  CircularProgressbarWithChildren,  
+  CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addMasterFoodsData } from "../../slice/MasterApiSlices";
-import { revertTravelDistance } from "../../slice/CalculationSlice";
+import { revertTravelDistance, selectFoodType } from "../../slice/CalculationSlice";
 
 export default function Food() {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [CarbonValue, setCarbonValue] = useState(0);
-  const [FoodId, setFoodId] = useState(0)
-  const [FoodValue, setFoodValue] = useState(0)
-  const [FoodName, setFoodName] = useState(false);
+  // const [selectedItem, setSelectedItem] = useState(null);
+  // const [CarbonValue, setCarbonValue] = useState(0);
+  const [foodId, setFoodId] = useState(0);
+  const [foodValue, setFoodValue] = useState(0);
+  const [foodName, setFoodName] = useState(false);
+  const foodData = useSelector((s) => s.masterFoodItems);
+  const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [value, setValue] = useState(25);
 
   useEffect(() => {
@@ -36,80 +33,64 @@ export default function Food() {
     return () => clearTimeout(timer);
   }, [value]);
 
-  const FoodProducts = [
+  const styles = [
     {
       id: 1,
-      name: "Veg",
-      img: Greens,
       borderColor: "#3ea957",
       backgroundColor: "#E4FFEE",
-      carbon: "17.5",
     },
     {
       id: 2,
-      name: "Both",
-      img: Oden,
       borderColor: "#FFBA63",
       backgroundColor: "#FFF4E6",
-      carbon: "18.5",
     },
     {
       id: 3,
-      name: "Non veg",
-      img: PoultryLeg,
       borderColor: "#EB7E74",
       backgroundColor: "#FFF4F3",
-      carbon: "19.5",
     },
   ];
 
-  const handleItemClicked = (item) => {
-    setFoodName(item.name)
-    setFoodId(item.id)
-    setFoodValue(Number(item.carbon))
-    
-    // const selectedItem = FoodProducts.find((item) => item.id === item.id);
-
-    // setSelectedItem((prevSelected) =>
-    //   prevSelected === item.id ? null : item.id
-    // );
-
-    // setCarbonValue((prevSelected) =>
-    //   prevSelected === item.id ? "" : selectedItem?.carbon
-    // );
-
-    console.log("Food Name =", FoodName,);
-    console.log("Food ID =", FoodId,);
-    console.log("Food Value =", FoodValue,);
+  const handleItemClicked = (food) => {
+    setFoodName(food.name);
+    setFoodId(food.id);
+    setFoodValue(Number(food.value));
+    // console.log("Selected Food Name =", food.name);
+    // console.log("Selected Food ID =", food.id);
+    // console.log("Selected Food Value =", Number(food.value));
   };
 
   const NextFunction = () => {
-    dispatch(selectFoodType({FoodId, FoodValue}))
-  }
+    if (foodId) {
+      navigate("/Appliance", { state: { foodId } });
+      dispatch(selectFoodType({ foodId, foodValue }));
+    } else {
+      alert("Please select an Item.");
+    }
+  };
 
   useEffect(() => {
-    fetchmasterFoodItems()
+    fetchmasterFoodItems();
   }, []);
 
   const fetchmasterFoodItems = async () => {
-    try{
-      const response = await axios.get('http://localhost:8081/master/foods');
-      if(response.status===200)
-      dispatch(addMasterFoodsData(response.data))
+    try {
+      const response = await axios.get("http://localhost:8081/master/foods");
+      if (response.status === 200) dispatch(addMasterFoodsData(response.data));
+    } catch (error) {
+      console.log("error while fetching data", error);
     }
-    catch(error){
-      console.log("error while fetching data",error);
-    }
-  }
+  };
 
   return (
-    <div>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {CarbonValue}ton CO2
+          {foodValue} ton CO2
         </div>
       </div>
+      <div className="item-bottom-bg">
       <div className="food-bottom">
         <div className="loader">
           <div style={{ width: 54, height: 54 }}>
@@ -131,25 +112,25 @@ export default function Food() {
         </div>
         <div className="food-ques">What you normally eat?</div>
         <div className="food-products">
-          {FoodProducts.map((item, key) => (
+          {foodData.map((food, key) => (
             <div
               key={key}
               className={`food-items ${
-                FoodNam === item.id ? "selected" : ""
+                foodName === food.name ? "selected" : ""
               }`}
-              onClick={() => handleItemClicked(item)}
               style={{
-                backgroundColor: item.backgroundColor,
-                borderColor:
-                  FoodId === item.name ? item.borderColor : "transparent",
-                borderWidth: "2px",
-                borderStyle: "solid",
+                backgroundColor: styles[key].backgroundColor,
+                border: foodName === food.name ? `2px solid ${styles[key].borderColor}` : "0px",
+                //  borderColor : styles[key].transparent,
+                // borderWidth: "2px",
+                // borderStyle: "solid",
               }}
+              onClick={() => handleItemClicked(food)}
             >
               <img
-                src={item.img}
+                src={food.path}
                 style={{ width: "35px", height: "35px" }}
-                alt={item.name}
+                alt=""
               />
               <div
                 style={{
@@ -158,26 +139,22 @@ export default function Food() {
                   fontFamily: "Excon, sans-serif",
                 }}
               >
-                {item.name}
+                {food.name}
               </div>
             </div>
           ))}
         </div>
-      </div>
-      <div className="foodStaticBtn">
-      <Button
-        onBack={() =>
-        {dispatch(revertTravelDistance()),navigate("/Vehicle4", { state: { activepage: "pagefour" } })}
-        } // Changed to 'activepage'
-        onNext={() => {
-          if (selectedItem) {
-            navigate("/Appliance", { state: { selectedItem } });
-            onclick={NextFunction}
-          } else {
-            alert("Please select an Item.");
-          }
-        }}
-      />
+      
+      <div className="foodStaticBtn" >
+        <Button
+          onBack={() => {
+            dispatch(revertTravelDistance());
+            navigate("/Vehicle4", { state: { activepage: "pagefour" } });
+          }}
+          onNext={NextFunction} 
+        />
+        </div>
+        </div>
       </div>
     </div>
   );

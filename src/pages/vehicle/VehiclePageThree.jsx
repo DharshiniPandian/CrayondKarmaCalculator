@@ -122,7 +122,7 @@ const VehiclePageThree = () => {
                                     </li>
                                     <li className="VehicleName">{fuel.name}</li>
                                 </div>
-                            ))}
+                            ))} 
                         </div>
                     </div>
                 </div>
