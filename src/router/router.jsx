@@ -1,7 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Temp from "../pages/Temp";
-import Temp2 from "../pages/Temp2";
 import Result from "../pages/Result/Result";
 import Form from "../pages/Forms/Form";
 import Complete from "../pages/Result/Complete";
@@ -15,25 +13,24 @@ import VehiclePageOne from "../pages/vehicle/VehiclePageOne";
 import VehiclePageTwo from "../pages/vehicle/VehiclePageTwo";
 import VehiclePageThree from "../pages/vehicle/VehiclePageThree";
 import VehiclePageFour from "../pages/vehicle/VehiclePageFour";
+import ProtectedRoute from "../ProtectedRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 function Router() {
   return (
     <Routes>
-      <Route element={<Temp />} path="/temp" />
-      <Route element={<Temp2 />} path="/temp2" />
-      <Route element={<Result />} path="/result" />
-      <Route element={<Form />} path="/tree-form" />
-      <Route element={<Complete />} path="/complete" />
-      {/* <Route element={<Semi />} path="/chart" /> */}
-      <Route element={<FrontPage/>} path="/"/>
-      <Route element={<Food />} path="/Food" />
-      <Route element={<Appliance />} path="/Appliance" />
-      <Route element={<Electricity />} path="/Electricity" />
-      <Route element={<FrontPage />} path="/" />
-      <Route element={<VehiclePageOne />} path="/vehicle1"/>
-      <Route element={<VehiclePageTwo/>} path="/vehicle2"/>
-      <Route element={<VehiclePageThree/>} path="/vehicle3"/>
-      <Route element={<VehiclePageFour />} path="/vehicle4" />
+      <Route element={<ProtectedRoute stepRequired={1}><FrontPage /></ProtectedRoute>} path="/" />
+      <Route element={<ProtectedRoute stepRequired={2}><VehiclePageOne /></ProtectedRoute>} path="/vehicle1"/>
+      <Route element={<ProtectedRoute stepRequired={3}><VehiclePageTwo/></ProtectedRoute>} path="/vehicle2"/>
+      <Route element={<ProtectedRoute stepRequired={4}><VehiclePageThree/></ProtectedRoute>} path="/vehicle3"/>
+      <Route element={<ProtectedRoute stepRequired={5}><VehiclePageFour /></ProtectedRoute>} path="/vehicle4" />
+      <Route element={<ProtectedRoute stepRequired={6}><Food /></ProtectedRoute>} path="/Food" />
+      <Route element={<ProtectedRoute stepRequired={7}><Appliance /></ProtectedRoute>} path="/Appliance" />
+      <Route element={<ProtectedRoute stepRequired={8}><Electricity /></ProtectedRoute>} path="/Electricity" />
+      <Route element={<ProtectedRoute stepRequired={9}><Result /></ProtectedRoute>} path="/result" />
+      <Route element={<ProtectedRoute stepRequired={10}><Form /></ProtectedRoute>} path="/tree-form" />
+      <Route element={<ProtectedRoute stepRequired={11}><Complete /></ProtectedRoute>} path="/complete" />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

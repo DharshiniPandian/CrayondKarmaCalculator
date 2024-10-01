@@ -12,6 +12,7 @@ import { useDispatch , useSelector } from "react-redux";
 import { addElectricityValue } from "../../slice/CalculationSlice";
 import { fontGrid } from "@mui/material/styles/cssUtils";
 import { fontFamily, fontWeight } from "@mui/system";
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 
 export default function Electricity() {
   const [electricityValue, setElectricityValue] = useState(0);
@@ -47,6 +48,7 @@ export default function Electricity() {
 
   const handleNavigateto = () => {
     dispatch(addElectricityValue({electricityId, electricityValue}))
+    dispatch(goToNextStep());
     navigate("/result");
   };
 
