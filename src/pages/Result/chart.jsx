@@ -1,15 +1,28 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
+import { useSelector } from 'react-redux';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Semichart = () => {
+
+
+  const totalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
+
+  const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
+  const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
+  const totalAppliancesEmission = useSelector((state) => state.carbonValue.appliances.total_appliances_emission);
+
   const data = {
     labels: ['Commute', 'Food', 'Appliances'], 
     datasets: [
       {
-        data: [30, 40, 30], 
+        data: [
+          totalVehicleEmission,
+          totalFoodEmission,
+          totalAppliancesEmission,
+        ],  
         backgroundColor: ['#f58e27', '#f4646e', '#4ac596'], 
         borderWidth: 0, 
         hoverOffset: 4, 
@@ -55,7 +68,7 @@ const Semichart = () => {
           font: 'normal normal bold 16px/23px Excon',
         }}
       >
-        18 ton cO2 {/* Hardcoded center text */}
+        {totalEmission}  ton cO2 {/* Hardcoded center text */}
       </div>
     </div>
   );

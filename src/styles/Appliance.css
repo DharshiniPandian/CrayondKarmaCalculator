@@ -9,10 +9,15 @@
 }
 
 .appliance-bottom {
-  bottom: 0vh;
+  background-image: url("../assets/Objects.svg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 380px 380px;
+  display: flex;
+    bottom: 0vh;
   border-radius: 28px 28px 0rem 0rem;
   /* width: 90%; */
-  /* height: 58.5vh; */
+  height: 58.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -8,25 +8,30 @@ import {
 } from "react-circular-progressbar";
 import DiscreteSliderMarksElectricity from "../../components/slider/SliderforElectricity";
 import "react-circular-progressbar/dist/styles.css";
+import { useDispatch } from "react-redux";
+import { addElectricityValue } from "../../slice/CalculationSlice";
 import { fontGrid } from "@mui/material/styles/cssUtils";
 import { fontFamily, fontWeight } from "@mui/system";
 
 export default function Electricity() {
+  const [electricityValue, setElectricityValue] = useState(0);
+  const [electricityId, setElectricityId] = useState(200);
   const [CarbonValue, setCarbonValue] = useState(0);
-  const [ElectricityUnit, setElectricityUnit] = useState(200);
+  // const [ElectricityUnit, setElectricityUnit] = useState(200);
   const [value, setValue] = useState(75);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   let minimum = 100;
   let maximum = 1000;
 
   const handleChange = (event, newvalue) => {
-    setElectricityUnit(newvalue);
+    setElectricityId(newvalue);
   };
 
   useEffect(() => {
-    setCarbonValue(ElectricityUnit / 10);
-  }, [ElectricityUnit]);
+    setElectricityValue(electricityId / 10);
+  }, [electricityId]);
 
   useEffect(() => {
     let timer;
@@ -37,6 +42,7 @@ export default function Electricity() {
   }, [value]);
 
   const handleNavigateto = () => {
+    dispatch(addElectricityValue({electricityId, electricityValue}))
     navigate("/result");
   };
 
@@ -45,7 +51,7 @@ export default function Electricity() {
       <div className="electricity-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {CarbonValue} ton CO2
+          {electricityValue} ton CO2
         </div>
       </div>
       <div className="electricity-bottom">
@@ -84,7 +90,7 @@ export default function Electricity() {
             <hr className="vr-bar"/>
             </div> */}
             <DiscreteSliderMarksElectricity
-              value={ElectricityUnit}
+              value={electricityId}
               onSliderChange={handleChange}
               max={maximum}
               min={minimum}
@@ -95,7 +101,7 @@ export default function Electricity() {
             </div> */}
           </div>
         </div>
-        <button className="electricity-units">{ElectricityUnit} units</button>
+        <button className="electricity-units">{electricityId} units</button>
       </div>
       <div className="calculate-container">
         <button className="calculate-button" onClick={handleNavigateto}>
