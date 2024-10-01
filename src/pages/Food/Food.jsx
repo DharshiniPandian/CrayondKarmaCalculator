@@ -101,7 +101,6 @@ export default function Food() {
           {totalVehicleEmission+foodValue} ton CO2
         </div>
       </div>
-      <div className="item-bottom-bg">
       <div className="food-bottom">
         <div className="loader">
           <div style={{ width: 54, height: 54 }}>
