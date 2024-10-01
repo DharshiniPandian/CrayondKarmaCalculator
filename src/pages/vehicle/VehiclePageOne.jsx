@@ -45,7 +45,6 @@ const VehiclePageOne = () => {
 
   const fetchmasterVehicles = async () => {
     try {
-      // const response = await axios.get('http://10.40.33.125:8081/master/vehicles');
       const response = await axios.get('http://localhost:8081/master/vehicles');
       if (response.status === 200)
         dispatch(addMasterVehiclesData(response.data))

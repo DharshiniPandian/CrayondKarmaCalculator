@@ -29,6 +29,7 @@ const VehiclePageThree = () => {
     (s) => s.carbonValue.total_emission.total_emission
   );
 
+  console.log(vehicleData)
   // Comment or  remove these sample values after the  API call is made
 
   // const vehicleData = [
@@ -39,7 +40,6 @@ const VehiclePageThree = () => {
   const fetchmasterVehicleFuelTypes = async () => {
     try {
       const response = await axios.get("http://localhost:8081/master/fuels");
-    //   const response = await axios.get("http://localhost:8081/master/fuels");
       if (response.status === 200)
         dispatch(addMasterVehicleFuelTypeDatas(response.data));
     } catch (error) {

@@ -177,6 +177,6 @@ export default function Food() {
         pauseOnHover
         theme="light"
       />
-    </div>
+      </div>
   );
 }
