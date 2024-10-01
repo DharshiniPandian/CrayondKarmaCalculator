@@ -16,6 +16,7 @@ import {
   revertVehicleCount,
   selectFuelType,
 } from "../../slice/CalculationSlice";
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 
 const VehiclePageThree = () => {
   const [fuelValue, setFuelValue] = useState(0);
@@ -29,6 +30,7 @@ const VehiclePageThree = () => {
     (s) => s.carbonValue.total_emission.total_emission
   );
 
+  console.log(vehicleData)
   // Comment or  remove these sample values after the  API call is made
 
   // const vehicleData = [
@@ -73,6 +75,7 @@ const VehiclePageThree = () => {
   const handleNext = () => {
     if (nextpagecondition) {
       dispatch(selectFuelType({ fuelId, fuelValue }));
+      dispatch(goToNextStep());
       navigate("/vehicle4");
     } else {
       // Display a toast notification if no vehicle is selected
@@ -85,6 +88,7 @@ const VehiclePageThree = () => {
   };
   const handleBack = () => {
     dispatch(revertVehicleCount());
+    dispatch(goToPreviousStep());
     navigate("/vehicle2");
   };
   return (

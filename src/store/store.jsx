@@ -8,6 +8,7 @@ import { CalcEmissionReducer } from "../slice/CalculationSlice";
 import { TransactionReducer } from "../slice/TransactionSlice";
 import storageSession from 'redux-persist/lib/storage/session'; // Use sessionStorage instead of localStorage
 import { persistReducer, persistStore } from 'redux-persist';
+import UserReducer from "../slice/UserSlice";
 
 // Create persist configuration with sessionStorage
 const persistConfig = {
@@ -29,6 +30,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Create the store with the persisted reducer
 export const store = configureStore({
+
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -36,6 +38,16 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }),
+  reducer: {
+    masterVehicles: MasterVehicleReducer,
+    masterFoodItems: MasterFoodItemsReducer,
+    masterAppliances: MasterAppliancesReducer,
+    carbonValue: CalcEmissionReducer, // Note the key 'carbonValue'
+    TransationData: TransactionReducer, // Consider removing if not needed
+    masterVehicleFuelType: MasterVehicleFuelTypeReducer,
+    user:UserReducer,
+  },
+
 });
 
 // Create a persistor

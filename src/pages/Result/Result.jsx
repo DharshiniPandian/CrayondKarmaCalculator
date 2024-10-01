@@ -5,12 +5,16 @@ import graph from '../../assets/graph.png';
 import './Result.css';
 import Semi from "../Result/chart";
 import { useSelector } from 'react-redux';
+import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 
 const Result = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handlePlant = () => {
+        dispatch(goToNextStep());
         navigate('/tree-form');
     }
 

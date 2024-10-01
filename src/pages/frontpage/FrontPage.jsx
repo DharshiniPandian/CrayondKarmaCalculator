@@ -5,9 +5,12 @@ import pg1 from "../../assets/brain.png";
 import pg2 from "../../assets/footprint.png";
 import pg3 from "../../assets/tree.png";
 import { useNavigate } from "react-router-dom";
+import { goToNextStep } from "../../slice/UserSlice";
+import { useDispatch } from "react-redux";
 
 const FrontPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <div className="frontPageMain">
       <div className="topImg">
@@ -66,12 +69,12 @@ const FrontPage = () => {
             backgroundColor:"#E6EEFA",
             borderColor:"#E6EEFA",
             borderRadius:"10px",
-            font: "normal normal 600 14px/16px Sarabun",
+            font: "normal normal 500 14px/16px Sarabun",
             width: "143px",
             height: "48px"
             }}
           >
-            later
+            Later
           </Button>
           </div>
           <div>
@@ -82,12 +85,15 @@ const FrontPage = () => {
               backgroundColor:"#0E70EB",
               borderColor:"#0E70EB",
               color:"white",
-              font: "normal normal 600 14px/16px Sarabun",
+              font: "normal normal 500 13px/16px Sarabun",
               width: "143px",
               height: "48px",
               borderRadius:"8px"
             }}
-            onClick={() => navigate("/vehicle1")}
+            onClick={() => {
+              dispatch(goToNextStep());
+              navigate("/vehicle1")
+            }}
           >
             Calculate & offset
           </Button>

@@ -11,6 +11,7 @@ import buttonbackground from '../../assets/buttonbackground.png'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { addTravelDistance, revertFuelUse } from '../../slice/CalculationSlice'
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 
 
 const VehiclePageFour = () => {
@@ -27,11 +28,13 @@ const VehiclePageFour = () => {
 
     const handleNext = () => {
         dispatch(addTravelDistance({travelDistance}))
+        dispatch(goToNextStep());
         navigate('/food')
         
     }
     const handleBack = () => {
         dispatch(revertFuelUse())
+        dispatch(goToPreviousStep());
         navigate('/vehicle3')
     }
 

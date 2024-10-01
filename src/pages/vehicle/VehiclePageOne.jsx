@@ -13,6 +13,7 @@ import { selectVehicle } from '../../slice/CalculationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css'
+import { goToNextStep } from "../../slice/UserSlice";
 
 const VehiclePageOne = () => {
   const [vehicleValue, setVehicleValue] = useState(0)
@@ -45,7 +46,6 @@ const VehiclePageOne = () => {
 
   const fetchmasterVehicles = async () => {
     try {
-      // const response = await axios.get('http://10.40.33.125:8081/master/vehicles');
       const response = await axios.get('http://localhost:8081/master/vehicles');
       if (response.status === 200)
         dispatch(addMasterVehiclesData(response.data))
@@ -69,6 +69,7 @@ const VehiclePageOne = () => {
   const NextFunction = () => {
   
     if (nextpagecondition) {
+      dispatch(goToNextStep());
       navigate('/vehicle2')
       dispatch(selectVehicle({vehicleId,vehicleValue}))
     }
