@@ -89,7 +89,7 @@ const FrontPage = () => {
             }}
             onClick={() => navigate("/vehicle1")}
           >
-            Calculate offset
+            Calculate & offset
           </Button>
         </div>
         </div>

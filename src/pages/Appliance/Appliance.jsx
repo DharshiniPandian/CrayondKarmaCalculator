@@ -12,6 +12,9 @@ import { revertFoodType, selectApplianceType } from "../../slice/CalculationSlic
 import axios from "axios";
 import Button from "../Button/Button";
 import { addMasterAppliances } from "../../slice/MasterApiSlices";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 
 export default function Appliance() {
   const [applianceId, setApplianceId] = useState([])
@@ -119,7 +122,12 @@ export default function Appliance() {
       navigate("/Electricity", { state: { selectedItems } });
       dispatch(selectApplianceType({ applianceId, applianceValue}))      
     } else {
-      alert("Please select an Item.");
+       // Display a toast notification if no vehicle is selected
+       toast.warn("Please select an appliance before proceeding!", {
+       className: "custom-toast", // Custom class for warning toast
+       bodyClassName: "custom-toast-body", // Custom class for the body
+       progressClassName: "custom-toast-progress", // Custom class for the progress bar
+      });
     }
   }
 
@@ -128,7 +136,7 @@ export default function Appliance() {
   // }, [selectedItems]);
 
   return (
-    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
@@ -136,25 +144,24 @@ export default function Appliance() {
         </div>
       </div>
       <div className="appliance-bottom">
-      <div className="loader">
-      <div style={{ width: 54, height: 54 }}>
-              <CircularProgressbarWithChildren
-                className="custom-progressbar"
-                value={value}
-                text={`3/4`}
-                circleRatio={1}
-                styles={buildStyles({
-                  textSize: '30px',
-          pathColor: '#FEA062',
-          textColor: '#FEA062',
-          trailColor: '#FFF4E4',
-          backgroundColor: '#F39C12',
-                })}
-                strokeWidth={12}
-              >
-              </CircularProgressbarWithChildren>
-            </div>
+        <div className="loader">
+          <div style={{ width: 54, height: 54 }}>
+            <CircularProgressbarWithChildren
+              className="custom-progressbar"
+              value={value}
+              text={`3/4`}
+              circleRatio={1}
+              styles={buildStyles({
+                textSize: "30px",
+                pathColor: "#FEA062",
+                textColor: "#FEA062",
+                trailColor: "#FFF4E4",
+                backgroundColor: "#F39C12",
+              })}
+              strokeWidth={12}
+            ></CircularProgressbarWithChildren>
           </div>
+        </div>
         <div className="appliance-ques">
           Select the appliances you use at your home
         </div>
@@ -180,11 +187,10 @@ export default function Appliance() {
               <div style={{ font:' normal normal normal 13px/16px Excon' }}>
                 {appliance.name}
               </div>
-            </div>
-          ))}
+              </div>
+            ))}
           </div>
-        </div>
-      
+        </div>      
       <div style={{marginTop:"11px"}}>
       <Button
       onBack={() => {dispatch(revertFoodType());
@@ -193,6 +199,19 @@ export default function Appliance() {
       />
       </div>
       </div>
+      {/* Toast Container for displaying notifications */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
