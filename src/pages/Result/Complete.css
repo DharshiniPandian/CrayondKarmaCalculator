@@ -11,6 +11,7 @@
 .complete-video {
     width: 40%; 
     height: auto;
+    background-color: transparent;
 }
 
 .success-message {
