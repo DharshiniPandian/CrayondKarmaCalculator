@@ -22,7 +22,7 @@ const Semichart = () => {
         data: [
           totalVehicleEmission,
           totalFoodEmission,
-          totalAppliancesEmission+totalElectricityEmission,
+          totalAppliancesEmission+totalElectricityEmission,     
         ],  
         backgroundColor: ['#f58e27', '#f4646e', '#4ac596'], 
         borderWidth: 0, 
