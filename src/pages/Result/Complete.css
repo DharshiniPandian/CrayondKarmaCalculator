@@ -4,13 +4,14 @@
     justify-content: center;
     align-items: center;
     height: 100vh; 
-    background-color: #ffffff; 
+    background-color: #F0F4FA; 
     background-image:url(../../assets/donebg.png) ;
 }
 
 .complete-video {
     width: 40%; 
     height: auto;
+    background-color: transparent;
 }
 
 .success-message {
