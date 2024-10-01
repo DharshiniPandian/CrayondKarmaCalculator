@@ -99,7 +99,6 @@ export default function Food() {
           {foodValue} ton CO2
         </div>
       </div>
-      <div className="item-bottom-bg">
       <div className="food-bottom">
         <div className="loader">
           <div style={{ width: 54, height: 54 }}>
@@ -176,6 +175,6 @@ export default function Food() {
         pauseOnHover
         theme="light"
       />
-    </div>
+      </div>
   );
 }
