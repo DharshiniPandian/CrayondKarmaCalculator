@@ -4,12 +4,15 @@ import './Form.css';
 import { useNavigate } from 'react-router-dom';
 import cloud from '../../assets/Clouds.svg';
 import trees from '../../assets/Trees.svg';
+import { useDispatch } from "react-redux";
+import { goToNextStep } from "../../slice/UserSlice";
 
 
 const Form = () => {
     const [showMessage, setShowMessage] = useState(true); 
     const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const hideMessageTimeout = setTimeout(() => {
@@ -27,6 +30,7 @@ const Form = () => {
     }, []);
 
     const handleSuccess = () => {
+        dispatch(goToNextStep());
         navigate('/complete');
     };
 

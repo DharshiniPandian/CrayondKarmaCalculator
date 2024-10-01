@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsTriangleFill } from "react-icons/bs";
 import "../../styles/Food.css";
 import Button from "../Button/Button";
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 import {
   CircularProgressbarWithChildren,
   buildStyles,
@@ -68,6 +69,7 @@ export default function Food() {
 
   const NextFunction = () => {
     if (foodId) {
+      dispatch(goToNextStep());
       navigate("/Appliance", { state: { foodId } });
       dispatch(selectFoodType({ foodId, foodValue }));
     } else {
@@ -158,6 +160,7 @@ export default function Food() {
         <Button
           onBack={() => {
             dispatch(revertTravelDistance());
+            dispatch(goToPreviousStep());
             navigate("/Vehicle4", { state: { activepage: "pagefour" } });
           }}
           onNext={NextFunction} 

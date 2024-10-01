@@ -13,6 +13,7 @@ import { selectVehicle } from '../../slice/CalculationSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css'
+import { goToNextStep } from "../../slice/UserSlice";
 
 const VehiclePageOne = () => {
   const [vehicleValue, setVehicleValue] = useState(0)
@@ -68,6 +69,7 @@ const VehiclePageOne = () => {
   const NextFunction = () => {
   
     if (nextpagecondition) {
+      dispatch(goToNextStep());
       navigate('/vehicle2')
       dispatch(selectVehicle({vehicleId,vehicleValue}))
     }
