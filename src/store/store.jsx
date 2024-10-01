@@ -3,6 +3,7 @@ import {
   MasterVehicleFuelTypeReducer,
   MasterVehicleReducer,
   MasterFoodItemsReducer,
+  MasterAppliancesReducer
 } from "../slice/MasterApiSlices";
 import { CalcEmissionReducer } from "../slice/CalculationSlice";
 import { TransactionReducer } from "../slice/TransactionSlice";
@@ -20,9 +21,11 @@ const persistConfig = {
 const rootReducer = combineReducers({
   masterVehicles: MasterVehicleReducer,
   masterFoodItems: MasterFoodItemsReducer,
+  masterAppliances: MasterAppliancesReducer,
   carbonValue: CalcEmissionReducer,
   transactionData: TransactionReducer,
   masterVehicleFuelType: MasterVehicleFuelTypeReducer,
+  user: UserReducer
 });
 
 // Create a persisted reducer
@@ -38,16 +41,6 @@ export const store = configureStore({
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }),
-  reducer: {
-    masterVehicles: MasterVehicleReducer,
-    masterFoodItems: MasterFoodItemsReducer,
-    masterAppliances: MasterAppliancesReducer,
-    carbonValue: CalcEmissionReducer, // Note the key 'carbonValue'
-    TransationData: TransactionReducer, // Consider removing if not needed
-    masterVehicleFuelType: MasterVehicleFuelTypeReducer,
-    user:UserReducer,
-  },
-
 });
 
 // Create a persistor
