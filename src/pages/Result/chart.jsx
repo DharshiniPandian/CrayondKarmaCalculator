@@ -13,6 +13,7 @@ const Semichart = () => {
   const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
   const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
   const totalAppliancesEmission = useSelector((state) => state.carbonValue.appliances.total_appliances_emission);
+  const totalElectricityEmission = useSelector((state) => state.carbonValue.electricity.total_electricity_emission);
 
   const data = {
     labels: ['Commute', 'Food', 'Appliances'], 
@@ -21,7 +22,7 @@ const Semichart = () => {
         data: [
           totalVehicleEmission,
           totalFoodEmission,
-          totalAppliancesEmission,
+          totalAppliancesEmission+totalElectricityEmission,
         ],  
         backgroundColor: ['#f58e27', '#f4646e', '#4ac596'], 
         borderWidth: 0, 

@@ -8,7 +8,7 @@ import {
 } from "react-circular-progressbar";
 import DiscreteSliderMarksElectricity from "../../components/slider/SliderforElectricity";
 import "react-circular-progressbar/dist/styles.css";
-import { useDispatch } from "react-redux";
+import { useDispatch , useSelector } from "react-redux";
 import { addElectricityValue } from "../../slice/CalculationSlice";
 import { fontGrid } from "@mui/material/styles/cssUtils";
 import { fontFamily, fontWeight } from "@mui/system";
@@ -21,6 +21,10 @@ export default function Electricity() {
   const [value, setValue] = useState(75);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
+  const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
+  const totalAppliancesEmission = useSelector((state) => state.carbonValue.appliances.total_appliances_emission);
 
   let minimum = 100;
   let maximum = 1000;
@@ -51,7 +55,7 @@ export default function Electricity() {
       <div className="electricity-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {electricityValue} ton CO2
+          {totalVehicleEmission+totalFoodEmission+totalAppliancesEmission+electricityValue} ton CO2
         </div>
       </div>
       <div className="electricity-bottom">

@@ -25,6 +25,8 @@ export default function Food() {
   const dispatch = useDispatch();
   const [value, setValue] = useState(25);
 
+  const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
+
   useEffect(() => {
     let timer;
     if (value < 50) {
@@ -87,7 +89,7 @@ export default function Food() {
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {foodValue} ton CO2
+          {totalVehicleEmission+foodValue} ton CO2
         </div>
       </div>
       <div className="item-bottom-bg">
