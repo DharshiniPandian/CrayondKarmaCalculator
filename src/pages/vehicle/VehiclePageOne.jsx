@@ -67,6 +67,7 @@ const VehiclePageOne = () => {
   }
 
   const NextFunction = () => {
+  
     if (nextpagecondition) {
       navigate('/vehicle2')
       dispatch(selectVehicle({vehicleId,vehicleValue}))

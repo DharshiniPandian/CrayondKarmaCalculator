@@ -1,4 +1,11 @@
 .electricity-bottom {
+  background-image: url("../assets/Objects.svg");
+  background-repeat: no-repeat;
+  background-position: bottom bottom;
+  background-size: 380px 580px;
+  /* background-size: 50vw; */
+  /* background-attachment: local; */
+  display: flex;
   bottom: 0vh;
   border-radius: 28px 28px 0rem 0rem;
   width: 100%;
@@ -13,7 +20,7 @@
     width: 90%;
     font-family: "Excon", sans-serif;
     margin-top: 2%;
-  font-weight: 550;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   /* height: 6vh; */
