@@ -29,6 +29,7 @@ const VehiclePageThree = () => {
     (s) => s.carbonValue.total_emission.total_emission
   );
 
+  console.log(vehicleData)
   // Comment or  remove these sample values after the  API call is made
 
   // const vehicleData = [
