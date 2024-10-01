@@ -12,6 +12,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addMasterFoodsData } from "../../slice/MasterApiSlices";
 import { revertTravelDistance, selectFoodType } from "../../slice/CalculationSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../styles/toast.css";
 
 export default function Food() {
   // const [selectedItem, setSelectedItem] = useState(null);
@@ -23,6 +26,7 @@ export default function Food() {
   const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [value, setValue] = useState(25);
 
   const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
@@ -67,7 +71,12 @@ export default function Food() {
       navigate("/Appliance", { state: { foodId } });
       dispatch(selectFoodType({ foodId, foodValue }));
     } else {
-      alert("Please select an Item.");
+      // Display a toast notification if no vehicle is selected
+              toast.warn("Please select a Food Item before proceeding!", {
+                className: "custom-toast", // Custom class for warning toast
+                bodyClassName: "custom-toast-body", // Custom class for the body
+                progressClassName: "custom-toast-progress", // Custom class for the progress bar
+              });
     }
   };
 
@@ -145,8 +154,7 @@ export default function Food() {
               </div>
             </div>
           ))}
-        </div>
-      
+        </div>   
       <div className="foodStaticBtn" >
         <Button
           onBack={() => {
@@ -157,7 +165,19 @@ export default function Food() {
         />
         </div>
         </div>
-      </div>
+      {/* Toast Container for displaying notifications */}
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000} // Set auto-close time
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
