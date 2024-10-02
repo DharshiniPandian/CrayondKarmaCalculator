@@ -11,6 +11,7 @@ import { goToNextStep } from "../../slice/UserSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css'
+import { FaStarOfLife } from "react-icons/fa";
 
 
 const Form = () => {
@@ -129,48 +130,75 @@ const Form = () => {
                     <form onSubmit={(e) => e.preventDefault()} className="tree-form">
                         <h2>Fill out this form</h2>
                         <p>Our team will reach out to you to help with your tree plantation</p>
-
+                        
                         <TextField
-                            label="Your Name"
+                            label={
+                                <div>Your Name <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="name"
-                            fullWidth
                             required
+                            fullWidth
                             value={name} // Bind state to input
                             onChange={(e) => setName(e.target.value)} // Update state on change
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
-                                    height: '45px',
+                                    height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
                         <TextField
-                            label="Phone number"
+                            label={
+                                <div>Phone number <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="phone"
-                            type="number"
                             fullWidth
                             required
                             value={phone} // Bind state
                             onChange={(e) => setPhone(e.target.value)} // Update state
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
                                     height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
                         <TextField
-                            label="Email"
+                            label={
+                                <div>Email <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="email"
                             type="email"
                             fullWidth
@@ -178,38 +206,64 @@ const Form = () => {
                             value={email} // Bind state
                             onChange={(e) => setEmail(e.target.value)} // Update state
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
-                                    height: '45px',
+                                    height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
                         <TextField
-                            label="Location"
+                            label={
+                                <div>Location <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="location"
                             fullWidth
                             required
                             value={location} // Bind state
                             onChange={(e) => setLocation(e.target.value)} // Update state
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
-                                    height: '45px',
+                                    height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
                         <TextField
-                            label="How many trees you want to plant?"
+                            label={
+                                <div>How many trees you want to plant? <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="number_of_trees"
                             type="number"
                             fullWidth
@@ -217,33 +271,57 @@ const Form = () => {
                             value={numberOfTrees} // Bind state
                             onChange={(e) => setNumberOfTrees(e.target.value)} // Update state
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
-                                    height: '45px',
+                                    height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
                         <TextField
-                            label="Name to be planted on behalf?"
+                            label={
+                                <div>Name to be planted on behalf? <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
+                            }
                             name="behalfName"
                             fullWidth
                             required
                             value={nameToBePlanted} // Bind state
                             onChange={(e) => setNameToBePlanted(e.target.value)} // Update state
                             sx={{
-                                marginBottom: '10px',
+                                marginBottom: '12px',
                                 width: '100%',
                                 '& .MuiOutlinedInput-root': {
-                                    height: '45px',
+                                    height: '48px',
                                     borderRadius: '8px',
+                                    '& fieldset': {
+                                        border: '1px solid #DFDFDF',
+                                    },
                                 },
                                 '& .MuiInputLabel-root': {
-                                    fontSize: '14px',
+                                    color:'#60666F',
+                                    font: 'normal normal  14px/16px Sarabun',
+                                },
+                            }}
+                            InputLabelProps={{
+                                sx: {
+                                    '& .MuiInputLabel-asterisk': {
+                                        display:'none'
+                                    },
                                 },
                             }}
                         />
