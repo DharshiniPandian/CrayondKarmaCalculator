@@ -47,6 +47,7 @@ const calculateTotalEmission = (state) => {
 };
 
 
+
 const initialState = {
   vehicle: {
     vehicle_id: null,
@@ -74,6 +75,18 @@ const initialState = {
   total_emission: {
     total_emission: 0,
   },
+  plant_trees: {
+    plant_trees: 0
+  },  
+  form: {
+    transaction_id: null,
+    name: null,
+    number_of_trees: null,
+    name_to_be_planted: null,
+    phone: null,
+    email: null,
+    location: null,
+  }
 };
 
 
