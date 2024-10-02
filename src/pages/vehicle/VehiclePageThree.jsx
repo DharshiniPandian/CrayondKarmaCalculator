@@ -118,7 +118,7 @@ const VehiclePageThree = () => {
           </li>
           <li>
             <h1>
-              {fuelValue ? globalCarbonValue * fuelValue : globalCarbonValue}{" "}
+              {fuelValue ? (globalCarbonValue + fuelValue).toFixed(2) : globalCarbonValue.toFixed(2)}{" "}
               ton CO2
             </h1>
           </li>

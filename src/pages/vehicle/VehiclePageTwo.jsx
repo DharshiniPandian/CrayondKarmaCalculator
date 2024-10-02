@@ -48,7 +48,7 @@ const VehiclePageTwo = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{globalvehicleValue*vehicleCount} ton CO2</h1></li>
+                    <li><h1>{(globalvehicleValue+vehicleCount).toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar" >
