@@ -35,7 +35,7 @@ export default function Electricity() {
   };
 
   useEffect(() => {
-    setElectricityValue(electricityId / 10);
+    setElectricityValue(electricityId / 100);
   }, [electricityId]);
 
   useEffect(() => {
