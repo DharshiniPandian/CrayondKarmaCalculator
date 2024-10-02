@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button } from '@mui/material';
-import './Form.css'; 
+import './Form.css';
 import { useNavigate } from 'react-router-dom';
 import cloud from '../../assets/Clouds.svg';
 import trees from '../../assets/Trees.svg';
-import axios from 'axios'; 
-import { useSelector } from 'react-redux'; 
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 import { useDispatch } from "react-redux";
 import { goToNextStep } from "../../slice/UserSlice";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../../styles/toast.css'
 
 
 const Form = () => {
-    const [showMessage, setShowMessage] = useState(true); 
+    const [showMessage, setShowMessage] = useState(true);
     const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // State for form fields
-    const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [location, setLocation] = useState('');
-    const [numberOfTrees, setNumberOfTrees] = useState('');
-    const [nameToBePlanted, setNameToBePlanted] = useState('');
+    const [name, setName] = useState(null);
+    const [phone, setPhone] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [location, setLocation] = useState(null);
+    const [numberOfTrees, setNumberOfTrees] = useState(null);
+    const [nameToBePlanted, setNameToBePlanted] = useState(null);
 
     // Redux selectors for other data
     const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
@@ -35,9 +38,18 @@ const Form = () => {
     const foodId = useSelector((state) => state.carbonValue.food.food_id);
     const totalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
     const totalElectricityEmission = useSelector((state) => state.carbonValue.electricity.total_electricity_emission);
-    const appliances = useSelector((state)=>state.carbonValue.appliances.appliance_id);
+    const appliances = useSelector((state) => state.carbonValue.appliances.appliance_id);
 
     const handleSubmit = async () => {
+        if (!name || !phone || !email || !location || !numberOfTrees || !nameToBePlanted) {
+            // Display a toast notification if no vehicle is selected
+            toast.warn("Please fill out all the fields", {
+                className: "custom-toast", // Custom class for warning toast
+                bodyClassName: "custom-toast-body", // Custom class for the body
+                progressClassName: "custom-toast-progress", // Custom class for the progress bar
+            });
+            return;
+        }
         const postData = {
             vehicle: {
                 vehicle_id: vehicleId,
@@ -66,11 +78,11 @@ const Form = () => {
                 email,
                 location
             }
-            
+
         };
-        
+
         try {
-            console.log(postData)           
+            console.log(postData)
             const response = await axios.post('http://localhost:8081/transaction/data', postData);
             console.log(response.data);
             // alert('Data stored successfully');
@@ -89,7 +101,7 @@ const Form = () => {
         }, 2000);
 
         const showFormTimeout = setTimeout(() => {
-            setShowForm(true); 
+            setShowForm(true);
         }, 3000);
 
         return () => {
@@ -140,7 +152,7 @@ const Form = () => {
                         <TextField
                             label="Phone number"
                             name="phone"
-                            type="tel"
+                            type="number"
                             fullWidth
                             required
                             value={phone} // Bind state
@@ -236,10 +248,10 @@ const Form = () => {
                             }}
                         />
 
-                        <Button 
-                            onClick={handleSubmit} 
-                            variant="contained" 
-                            color="primary" 
+                        <Button
+                            onClick={handleSubmit}
+                            variant="contained"
+                            color="primary"
                             fullWidth
                             sx={{ textTransform: 'none' }}
                         >
@@ -248,6 +260,19 @@ const Form = () => {
                     </form>
                 )}
             </div>
+            {/* Toast Container for displaying notifications */}
+            <ToastContainer
+                position="top-center"
+                autoClose={3000} // Set auto-close time
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };
