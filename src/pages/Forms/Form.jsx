@@ -6,11 +6,15 @@ import cloud from '../../assets/Clouds.svg';
 import trees from '../../assets/Trees.svg';
 import axios from 'axios'; 
 import { useSelector } from 'react-redux'; 
+import { useDispatch } from "react-redux";
+import { goToNextStep } from "../../slice/UserSlice";
+
 
 const Form = () => {
     const [showMessage, setShowMessage] = useState(true); 
     const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // State for form fields
     const [name, setName] = useState('');
@@ -95,6 +99,7 @@ const Form = () => {
     }, []);
 
     const handleSuccess = () => {
+        dispatch(goToNextStep());
         navigate('/complete');
     };
 

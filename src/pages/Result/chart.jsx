@@ -22,7 +22,7 @@ const Semichart = () => {
         data: [
           totalVehicleEmission,
           totalFoodEmission,
-          totalAppliancesEmission+totalElectricityEmission,
+          totalAppliancesEmission+totalElectricityEmission,     
         ],  
         backgroundColor: ['#f58e27', '#f4646e', '#4ac596'], 
         borderWidth: 0, 
@@ -69,7 +69,7 @@ const Semichart = () => {
           font: 'normal normal bold 16px/23px Excon',
         }}
       >
-        {totalEmission}  ton cO2 {/* Hardcoded center text */}
+        {totalEmission.toFixed(2)}  ton cO2 {/* Hardcoded center text */}
       </div>
     </div>
   );

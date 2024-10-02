@@ -14,6 +14,7 @@ import Button from "../Button/Button";
 import { addMasterAppliances } from "../../slice/MasterApiSlices";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 import "../../styles/toast.css";
 
 export default function Appliance() {
@@ -122,6 +123,7 @@ export default function Appliance() {
 
   const NextFunction = () => {
     if (selectedItems.length > 0) {
+      dispatch(goToNextStep());
       navigate("/Electricity", { state: { selectedItems } });
       dispatch(selectApplianceType({ applianceId, applianceValue}))      
     } else {
@@ -143,7 +145,7 @@ export default function Appliance() {
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {totalVehicleEmission+totalFoodEmission+applianceValue}ton CO2
+          {(totalVehicleEmission+totalFoodEmission+applianceValue).toFixed(2)} ton CO2
         </div>
       </div>
       <div className="appliance-bottom">
@@ -197,6 +199,7 @@ export default function Appliance() {
       <div style={{marginTop:"11px"}}>
       <Button
       onBack={() => {dispatch(revertFoodType());
+        dispatch(goToPreviousStep());
         navigate("/Food")}}
         onNext={NextFunction}
       />

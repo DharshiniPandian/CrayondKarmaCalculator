@@ -11,6 +11,7 @@ import '../../components/doublebutton/DoubleButton.css'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addVehicleCount, resetVehicleDetails } from '../../slice/CalculationSlice';
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 
 const VehiclePageTwo = () => {
     const [vehicleCount, setVehicleCount] = useState(4)
@@ -28,10 +29,12 @@ const VehiclePageTwo = () => {
     const handleNext = () => {
         dispatch(addVehicleCount({vehicleCount}))
         console.log(vehicleCount);
+        dispatch(goToNextStep());
         navigate('/vehicle3')
     }
     const handleBack = () => {
         dispatch(resetVehicleDetails())
+        dispatch(goToPreviousStep());
         navigate('/vehicle1')
     }
 
@@ -45,7 +48,7 @@ const VehiclePageTwo = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{globalvehicleValue*vehicleCount} ton CO2</h1></li>
+                    <li><h1>{(globalvehicleValue+vehicleCount).toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar" >

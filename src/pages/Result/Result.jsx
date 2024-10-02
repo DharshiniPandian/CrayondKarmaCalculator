@@ -5,18 +5,22 @@ import graph from '../../assets/graph.png';
 import './Result.css';
 import Semi from "../Result/chart";
 import { useSelector } from 'react-redux';
+import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from "react-redux";
 
 const Result = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handlePlant = () => {
+        dispatch(goToNextStep());
         navigate('/tree-form');
     }
 
-    const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
-    const saplings = (totalVehicleEmission / 200).toFixed();
+    const grandTotalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
+    const saplings = (grandTotalEmission / 1.2).toFixed(2);
 
     const vehicleId = useSelector((state) => state.carbonValue.vehicle.vehicle_id);
     const vehicleCount = useSelector((state) => state.carbonValue.vehicle.vehicle_count);
@@ -70,6 +74,7 @@ const Result = () => {
             alert('Failed to store data');
         }
     }
+   
 
     return (
         <div className='res-contain'>
@@ -106,7 +111,7 @@ const Result = () => {
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
                     <div className='text123'>Offset your excess carbon footprint by</div>
-                    <h3>Planting {saplings} Saplings</h3>
+                    <h3>Planting {Math.round(saplings)} Saplings</h3>
                     <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
                 <div 

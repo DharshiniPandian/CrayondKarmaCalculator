@@ -11,6 +11,7 @@ import buttonbackground from '../../assets/buttonbackground.png'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { addTravelDistance, revertFuelUse } from '../../slice/CalculationSlice'
+import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 
 
 const VehiclePageFour = () => {
@@ -27,11 +28,13 @@ const VehiclePageFour = () => {
 
     const handleNext = () => {
         dispatch(addTravelDistance({travelDistance}))
+        dispatch(goToNextStep());
         navigate('/food')
         
     }
     const handleBack = () => {
         dispatch(revertFuelUse())
+        dispatch(goToPreviousStep());
         navigate('/vehicle3')
     }
 
@@ -45,7 +48,7 @@ const VehiclePageFour = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{(globalCarbonValue * (travelDistance / 10)).toFixed(2)} ton CO2</h1></li>
+                    <li><h1>{(globalCarbonValue + (travelDistance / 10)).toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar">
