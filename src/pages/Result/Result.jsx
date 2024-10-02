@@ -18,8 +18,8 @@ const Result = () => {
         navigate('/tree-form');
     }
 
-    const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
-    const saplings = (totalVehicleEmission/200).toFixed();
+    const grandTotalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
+    const saplings = (grandTotalEmission / 1.2).toFixed(2);
 
     return (
         <div className='res-contain'>
@@ -56,7 +56,7 @@ const Result = () => {
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
                     <div className='text123'>Offset your excess carbon footprint by</div>
-                    <h3>Planting {saplings} Saplings</h3>
+                    <h3>Planting {Math.round(saplings)} Saplings</h3>
                     <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
                 <div className='remind' style={{font: "normal normal 600 14px/16px Sarabun"}}>

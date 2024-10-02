@@ -145,7 +145,7 @@ export default function Appliance() {
       <div className="appliance-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {totalVehicleEmission+totalFoodEmission+applianceValue}ton CO2
+          {(totalVehicleEmission+totalFoodEmission+applianceValue).toFixed(2)} ton CO2
         </div>
       </div>
       <div className="appliance-bottom">

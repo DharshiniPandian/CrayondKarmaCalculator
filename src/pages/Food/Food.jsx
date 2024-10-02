@@ -100,7 +100,7 @@ export default function Food() {
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {totalVehicleEmission+foodValue} ton CO2
+          {(totalVehicleEmission+foodValue).toFixed(2)} ton CO2
         </div>
       </div>
       <div className="food-bottom">

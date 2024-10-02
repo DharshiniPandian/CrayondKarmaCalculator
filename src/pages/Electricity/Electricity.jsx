@@ -57,7 +57,7 @@ export default function Electricity() {
       <div className="electricity-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {totalVehicleEmission+totalFoodEmission+totalAppliancesEmission+electricityValue} ton CO2
+          {(totalVehicleEmission+totalFoodEmission+totalAppliancesEmission+electricityValue).toFixed(2)} ton CO2
         </div>
       </div>
       <div className="electricity-bottom">

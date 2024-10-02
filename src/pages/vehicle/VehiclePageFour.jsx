@@ -48,7 +48,7 @@ const VehiclePageFour = () => {
                             </path>
                         </svg>
                     </li>
-                    <li><h1>{(globalCarbonValue * (travelDistance / 10)).toFixed(2)} ton CO2</h1></li>
+                    <li><h1>{(globalCarbonValue + (travelDistance / 10)).toFixed(2)} ton CO2</h1></li>
                 </div>
             </div>
             <div className="bottombar">
