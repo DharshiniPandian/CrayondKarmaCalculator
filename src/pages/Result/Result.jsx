@@ -7,6 +7,7 @@ import Semi from "../Result/chart";
 import { useSelector } from 'react-redux';
 import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { useDispatch } from "react-redux";
 
 const Result = () => {
@@ -20,6 +21,60 @@ const Result = () => {
 
     const grandTotalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
     const saplings = (grandTotalEmission / 1.2).toFixed(2);
+
+    const vehicleId = useSelector((state) => state.carbonValue.vehicle.vehicle_id);
+    const vehicleCount = useSelector((state) => state.carbonValue.vehicle.vehicle_count);
+    const fuelId = useSelector((state) => state.carbonValue.vehicle.fuel_id);
+    const travelDistance = useSelector((state) => state.carbonValue.vehicle.travel_distance);
+    const foodId = useSelector((state) => state.carbonValue.food.food_id);
+    const totalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
+    const totalElectricityEmission = useSelector((state) => state.carbonValue.electricity.total_electricity_emission);
+    const appliances = useSelector((state)=>state.carbonValue.appliances.appliance_id)
+
+    console.log("Vehicle ID:", vehicleId);
+    console.log("Vehicle Count:", vehicleCount);
+    console.log("Fuel ID:", fuelId);
+    console.log("Travel Distance:", travelDistance);
+    console.log("Food ID:", foodId);
+    console.log("Total Emission:", totalEmission);
+    console.log("Total Electricity Emission:", totalElectricityEmission);
+    console.log("Appliances",appliances);
+    const handleRemindLater = async () => {
+        const postData = {
+            vehicle: {
+                vehicle_id: vehicleId,
+                vehicle_count: vehicleCount,
+                fuel_type: fuelId,
+                travel_distance: travelDistance,
+            },
+            food: {
+                food_type: foodId
+            },
+            appliance: {
+                electricity_consumption: totalElectricityEmission,
+                appliances: appliances 
+            },
+            total_emission: {
+                total_emission: totalEmission
+            },
+            plant_trees: {
+                plant_trees: 0 
+            }
+
+        };
+        console.log(postData);
+        try {
+            // Send POST request to backend
+            const response = await axios.post('http://localhost:8081/transaction/data', postData);
+            console.log(response.data); 
+            // alert('Data stored successfully');
+            navigate('/');
+        } catch (error) {
+            console.error('Error storing data:', error);
+            alert('Failed to store data');
+        }
+    }
+   
 
     return (
         <div className='res-contain'>
@@ -59,7 +114,10 @@ const Result = () => {
                     <h3>Planting {Math.round(saplings)} Saplings</h3>
                     <button  onClick={handlePlant}>Plant now to offset</button>
                 </div>
-                <div className='remind' style={{font: "normal normal 600 14px/16px Sarabun"}}>
+                <div 
+                  className='remind' 
+                  style={{font: "normal normal 600 14px/16px Sarabun"}} 
+                  onClick={handleRemindLater}>
                     Remind me later
                 </div>
             </div>
