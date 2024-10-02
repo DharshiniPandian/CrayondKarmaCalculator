@@ -95,12 +95,14 @@ export default function Food() {
     }
   };
 
+  // console.log(totalVehicleEmission)
+
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
       <div className="food-top">
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
-          {(totalVehicleEmission+foodValue).toFixed(2)} ton CO2
+          {Number(totalVehicleEmission+foodValue).toFixed(2)} ton CO2
         </div>
       </div>
       <div className="food-bottom">
