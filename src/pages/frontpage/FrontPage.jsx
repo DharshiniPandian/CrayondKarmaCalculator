@@ -69,7 +69,7 @@ const FrontPage = () => {
             backgroundColor:"#E6EEFA",
             borderColor:"#E6EEFA",
             borderRadius:"10px",
-            font: "normal normal 500 14px/16px Sarabun",
+            font: "normal normal 700 14px/16px Sarabun",
             width: "143px",
             height: "48px"
             }}
