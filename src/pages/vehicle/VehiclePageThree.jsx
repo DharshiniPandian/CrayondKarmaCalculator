@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomProgressBar from "../../components/progress/Progress";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/background2.png";
+import BackGround from "../../utils/BackGround";
 import "../../styles/Vehicle.css";
 import "../../components/singlebutton/ButtonSingle.css";
 import buttonbackground from "../../assets/buttonbackground.png";
@@ -27,6 +27,9 @@ const VehiclePageThree = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const globalCarbonValue = useSelector((s) => s.carbonValue.total_emission.total_emission);
+  console.log(vehicleData)
+  let backgroundImage = BackGround();
+  // Comment or  remove these sample values after the  API call is made
 
   // Styles for fuel types
   const styles = [
@@ -80,7 +83,15 @@ const VehiclePageThree = () => {
 
   return (
     <div className="vehiclemaincontainer">
-      <div className="topbar" style={{ background: `url(${background})`, backgroundSize: "cover", backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
+      <div
+        className="topbar"
+        style={{
+          background: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="topbarcontent">
           <li>
             <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

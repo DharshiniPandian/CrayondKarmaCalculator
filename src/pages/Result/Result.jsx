@@ -1,9 +1,11 @@
 import React from 'react';
 import Backimg from '../../assets/background.svg';
 import Tree from '../../assets/Deciduous Tree.png';
-import graph from '../../assets/graph.png';
+import ggraph from '../../assets/greenGraph.svg';
+import rgraph from '../../assets/redGraph.svg'
 import './Result.css';
 import Semi from "../Result/chart";
+import ReportBackground from '../../utils/ReportBackground';
 import { useSelector } from 'react-redux';
 import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
@@ -18,10 +20,11 @@ const Result = () => {
         dispatch(goToNextStep());
         navigate('/tree-form');
     }
+    let backgroundImage = ReportBackground();
 
     const grandTotalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
     const saplings = (grandTotalEmission / 1.2).toFixed(2);
-
+    const carbonPercentage = (((grandTotalEmission - 16) / 16) * 100)
     const vehicleId = useSelector((state) => state.carbonValue.vehicle.vehicle_id);
     const vehicleCount = useSelector((state) => state.carbonValue.vehicle.vehicle_count);
     const fuelId = useSelector((state) => state.carbonValue.vehicle.fuel_id);
@@ -29,7 +32,7 @@ const Result = () => {
     const foodId = useSelector((state) => state.carbonValue.food.food_id);
     const totalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
     const totalElectricityEmission = useSelector((state) => state.carbonValue.electricity.total_electricity_emission);
-    const appliances = useSelector((state)=>state.carbonValue.appliances.appliance_id)
+    const appliances = useSelector((state) => state.carbonValue.appliances.appliance_id)
 
     console.log("Vehicle ID:", vehicleId);
     console.log("Vehicle Count:", vehicleCount);
@@ -38,7 +41,7 @@ const Result = () => {
     console.log("Food ID:", foodId);
     console.log("Total Emission:", totalEmission);
     console.log("Total Electricity Emission:", totalElectricityEmission);
-    console.log("Appliances",appliances);
+    console.log("Appliances", appliances);
     const handleRemindLater = async () => {
         const postData = {
             vehicle: {
@@ -51,14 +54,14 @@ const Result = () => {
                 food_type: foodId
             },
             appliance: {
-                electricity_consumption: (totalElectricityEmission*100),
-                appliances: appliances 
+                electricity_consumption: (totalElectricityEmission * 100),
+                appliances: appliances
             },
             total_emission: {
                 total_emission: totalEmission
             },
             plant_trees: {
-                plant_trees: 0 
+                plant_trees: 0
             }
 
         };
@@ -66,7 +69,7 @@ const Result = () => {
         try {
             // Send POST request to backend
             const response = await axios.post('http://localhost:8081/transaction/data', postData);
-            console.log(response.data); 
+            console.log(response.data);
             // alert('Data stored successfully');
             navigate('/');
         } catch (error) {
@@ -74,10 +77,10 @@ const Result = () => {
             alert('Failed to store data');
         }
     }
-   
+
 
     return (
-        <div className='res-contain'>
+        <div className='res-contain' style={{background:`url(${backgroundImage})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center bottom"}}>
             <h4>Summary</h4>
             <div className="white-box">
                 <div className="chart-box">
@@ -102,22 +105,33 @@ const Result = () => {
                         </div>
                     </div>
 
-                    <div className='graph-box'>
-                        <img src={graph} alt='graph' className=''></img>
-                        <p>Which is 25% higher than average</p>
-                    </div>
+                    {carbonPercentage > 0 ? 
+                    <div className='graph-box' style={{backgroundColor: "#f8d1d1" , color: "#FF5757"}}>
+                        <img src={rgraph} alt='graph' className=''></img>
+                    
+                            
+                            <p>Which is {Math.round(Math.abs(carbonPercentage))}% higher than average</p>
+                            
+                    </div> :
+                        <div className='graph-box' style={{backgroundColor: "#d6f8d1" , color: "#175a11"}}>
+                            <img src={ggraph} alt='graph' className=''></img>                                
+                                
+                                <p>Which is {Math.round(Math.abs(carbonPercentage))}% lower than average</p>
+
+                        </div>
+                    }
                 </div>
 
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
                     <div className='text123'>Offset your excess carbon footprint by</div>
                     <h3>Planting {Math.round(saplings)} Saplings</h3>
-                    <button  onClick={handlePlant}>Plant now to offset</button>
+                    <button onClick={handlePlant}>Plant now to offset</button>
                 </div>
-                <div 
-                  className='remind' 
-                  style={{font: "normal normal 600 14px/16px Sarabun"}} 
-                  onClick={handleRemindLater}>
+                <div
+                    className='remind'
+                    style={{ font: "normal normal 600 14px/16px Sarabun" }}
+                    onClick={handleRemindLater}>
                     Remind me later
                 </div>
             </div>

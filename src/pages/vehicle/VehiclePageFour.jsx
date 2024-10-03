@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CustomProgressBar from '../../components/progress/Progress';
 import DiscreteSliderMarks from '../../components/slider/Slider';
-import background from '../../assets/background3.png'
+import BackGround from '../../utils/BackGround';
 import '../../components/singlebutton/ButtonSingle.css'
 import { useNavigate } from 'react-router-dom';
 import '../../styles/PageTwo.css';
@@ -21,6 +21,7 @@ const VehiclePageFour = () => {
     let minimum = 10
     let maximum = 250
     const dispatch = useDispatch()
+    let backgroundImage = BackGround();
 
     const handleChange = (event, newvalue) => {
         setTravelDistance(Number(newvalue))
@@ -40,7 +41,7 @@ const VehiclePageFour = () => {
 
     return (
         <div className="vehiclemaincontainer">
-            <div className="topbar" style={{ background: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+            <div className="topbar" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                 <div className="topbarcontent">
                     <li>
                         <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

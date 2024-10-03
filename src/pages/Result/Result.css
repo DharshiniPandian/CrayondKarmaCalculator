@@ -4,7 +4,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    background-image: url(../../assets/background.svg);
+    /* background-image: url(../../assets/background.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -66,7 +66,7 @@
 
 .chart-box h2 {
     font-size: 0.9rem;
-    margin-bottom: 6%;
+    margin-bottom: 3%;
     margin-top: 10%;
     font: normal normal 14px/16px Excon;
     letter-spacing: 0px;
@@ -82,15 +82,19 @@
     flex-direction: row;
     width: 233px;
     height: 32px;
-    color: #FF5757;
-    background-color: #FFF1F1;
+    /* color: #175a11;
+    background-color: #d6f8d1; */
     border-radius: 6px 6px 6px 6px;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 4%;
     margin-bottom: 5%;
 }
+.graph-box img{
+    width:1.5rem;
+    fill: red;
 
+}
 .graph-box p {
     font-size: 11px;
     letter-spacing: 0.5px;
@@ -98,7 +102,7 @@
     text-align: left;
     font: normal normal 12px/28px Sarabun;
     letter-spacing: 0px;
-    color: #FF5757;
+    /* color: #FF5757; */
 }
 
 .sapling-box {
@@ -175,8 +179,8 @@
 .legend-container {
     display: flex;
     align-items: center;
-    margin-top: 13px;
-    margin-bottom: 13px;
+    margin-top: 20px;
+    margin-bottom: 8px;
     gap: 20px;
 }
 
@@ -220,5 +224,5 @@
 
 .semicircle {
     width: 183px;
-    height: 37%;
+    height: 40%;
 }

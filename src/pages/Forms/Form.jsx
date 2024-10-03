@@ -26,7 +26,7 @@ const Form = () => {
             dispatch(goToNextStep());
             navigate('/complete');
         }
-    }, [isSubmitted, dispatch, navigate]);
+    }, [isSubmitted]);
 
     // State for form fields
     const [name, setName] = useState(null);
@@ -94,9 +94,9 @@ const Form = () => {
             console.log(postData)
             const response = await axios.post('http://localhost:8081/transaction/data', postData);
             console.log(response.status);
-            if(response.status===200){
-                handleSuccess()
-            }
+            // if(response.status===200){
+            //     handleSuccess()
+            // }
         } catch (error) {
             console.error('Error storing data:', error);
             alert('Failed to store data');
@@ -119,6 +119,16 @@ const Form = () => {
     }, []);
 
     const handleSuccess = () => {
+        if (!name || !phone || !email || !location || !numberOfTrees || !nameToBePlanted) {
+            // // Display a toast notification if no vehicle is selected
+            // toast.warn("Please fill out all the fields", {
+            //     className: "custom-toast", // Custom class for warning toast
+            //     bodyClassName: "custom-toast-body", // Custom class for the body
+            //     progressClassName: "custom-toast-progress", // Custom class for the progress bar
+            // });
+            return;
+        }
+        dispatch(goToNextStep())
         console.log("hanldeSuccess");
         navigate('/complete');
     };
@@ -175,6 +185,7 @@ const Form = () => {
                                 <div>Phone number <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
                             }
                             name="phone"
+                            type = "number"
                             fullWidth
                             required
                             value={phone} // Bind state
@@ -335,7 +346,7 @@ const Form = () => {
                         />
 
                         <Button
-                            onClick={handleSubmit}
+                            onClick={()=>{handleSubmit(), handleSuccess()}}
                             variant="contained"
                             color="primary"
                             fullWidth

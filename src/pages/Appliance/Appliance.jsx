@@ -10,6 +10,7 @@ import "react-circular-progressbar/dist/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { revertFoodType, selectApplianceType } from "../../slice/CalculationSlice";
 import axios from "axios";
+import BackGround from "../../utils/BackGround";
 import Button from "../Button/Button";
 import { addMasterAppliances } from "../../slice/MasterApiSlices";
 import { ToastContainer, toast } from "react-toastify";
@@ -27,6 +28,9 @@ export default function Appliance() {
   const [value, setValue] = useState(50);
   
   const applianceData = useSelector((s) => s.masterAppliances);
+
+  // const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
+  let backgroundImage = BackGround();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -108,7 +112,7 @@ export default function Appliance() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="appliance-top">
+      <div className="appliance-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {(totalVehicleEmission + totalFoodEmission + applianceValue).toFixed(2)} ton CO2

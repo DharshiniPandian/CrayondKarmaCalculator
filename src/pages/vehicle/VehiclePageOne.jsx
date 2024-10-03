@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import '../../styles/Vehicle.css'
-import background from '../../assets/background1.png';
+import BackGround from '../../utils/BackGround';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { addMasterVehiclesData } from '../../slice/MasterApiSlices';
@@ -27,6 +27,8 @@ const VehiclePageOne = () => {
   const navigate = useNavigate();
   const globalCarbonValue = useSelector((s) => s.carbonValue.total_emission.total_emission);
 
+  console.log(BackGround);
+  
   const styles = [
     {
       id: 1,
@@ -54,16 +56,17 @@ useEffect(()=>{
 },[])
   const fetchmasterVehicles = async () => {
     try {
-      const response = await axios.get('http://localhost:8081/master/vehicles');
-      if (response.status === 200) {
-        dispatch(addMasterVehiclesData(response.data));
-       // 2-second delay before hiding the skeleton
-      }
-    } catch (error) {
+      const response = await axios.get("http://localhost:8081/master/vehicles");
+      console.log(response.data);
+      if (response.status === 200)
+        dispatch(addMasterVehiclesData(response.data))
+    }
+    catch (error) {
       console.log("error while fetching data", error);
     }
   };
 
+  let backgroundImage = BackGround();
   useEffect(() => {
     fetchmasterVehicles();
   }, []);
@@ -91,7 +94,7 @@ useEffect(()=>{
 
   return (
     <div className="vehiclemaincontainer">
-      <div className="topbar" style={{ background: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      <div className="topbar" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div className="topbarcontent">
           <li>
             <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

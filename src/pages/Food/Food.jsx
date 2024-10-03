@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { BsTriangleFill } from "react-icons/bs";
 import "../../styles/Food.css";
 import Button from "../Button/Button";
+import BackGround from "../../utils/BackGround";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 import {
   CircularProgressbarWithChildren,
@@ -29,6 +30,9 @@ export default function Food() {
   const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  let backgroundImage = BackGround();
+
   const [value, setValue] = useState(25);
 
   useEffect(()=>{
@@ -92,8 +96,9 @@ export default function Food() {
   };
 
   return (
-    <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="food-top">
+
+    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
+      <div className="food-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {Number(totalVehicleEmission + foodValue).toFixed(2)} ton CO2

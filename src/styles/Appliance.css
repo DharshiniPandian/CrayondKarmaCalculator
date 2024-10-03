@@ -1,6 +1,6 @@
 .appliance-top {
   height: 44.3vh;
-  background-image: url("/src/assets/Appliance_Bg.png");
+  /* background-image: url("/src/assets/Appliance_Bg.png"); */
   background-position: center;
   background-size: cover;
   display: flex;
