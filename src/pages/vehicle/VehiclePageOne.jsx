@@ -48,7 +48,7 @@ const VehiclePageOne = () => {
 
   const fetchmasterVehicles = async () => {
     try {
-      const response = await axios.get(`http://localhost:8081/master/vehicles`);
+      const response = await axios.get("http://localhost:8081/master/vehicles");
       console.log(response.data);
       if (response.status === 200)
         dispatch(addMasterVehiclesData(response.data))
@@ -58,6 +58,7 @@ const VehiclePageOne = () => {
     }
   }
 
+  let backgroundImage = BackGround();
   useEffect(() => {
     fetchmasterVehicles()
   }, [])
@@ -89,7 +90,7 @@ const VehiclePageOne = () => {
   // console.log(carbonvalue, vehicleid , active)
   return (
     <div className="vehiclemaincontainer">
-      <div className="topbar" style={{ background: `url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      <div className="topbar" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div className="topbarcontent">
           <li>
             <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

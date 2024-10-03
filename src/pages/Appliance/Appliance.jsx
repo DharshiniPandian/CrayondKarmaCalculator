@@ -29,6 +29,7 @@ export default function Appliance() {
   const [value, setValue] = useState(50);
   const applianceData = useSelector((s) => s.masterAppliances);
   // const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
+  let backgroundImage = BackGround();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -143,7 +144,7 @@ export default function Appliance() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="appliance-top" style={{background:`url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+      <div className="appliance-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {(totalVehicleEmission+totalFoodEmission+applianceValue).toFixed(2)} ton CO2

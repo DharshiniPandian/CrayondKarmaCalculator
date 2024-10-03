@@ -28,6 +28,7 @@ export default function Food() {
   const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let backgroundImage = BackGround();
 
   const [value, setValue] = useState(25);
 
@@ -100,7 +101,7 @@ export default function Food() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
-      <div className="food-top" style={{background:`url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+      <div className="food-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {Number(totalVehicleEmission+foodValue).toFixed(2)} ton CO2
