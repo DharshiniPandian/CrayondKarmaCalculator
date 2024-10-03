@@ -27,10 +27,11 @@ const Semichart = () => {
         backgroundColor: ['#f58e27', '#f4646e', '#4ac596'], 
         borderWidth: 0, 
         hoverOffset: 4, 
-        cutout: '89%',
-        rotation: 270, 
-        circumference: 180, 
-        borderRadius: 1,
+        cutout: '88%',
+        rotation: 276, 
+        circumference: 170, 
+        borderRadius: 8,
+        spacing: -20
       },
     ],
   };
@@ -42,9 +43,6 @@ const Semichart = () => {
       tooltip: { enabled: false }, 
       legend: {
         display: false, 
-        labels: {
-          padding: 10, 
-        },
       },  
     },
     layout: {
@@ -52,18 +50,27 @@ const Semichart = () => {
         bottom: 0, 
       },
     },
+    elements: {
+      arc: { borderWidth: 0 },
+    },
+    // scales: {
+    //   x: {
+    //     beginAtZero: true,
+    //   },
+    // },
+    
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
-      <div style={{marginTop:'0px', height:'100px',width:'180px'}}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent:'center'}}>
+      <div style={{marginTop:'0px', height:'120px',width:'200px'}}>
       <Doughnut data={data} options={options}/></div>
       {/* Center Text */}
       <div
         style={{
           position: 'absolute',
           left: '50%',
-          transform: 'translate(-50%, 80%)',
+          transform: 'translate(-50%, 110%)',
           fontSize: '14px',
           fontWeight: "600",
           font: 'normal normal bold 16px/23px Excon',

@@ -28,7 +28,7 @@ function Router() {
       <Route element={<ProtectedRoute stepRequired={8}><Electricity /></ProtectedRoute>} path="/Electricity" />
       <Route element={<ProtectedRoute stepRequired={9}><Result /></ProtectedRoute>} path="/result" />
       <Route element={<ProtectedRoute stepRequired={10}><Form /></ProtectedRoute>} path="/tree-form" />
-      <Route element={<ProtectedRoute stepRequired={11}><Complete /></ProtectedRoute>} path="/complete" />
+      <Route element={<Complete />} path="/complete" />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
