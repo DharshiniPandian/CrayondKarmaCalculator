@@ -17,6 +17,7 @@ import {
   selectFuelType,
 } from "../../slice/CalculationSlice";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
+import {MasterFuelApi} from "../../utils/ApiEndpoints/API";
 
 const VehiclePageThree = () => {
   const [fuelValue, setFuelValue] = useState(0);
@@ -40,7 +41,7 @@ const VehiclePageThree = () => {
 
   const fetchmasterVehicleFuelTypes = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/fuels");
+      const response = await axios.get(MasterFuelApi);
       if (response.status === 200)
         dispatch(addMasterVehicleFuelTypeDatas(response.data));
     } catch (error) {

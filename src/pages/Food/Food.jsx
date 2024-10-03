@@ -17,6 +17,7 @@ import { revertTravelDistance, selectFoodType } from "../../slice/CalculationSli
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/toast.css";
+import {MasterFoodsApi} from "../../utils/ApiEndpoints/API";
 
 export default function Food() {
   // const [selectedItem, setSelectedItem] = useState(null);
@@ -89,7 +90,7 @@ export default function Food() {
 
   const fetchmasterFoodItems = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/foods");
+      const response = await axios.get(MasterFoodsApi);
       if (response.status === 200) dispatch(addMasterFoodsData(response.data));
     } catch (error) {
       console.log("error while fetching data", error);

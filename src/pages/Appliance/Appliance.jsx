@@ -17,6 +17,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 import "../../styles/toast.css";
+import {MasterAppliancesApi} from "../../utils/ApiEndpoints/API";
 
 export default function Appliance() {
   const [applianceId, setApplianceId] = useState([])
@@ -88,7 +89,7 @@ export default function Appliance() {
 
   const fetchmasterAppliances = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/appliances");
+      const response = await axios.get(MasterAppliancesApi);
       if (response.status === 200) dispatch(addMasterAppliances(response.data));
     } catch (error) {
       console.log("error while fetching data", error);

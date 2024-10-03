@@ -1,0 +1,5 @@
+export const masterVehicles = '/master/vehicles'
+export const masterFuel = '/master/fuels'
+export const masterFood = '/master/foods'
+export const masterAppliances = '/master/appliances'
+export const masterTransaction = '/transaction/data'
