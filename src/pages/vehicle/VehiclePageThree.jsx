@@ -16,7 +16,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/toast.css";
 import { revertVehicleCount, selectFuelType } from "../../slice/CalculationSlice";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
-import {MasterFuelApi} from "../../utils/ApiEndpoints/API";
+import { MasterFuelApi } from "../../utils/ApiEndpoints/API";
+import page_not_found from  "../../assets/page_not_found.svg";
 
 const VehiclePageThree = () => {
   const [fuelValue, setFuelValue] = useState(0);
@@ -42,10 +43,11 @@ const VehiclePageThree = () => {
   const fetchmasterVehicleFuelTypes = async () => {
     try {
       const response = await axios.get(MasterFuelApi);
-      if (response.status === 200)
-
+      if (response.status === 200) {
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
         dispatch(addMasterVehicleFuelTypeDatas(response.data));
-        setTimeout(() => setLoading(false), 1000); // Set loading false after 1 second
       }
     } catch (error) {
       console.log("Error while fetching data", error);
@@ -116,15 +118,17 @@ const VehiclePageThree = () => {
           <div className="options">
             {loading
               ? Array(2).fill().map((_, key) => (
-                  <div key={key} className="skeleton-wrapper">
-                    <Skeleton height={110} width={110} />
-                  </div>
-                ))
-              : vehicleData.map((fuel, key) => (
+                <div key={key} className="skeleton-wrapper">
+                  <Skeleton height={110} width={110} />
+                </div>
+              ))
+              : vehicleData.length === 0 ?
+              <div style={{font:" normal normal normal 18px/13px Excon"}}><img src={page_not_found} alt=""  style={{height:"12rem", width:"12rem"}}/> <br/> No data found </div> :
+              vehicleData.map((fuel, key) => (
                   <div
                     style={{
                       backgroundColor: styles[key].backgroundColor,
-                      border: active === fuel.name ? `2px solid ${styles[key].borderColor}` : "0px",
+                      border: active === fuel.name ? `2px solid ${styles[key].borderColor}` : "none",
                       cursor: "pointer",
                     }}
                     className="element-bike-"
@@ -140,8 +144,10 @@ const VehiclePageThree = () => {
           </div>
         </div>
         <div className="buttondouble">
-          <button onClick={handleBack}>Back</button>
-          <button onClick={handleNext}>Next</button>
+          <div className='btns'>
+            <button className='back' onClick={handleBack}>Back</button>
+            <button onClick={handleNext}>Next</button>
+          </div>
         </div>
       </div>
       <ToastContainer

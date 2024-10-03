@@ -85,13 +85,11 @@
   opacity: 1;
 }
 
-/* Element styles */
 .vehiclemaincontainer .bottombar .options .element-bike-,
 .vehiclemaincontainer .bottombar .options .element-car-,
 .vehiclemaincontainer .bottombar .options .element-cycle-,
 .vehiclemaincontainer .bottombar .options .element-gas-,
 .vehiclemaincontainer .bottombar .options .element-electric- {
-  background-color: #fff4e6;
   height: 110px;
   width: 115px;
   gap: 0.5rem;
@@ -102,8 +100,6 @@
   justify-content: center;
   align-items: center;
   font-size: 0.8rem;
-  border: 10px solid transparent; /* Default border */
-  transition: border-color 0.1s; /* Smooth transition for border color */
   position: relative; /* Allows absolute positioning of children */
 }
 
@@ -122,8 +118,7 @@
 .vehiclemaincontainer .bottombar .options .element-cycle-:hover,
 .vehiclemaincontainer .bottombar .options .element-gas-:hover,
 .vehiclemaincontainer .bottombar .options .element-electric-:hover {
-  border-color: #c6c4c4; /* Change border color on hover */
-  box-shadow: 0 0 10px #dbdeda; /* Add a shadow effect for more emphasis */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;/* Add a shadow effect for more emphasis */
 }
 
 .vehiclemaincontainer .bottombar .options img {

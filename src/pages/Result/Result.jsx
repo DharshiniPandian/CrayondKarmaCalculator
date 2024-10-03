@@ -81,7 +81,6 @@ const Result = () => {
 
 
     return (
-
         <div className='res-contain' style={{background:`url(${backgroundImage})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center bottom"}}>
             <h4>Summary</h4>
             <div className="white-box">

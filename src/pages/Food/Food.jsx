@@ -19,7 +19,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../styles/toast.css";
-import {MasterFoodsApi} from "../../utils/ApiEndpoints/API";
+import { MasterFoodsApi } from "../../utils/ApiEndpoints/API";
+import page_not_found from  '../../assets/page_not_found.svg';
 
 export default function Food() {
   const [foodId, setFoodId] = useState(0);
@@ -36,11 +37,6 @@ export default function Food() {
 
   const [value, setValue] = useState(25);
 
-  useEffect(()=>{
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
-  },[])
 
   useEffect(() => {
     fetchMasterFoodItems();
@@ -50,8 +46,10 @@ export default function Food() {
     try {
       const response = await axios.get(MasterFoodsApi);
       if (response.status === 200) {
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000);
         dispatch(addMasterFoodsData(response.data));
-        setLoading(true); // Stop loading once data is fetched
       }
     } catch (error) {
       console.log("error while fetching data", error);
@@ -98,8 +96,8 @@ export default function Food() {
 
   return (
 
-    <div style={{ width: "100%", border: "1px solid #E8F2FF",height: "100%" }}>
-      <div className="food-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+    <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
+      <div className="food-top" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {Number(totalVehicleEmission + foodValue).toFixed(2)} ton CO2
@@ -128,18 +126,19 @@ export default function Food() {
         <div className="food-products">
           {loading
             ? Array(3)
-                .fill()
-                .map((_, key) => (
-                  <div key={key} className="skeleton-wrapper">
-                    <Skeleton height={110} width={110} />
-                  </div>
-                ))
-            : foodData.map((food, key) => (
+              .fill()
+              .map((_, key) => (
+                <div key={key} className="skeleton-wrapper">
+                  <Skeleton height={110} width={110} />
+                </div>
+              ))
+            : foodData.length === 0 ?
+            <div style={{font:" normal normal normal 18px/13px Excon",marginLeft:"50%", width:"100%"}}><img src={page_not_found} alt=""  style={{height:"12rem", width:"12rem"}}/> <br/><p style={{marginLeft:"20%"}}> No data found </p></div> :
+            foodData.map((food, key) => (
                 <div
                   key={key}
-                  className={`food-items ${
-                    foodName === food.name ? "selected" : ""
-                  }`}
+                  className={`food-items ${foodName === food.name ? "selected" : ""
+                    }`}
                   style={{
                     backgroundColor: styles[key].backgroundColor,
                     border:
