@@ -16,6 +16,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css';
 import { goToNextStep } from "../../slice/UserSlice";
+import {MasterVehiclesApi} from '../../utils/ApiEndpoints/API';
 
 const VehiclePageOne = () => {
   const [vehicleValue, setVehicleValue] = useState(0);
@@ -25,7 +26,7 @@ const VehiclePageOne = () => {
   const vehicleData = useSelector((s) => s.masterVehicles);
   const [loading, setLoading] = useState(true); // To track loading state
   const navigate = useNavigate();
-  const globalCarbonValue = useSelector((s) => s.carbonValue.total_emission.total_emission);
+  const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
 
   console.log(BackGround);
   
@@ -56,7 +57,8 @@ useEffect(()=>{
 },[])
   const fetchmasterVehicles = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/vehicles");
+      const response = await axios.get(MasterVehiclesApi);
+
       console.log(response.data);
       if (response.status === 200)
         dispatch(addMasterVehiclesData(response.data))

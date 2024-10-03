@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css'
 import { FaStarOfLife } from "react-icons/fa";
+import {MasterTransactionApi } from '../../utils/ApiEndpoints/API';
 
 
 const Form = () => {
@@ -92,7 +93,7 @@ const Form = () => {
 
         try {
             console.log(postData)
-            const response = await axios.post('http://localhost:8081/transaction/data', postData);
+            const response = await axios.post(MasterTransactionApi, postData);
             console.log(response.status);
             // if(response.status===200){
             //     handleSuccess()

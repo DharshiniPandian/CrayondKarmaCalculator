@@ -19,6 +19,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../styles/toast.css";
+import {MasterFoodsApi} from "../../utils/ApiEndpoints/API";
 
 export default function Food() {
   const [foodId, setFoodId] = useState(0);
@@ -47,7 +48,7 @@ export default function Food() {
 
   const fetchMasterFoodItems = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/foods");
+      const response = await axios.get(MasterFoodsApi);
       if (response.status === 200) {
         dispatch(addMasterFoodsData(response.data));
         setLoading(true); // Stop loading once data is fetched

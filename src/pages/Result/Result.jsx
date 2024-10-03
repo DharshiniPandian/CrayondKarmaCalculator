@@ -11,6 +11,7 @@ import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch } from "react-redux";
+import { MasterTransactionApi } from '../../utils/ApiEndpoints/API';
 
 const Result = () => {
     const navigate = useNavigate();
@@ -68,7 +69,7 @@ const Result = () => {
         console.log(postData);
         try {
             // Send POST request to backend
-            const response = await axios.post('http://localhost:8081/transaction/data', postData);
+            const response = await axios.post(MasterTransactionApi, postData);
             console.log(response.data);
             // alert('Data stored successfully');
             navigate('/');
@@ -80,6 +81,7 @@ const Result = () => {
 
 
     return (
+
         <div className='res-contain' style={{background:`url(${backgroundImage})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center bottom"}}>
             <h4>Summary</h4>
             <div className="white-box">
@@ -105,18 +107,18 @@ const Result = () => {
                         </div>
                     </div>
 
-                    {carbonPercentage > 0 ? 
-                    <div className='graph-box' style={{backgroundColor: "#f8d1d1" , color: "#FF5757"}}>
-                        <img src={rgraph} alt='graph' className=''></img>
-                    
-                            
+                    {carbonPercentage > 0 ?
+                        <div className='graph-box' style={{ backgroundColor: "#f8d1d1", color: "#FF5757" }}>
+                            <img src={rgraph} alt='graph' className=''></img>
+
+
                             <p>Which is {Math.round(Math.abs(carbonPercentage))}% higher than average</p>
-                            
-                    </div> :
-                        <div className='graph-box' style={{backgroundColor: "#d6f8d1" , color: "#175a11"}}>
-                            <img src={ggraph} alt='graph' className=''></img>                                
-                                
-                                <p>Which is {Math.round(Math.abs(carbonPercentage))}% lower than average</p>
+
+                        </div> :
+                        <div className='graph-box' style={{ backgroundColor: "#d6f8d1", color: "#175a11" }}>
+                            <img src={ggraph} alt='graph' className=''></img>
+
+                            <p>Which is {Math.round(Math.abs(carbonPercentage))}% lower than average</p>
 
                         </div>
                     }
@@ -124,9 +126,19 @@ const Result = () => {
 
                 <div className="sapling-box">
                     <img src={Tree} alt='tree' className='tree-img' />
-                    <div className='text123'>Offset your excess carbon footprint by</div>
-                    <h3>Planting {Math.round(saplings)} Saplings</h3>
-                    <button onClick={handlePlant}>Plant now to offset</button>
+                    {
+                        carbonPercentage > 0 ?
+                            <>
+                                <div className='text123'>Offset your excess carbon footprint by</div>
+                                <h3>Planting {Math.round(saplings)} Saplings</h3>
+                                <button onClick={handlePlant}>Plant now to offset</button>
+                            </>
+                            :
+                            <>
+                                <div className='text123'>Are you willing to plant Saplings</div>
+                                <button onClick={handlePlant}>Willing to plant</button>
+                            </>
+                    }
                 </div>
                 <div
                     className='remind'

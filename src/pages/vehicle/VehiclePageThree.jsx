@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../styles/toast.css";
 import { revertVehicleCount, selectFuelType } from "../../slice/CalculationSlice";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
+import {MasterFuelApi} from "../../utils/ApiEndpoints/API";
 
 const VehiclePageThree = () => {
   const [fuelValue, setFuelValue] = useState(0);
@@ -40,8 +41,9 @@ const VehiclePageThree = () => {
   // Fetch fuel types from the server
   const fetchmasterVehicleFuelTypes = async () => {
     try {
-      const response = await axios.get("http://localhost:8081/master/fuels");
-      if (response.status === 200) {
+      const response = await axios.get(MasterFuelApi);
+      if (response.status === 200)
+
         dispatch(addMasterVehicleFuelTypeDatas(response.data));
         setTimeout(() => setLoading(false), 1000); // Set loading false after 1 second
       }
