@@ -269,6 +269,7 @@ const Form = () => {
                             fullWidth
                             required
                             value={numberOfTrees} // Bind state
+                            inputProps={{ min: 1 }}    //to restrict the number to not be less than 1
                             onChange={(e) => setNumberOfTrees(e.target.value)} // Update state
                             sx={{
                                 marginBottom: '12px',
