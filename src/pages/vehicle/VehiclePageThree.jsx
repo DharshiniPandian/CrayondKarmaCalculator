@@ -31,6 +31,7 @@ const VehiclePageThree = () => {
   );
 
   console.log(vehicleData)
+  let backgroundImage = BackGround();
   // Comment or  remove these sample values after the  API call is made
 
   // const vehicleData = [
@@ -96,7 +97,7 @@ const VehiclePageThree = () => {
       <div
         className="topbar"
         style={{
-          background: `url(${BackGround()})`,
+          background: `url(${backgroundImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
