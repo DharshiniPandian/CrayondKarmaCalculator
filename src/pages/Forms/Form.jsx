@@ -26,7 +26,7 @@ const Form = () => {
             dispatch(goToNextStep());
             navigate('/complete');
         }
-    }, [isSubmitted, dispatch, navigate]);
+    }, [isSubmitted]);
 
     // State for form fields
     const [name, setName] = useState(null);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomProgressBar from "../../components/progress/Progress";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/background2.png";
+import BackGround from "../../utils/BackGround";
 import "../../styles/Vehicle.css";
 import "../../components/singlebutton/ButtonSingle.css";
 import buttonbackground from "../../assets/buttonbackground.png";
@@ -96,7 +96,7 @@ const VehiclePageThree = () => {
       <div
         className="topbar"
         style={{
-          background: `url(${background})`,
+          background: `url(${BackGround()})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
