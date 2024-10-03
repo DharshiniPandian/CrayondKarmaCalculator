@@ -28,8 +28,8 @@ const Semichart = () => {
         borderWidth: 0, 
         hoverOffset: 4, 
         cutout: '88%',
-        rotation: 276, 
-        circumference: 170, 
+        rotation: 271, 
+        circumference: 180, 
         borderRadius: 8,
         spacing: -20
       },
@@ -63,7 +63,7 @@ const Semichart = () => {
 
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent:'center'}}>
-      <div style={{marginTop:'0px', height:'120px',width:'200px'}}>
+      <div style={{marginTop:'0px', height:'125px',width:'200px'}}>
       <Doughnut data={data} options={options}/></div>
       {/* Center Text */}
       <div
