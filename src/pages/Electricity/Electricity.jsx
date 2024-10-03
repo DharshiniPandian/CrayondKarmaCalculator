@@ -7,6 +7,7 @@ import {
   buildStyles,
 } from "react-circular-progressbar";
 import DiscreteSliderMarksElectricity from "../../components/slider/SliderforElectricity";
+import BackGround from "../../utils/BackGround";
 import "react-circular-progressbar/dist/styles.css";
 import { useDispatch , useSelector } from "react-redux";
 import { addElectricityValue } from "../../slice/CalculationSlice";
@@ -56,7 +57,7 @@ export default function Electricity() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="electricity-top">
+      <div className="electricity-top" style={{background:`url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {(totalVehicleEmission+totalFoodEmission+totalAppliancesEmission+electricityValue).toFixed(2)} ton CO2

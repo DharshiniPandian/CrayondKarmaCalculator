@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CustomProgressBar from '../../components/progress/Progress';
 import { useSelector } from "react-redux";
 import '../../styles/Vehicle.css'
-import background from '../../assets/background1.png'
+import BackGround from '../../utils/BackGround';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { addMasterVehiclesData } from '../../slice/MasterApiSlices';
@@ -24,6 +24,8 @@ const VehiclePageOne = () => {
   const navigate = useNavigate();
   const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
 
+  console.log(BackGround);
+  
   const styles = [
     {
       id: 1,
@@ -46,7 +48,8 @@ const VehiclePageOne = () => {
 
   const fetchmasterVehicles = async () => {
     try {
-      const response = await axios.get('http://localhost:8081/master/vehicles');
+      const response = await axios.get(`http://localhost:8081/master/vehicles`);
+      console.log(response.data);
       if (response.status === 200)
         dispatch(addMasterVehiclesData(response.data))
     }
@@ -86,7 +89,7 @@ const VehiclePageOne = () => {
   // console.log(carbonvalue, vehicleid , active)
   return (
     <div className="vehiclemaincontainer">
-      <div className="topbar" style={{ background: `url(${background})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      <div className="topbar" style={{ background: `url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div className="topbarcontent">
           <li>
             <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

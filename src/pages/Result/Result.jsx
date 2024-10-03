@@ -4,6 +4,7 @@ import Tree from '../../assets/Deciduous Tree.png';
 import graph from '../../assets/graph.png';
 import './Result.css';
 import Semi from "../Result/chart";
+import ReportBackground from '../../utils/ReportBackground';
 import { useSelector } from 'react-redux';
 import { goToNextStep } from "../../slice/UserSlice";
 import { useNavigate } from 'react-router-dom';
@@ -77,7 +78,7 @@ const Result = () => {
    
 
     return (
-        <div className='res-contain'>
+        <div className='res-contain' style={{background:`url(${ReportBackground()})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center bottom"}}>
             <h4>Summary</h4>
             <div className="white-box">
                 <div className="chart-box">
