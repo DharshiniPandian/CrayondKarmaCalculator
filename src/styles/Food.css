@@ -104,9 +104,8 @@ button {
 
 .food-items:hover {
   border-color: #c6c4c4; /* Change border color on hover */
-  box-shadow: 0 0 10px #dbdeda; /* Add a shadow effect for more emphasis */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
 .food-items.selected {
   border-width: 2px;
   border-style: solid;

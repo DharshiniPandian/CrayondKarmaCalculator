@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../../styles/toast.css';
 import { goToNextStep } from "../../slice/UserSlice";
 import {MasterVehiclesApi} from '../../utils/ApiEndpoints/API';
+import page_not_found from '../../assets/page_not_found.svg'
 
 const VehiclePageOne = () => {
   const [vehicleValue, setVehicleValue] = useState(0);
@@ -50,16 +51,14 @@ const VehiclePageOne = () => {
 
   const dispatch = useDispatch();
   
-useEffect(()=>{
-  setTimeout(() => {
-    setLoading(false)
-  }, 1000);
-},[])
   const fetchmasterVehicles = async () => {
     try {
       const response = await axios.get(MasterVehiclesApi);
-      console.log(response.data);
+      console.log(response.status);
       if (response.status === 200)
+        setTimeout(()=>{
+          setLoading(false)
+        },1000)
         dispatch(addMasterVehiclesData(response.data))
     }
     catch (error) {
@@ -121,11 +120,13 @@ useEffect(()=>{
                     <Skeleton height={110} width={110} />
                    </div>
                 ))
-                : vehicleData.map((vehicle, key) => (
+                :vehicleData.length === 0 ? 
+                <div style={{font:" normal normal normal 18px/13px Excon"}}><img src={page_not_found} alt=""  style={{height:"12rem", width:"12rem"}}/> <br/> No data found </div> :
+                 vehicleData.map((vehicle, key) => (
                   <div
                     style={{
                       backgroundColor: styles[key].backgroundColor,
-                      border: active === vehicle.name ? `2px solid ${styles[key].borderColor}` : "0px",
+                      border: active === vehicle.name ? `2px solid ${styles[key].borderColor}` : "none",
                       borderColor: styles[key].borderColor,
                       cursor: "pointer"
                     }}

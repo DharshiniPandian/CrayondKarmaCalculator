@@ -17,9 +17,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { goToNextStep, goToPreviousStep } from "../../slice/UserSlice";
 import "../../styles/toast.css";
-import {MasterAppliancesApi} from "../../utils/ApiEndpoints/API";
+import { MasterAppliancesApi } from "../../utils/ApiEndpoints/API";
 import Skeleton from 'react-loading-skeleton'; // Import Skeleton
 import 'react-loading-skeleton/dist/skeleton.css'; // Import Skeleton styles
+import page_not_found  from '../../assets/page_not_found.svg';
 
 
 export default function Appliance() {
@@ -29,7 +30,7 @@ export default function Appliance() {
   const [selectedItems, setSelectedItems] = useState([]);
   const [loading, setLoading] = useState(true); // Loading state for skeleton
   const [value, setValue] = useState(50);
-  
+
   const applianceData = useSelector((s) => s.masterAppliances);
 
   // const globalCarbonValue = useSelector((s)=>s.carbonValue.total_emission.total_emission)
@@ -39,13 +40,6 @@ export default function Appliance() {
 
   const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
   const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
-
-  
-  useEffect(()=>{
-    setTimeout(() => {
-      setLoading(false)
-    }, 1000);
-  },[])
 
   const styles = [
     { id: 1, borderColor: "#3ea957", backgroundColor: "#E4FFEE" },
@@ -65,8 +59,11 @@ export default function Appliance() {
     try {
       const response = await axios.get(MasterAppliancesApi);
       if (response.status === 200) {
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000);
         dispatch(addMasterAppliances(response.data));
-        setLoading(true); // Set loading to false when data is fetched
+
       }
     } catch (error) {
       console.log("error while fetching data", error);
@@ -94,7 +91,7 @@ export default function Appliance() {
       setApplianceName(newNames);
       setApplianceValue(newCarbonValue);
       setApplianceId(newSelected);
-      
+
       return newSelected;
     });
   };
@@ -103,7 +100,7 @@ export default function Appliance() {
     if (selectedItems.length > 0) {
       dispatch(goToNextStep());
       navigate("/Electricity", { state: { selectedItems } });
-      dispatch(selectApplianceType({ applianceId, applianceValue }))      
+      dispatch(selectApplianceType({ applianceId, applianceValue }))
     } else {
       toast.warn("Please select an appliance before proceeding!", {
         className: "custom-toast",
@@ -115,7 +112,7 @@ export default function Appliance() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="appliance-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+      <div className="appliance-top" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {(totalVehicleEmission + totalFoodEmission + applianceValue).toFixed(2)} ton CO2
@@ -148,32 +145,33 @@ export default function Appliance() {
             {loading ? ( // Show skeletons while loading
               Array.from({ length: 8 }).map((_, key) => (
                 <div key={key} className="skeleton-wrapper">
-                  <Skeleton height={60} style={{ margin: "10px 0" }} />
+                  <Skeleton height={60} style={{ margin: "10px 0px 15px 0px" }} />
                 </div>
               ))
-            ) : (
-              applianceData.map((appliance, key) => (
-                <div
-                  key={key}
-                  className={`appliance-items ${
-                    selectedItems.includes(appliance.id) ? "selected" : ""
-                  }`}
-                  onClick={() => handleItemClicked(appliance.id)}
-                  style={{
-                    backgroundColor: styles[key].backgroundColor,
-                    borderColor: selectedItems.includes(appliance.id)
-                      ? styles[key].borderColor
-                      : "transparent",
-                    borderWidth: "2px",
-                    borderStyle: "solid",
-                  }}
-                >
-                  <div style={{ font: 'normal normal normal 13px/16px Excon' }}>
-                    {appliance.name}
+            ) : applianceData.length === 0 ?
+            <div style={{font:" normal normal normal 18px/13px Excon",marginLeft:"15%", width:"100%" , height:"17rem"}}><img src={page_not_found} alt=""  style={{height:"12rem", width:"12rem"}}/> <br/><p style={{marginLeft:"20%"}}> No data found </p></div> :
+            (
+                applianceData.map((appliance, key) => (
+                  <div
+                    key={key}
+                    className={`appliance-items ${selectedItems.includes(appliance.id) ? "selected" : ""
+                      }`}
+                    onClick={() => handleItemClicked(appliance.id)}
+                    style={{
+                      backgroundColor: styles[key].backgroundColor,
+                      borderColor: selectedItems.includes(appliance.id)
+                        ? styles[key].borderColor
+                        : "transparent",
+                      borderWidth: "2px",
+                      borderStyle: "solid",
+                    }}
+                  >
+                    <div style={{ font: 'normal normal normal 13px/16px Excon' }}>
+                      {appliance.name}
+                    </div>
                   </div>
-                </div>
-              ))
-            )}
+                ))
+              )}
           </div>
         </div>
         <div style={{ marginTop: "11px" }}>
@@ -188,7 +186,7 @@ export default function Appliance() {
         </div>
       </div>
       {/* Toast Container for displaying notifications */}
-      <ToastContainer 
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
