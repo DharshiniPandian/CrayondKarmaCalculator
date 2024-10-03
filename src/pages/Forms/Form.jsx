@@ -62,7 +62,7 @@ const Form = () => {
                 food_type: foodId
             },
             appliance: {
-                electricity_consumption: totalElectricityEmission,
+                electricity_consumption: totalElectricityEmission * 100,
                 appliances: appliances
             },
             total_emission: {
@@ -87,7 +87,10 @@ const Form = () => {
             const response = await axios.post('http://localhost:8081/transaction/data', postData);
             console.log(response.data);
             // alert('Data stored successfully');
+            
+            const res = await handleSucess()
             navigate('/complete');
+            
             // navigate('/complete');
 
         } catch (error) {
@@ -111,10 +114,10 @@ const Form = () => {
         };
     }, []);
 
-    const handleSuccess = () => {
-        dispatch(goToNextStep());
-        navigate('/complete');
-    };
+    function handleSucess(){
+        dispatch(goToNextStep())
+        return "hi";
+    }
 
     return (
         <div className="form-container">
