@@ -21,6 +21,7 @@ const Result = () => {
         dispatch(goToNextStep());
         navigate('/tree-form');
     }
+    let backgroundImage = ReportBackground();
 
     const grandTotalEmission = useSelector((state) => state.carbonValue.total_emission.total_emission);
     const saplings = (grandTotalEmission / 1.2).toFixed(2);
@@ -80,7 +81,8 @@ const Result = () => {
 
 
     return (
-        <div className='res-contain' style={{ background: `url(${ReportBackground()})`, backgroundRepeat: "no-repeat", backgroundSize: "cover", backgroundPosition: "center bottom" }}>
+
+        <div className='res-contain' style={{background:`url(${backgroundImage})`,backgroundRepeat:"no-repeat",backgroundSize:"cover",backgroundPosition:"center bottom"}}>
             <h4>Summary</h4>
             <div className="white-box">
                 <div className="chart-box">

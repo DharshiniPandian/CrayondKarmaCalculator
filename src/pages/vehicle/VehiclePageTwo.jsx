@@ -21,6 +21,7 @@ const VehiclePageTwo = () => {
     let minimum = 2
     let maximum = 10
     const dispatch = useDispatch()
+    let backgroundImage = BackGround();
 
     const handleChange = (event, newvalue) => {
         setVehicleCount(Number(newvalue))
@@ -40,7 +41,7 @@ const VehiclePageTwo = () => {
 
     return (
         <div className="vehiclemaincontainer">
-            <div className="topbar" style={{ background: `url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+            <div className="topbar" style={{ background: `url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
                 <div className="topbarcontent">
                     <li>
                         <svg version="1.1" id="triangle-11" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">

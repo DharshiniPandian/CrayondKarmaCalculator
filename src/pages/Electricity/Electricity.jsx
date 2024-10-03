@@ -23,6 +23,7 @@ export default function Electricity() {
   const [value, setValue] = useState(75);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let backgroundImage = BackGround();
 
   const totalVehicleEmission = useSelector((state) => state.carbonValue.vehicle.total_vehicle_emission);
   const totalFoodEmission = useSelector((state) => state.carbonValue.food.total_food_emission);
@@ -57,7 +58,7 @@ export default function Electricity() {
 
   return (
     <div style={{ width: "100%", border: "1px solid #E8F2FF", height: "100%" }}>
-      <div className="electricity-top" style={{background:`url(${BackGround()})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
+      <div className="electricity-top" style={{background:`url(${backgroundImage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center'}}>
         <div className="carbon-value">
           <BsTriangleFill style={{ color: "#DF2929", fontWeight: "550" }} />
           {(totalVehicleEmission+totalFoodEmission+totalAppliancesEmission+electricityValue).toFixed(2)} ton CO2
