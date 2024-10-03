@@ -51,7 +51,7 @@ const Result = () => {
                 food_type: foodId
             },
             appliance: {
-                electricity_consumption: totalElectricityEmission,
+                electricity_consumption: (totalElectricityEmission*100),
                 appliances: appliances 
             },
             total_emission: {
