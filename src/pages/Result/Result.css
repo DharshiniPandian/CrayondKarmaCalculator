@@ -4,7 +4,7 @@
     height: 100vh;
     display: flex;
     align-items: center;
-    background-image: url(../../assets/background.svg);
+    /* background-image: url(../../assets/background.svg); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center bottom;
@@ -82,15 +82,19 @@
     flex-direction: row;
     width: 233px;
     height: 32px;
-    color: #FF5757;
-    background-color: #FFF1F1;
+    /* color: #175a11;
+    background-color: #d6f8d1; */
     border-radius: 6px 6px 6px 6px;
     justify-content: space-evenly;
     align-items: center;
     margin-top: 4%;
     margin-bottom: 5%;
 }
+.graph-box img{
+    width:1.5rem;
+    fill: red;
 
+}
 .graph-box p {
     font-size: 11px;
     letter-spacing: 0.5px;
@@ -98,7 +102,7 @@
     text-align: left;
     font: normal normal 12px/28px Sarabun;
     letter-spacing: 0px;
-    color: #FF5757;
+    /* color: #FF5757; */
 }
 
 .sapling-box {

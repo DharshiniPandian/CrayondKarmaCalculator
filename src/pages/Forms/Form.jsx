@@ -19,6 +19,14 @@ const Form = () => {
     const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    useEffect(() => {
+        if (isSubmitted) {
+            dispatch(goToNextStep());
+            navigate('/complete');
+        }
+    }, [isSubmitted]);
 
     // State for form fields
     const [name, setName] = useState(null);
@@ -62,7 +70,7 @@ const Form = () => {
                 food_type: foodId
             },
             appliance: {
-                electricity_consumption: totalElectricityEmission * 100,
+                electricity_consumption: (totalElectricityEmission*100),
                 appliances: appliances
             },
             total_emission: {
@@ -85,14 +93,10 @@ const Form = () => {
         try {
             console.log(postData)
             const response = await axios.post('http://localhost:8081/transaction/data', postData);
-            console.log(response.data);
-            // alert('Data stored successfully');
-            
-            const res = await handleSucess()
-            navigate('/complete');
-            
-            // navigate('/complete');
-
+            console.log(response.status);
+            // if(response.status===200){
+            //     handleSuccess()
+            // }
         } catch (error) {
             console.error('Error storing data:', error);
             alert('Failed to store data');
@@ -114,10 +118,20 @@ const Form = () => {
         };
     }, []);
 
-    function handleSucess(){
+    const handleSuccess = () => {
+        if (!name || !phone || !email || !location || !numberOfTrees || !nameToBePlanted) {
+            // // Display a toast notification if no vehicle is selected
+            // toast.warn("Please fill out all the fields", {
+            //     className: "custom-toast", // Custom class for warning toast
+            //     bodyClassName: "custom-toast-body", // Custom class for the body
+            //     progressClassName: "custom-toast-progress", // Custom class for the progress bar
+            // });
+            return;
+        }
         dispatch(goToNextStep())
-        return "hi";
-    }
+        console.log("hanldeSuccess");
+        navigate('/complete');
+    };
 
     return (
         <div className="form-container">
@@ -171,6 +185,7 @@ const Form = () => {
                                 <div>Phone number <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
                             }
                             name="phone"
+                            type = "number"
                             fullWidth
                             required
                             value={phone} // Bind state
@@ -331,7 +346,7 @@ const Form = () => {
                         />
 
                         <Button
-                            onClick={handleSubmit}
+                            onClick={()=>{handleSubmit(), handleSuccess()}}
                             variant="contained"
                             color="primary"
                             fullWidth

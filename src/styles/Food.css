@@ -13,7 +13,7 @@ button {
 .food-top {
   font-family: "Excon", sans-serif;
   height: 44.3vh;
-  background-image: url("/src/assets/Food_Bg.png");
+  /* background-image: url("/src/assets/Food_Bg.png"); */
   background-position: center;
   background-size: cover;
   display: flex;
@@ -23,7 +23,7 @@ button {
 .electricity-top {
   font-family: "Excon", sans-serif;
   height: 44.3vh;
-  background-image: url("/src/assets/electricity_Bg.png");
+  /* background-image: url("/src/assets/electricity_Bg.png"); */
   background-position: center;
   background-size: cover;
   display: flex;
