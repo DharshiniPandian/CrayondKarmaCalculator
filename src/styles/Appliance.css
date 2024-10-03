@@ -10,12 +10,11 @@
 
 .appliance-bottom {
   background-image: url('../assets/buttonbackground.png');
-  background-position:-3.8vh 31vh;
+  background-position: -3.8vh 31vh;
   background-repeat: no-repeat;
-  background-size: 25rem ;
-    bottom: 0vh;
+  background-size: 25rem;
+  bottom: 0vh;
   border-radius: 28px 28px 0rem 0rem;
-  /* width: 90%; */
   height: 58.5vh;
   display: flex;
   flex-direction: column;
@@ -23,19 +22,17 @@
   background-color: white;
   margin-top: -25px;
 }
+
 .appliance-ques {
   font: normal normal 600 13px/16px Excon;
   margin-top: 2%;
   display: flex;
   justify-content: center;
-  /* height: 6vh; */
   align-items: end;
-  /* background-color: #FEA062; */
 }
+
 .appliance-products {
-  
   margin-top: 5%;
-  /* height: 100%; */
   width: 86%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
@@ -43,13 +40,12 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
 .appliance-items {
-  
   cursor: pointer;
   display: flex;
   flex-direction: column;
   background-color: #e4ffee;
-  /* width: 1vw; */
   height: 11vh;
   justify-content: center;
   align-items: center;
@@ -57,17 +53,24 @@
   text-align: center;
   padding: 10px;
   border: 2px solid transparent;
-  cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
 }
+
+/* Hover effect for appliance items */
+.appliance-items:hover {
+  border-color: #c6c4c4; /* Change border color on hover */
+  box-shadow: 0 0 10px #dbdeda; /* Add a shadow effect for more emphasis */
+}
+
 .appliance-items:nth-child(7) {
   background-color: #fff4f3;
   grid-column: span 2;
   margin-left: 51%;
   justify-self: center;
 }
+
 @media (min-width: 600px) {
-  .appliance-items{
-    width: 90px; 
+  .appliance-items {
+    width: 90px;
   }
 }
