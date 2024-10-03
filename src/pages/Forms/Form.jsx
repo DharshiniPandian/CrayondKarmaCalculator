@@ -185,6 +185,7 @@ const Form = () => {
                                 <div>Phone number <FaStarOfLife color='#F44F5A' size='7px' style={{ verticalAlign: 'top' }} /></div>
                             }
                             name="phone"
+                            type = "number"
                             fullWidth
                             required
                             value={phone} // Bind state
