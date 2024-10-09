@@ -7,7 +7,7 @@ const ReportBackground = () => {
   const globalCarbonValue = useSelector(
     (s) => s.carbonValue.total_emission.total_emission
   );
-  if(globalCarbonValue<20.00){
+  if(globalCarbonValue<16.00){
     return good
   }
   else{
